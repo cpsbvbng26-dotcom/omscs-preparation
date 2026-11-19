@@ -250,6 +250,9 @@ BREAKS = [
     (C[13], ".zenodo.json loses the disclosure", sub(".zenodo.json", "Claude is not an author.", "Claude helped.")),
     (C[13], ".zenodo.json gives an affiliation", sub(".zenodo.json", '"orcid": "0009-0000-1406-0547"', '"orcid": "0009-0000-1406-0547", "affiliation": "x"')),
     (C[13], ".zenodo.json names the MIT licence", sub(".zenodo.json", '"license": "cc-by-4.0"', '"license": "mit"')),
+    (C[13], ".zenodo.json drops the name of the repository from the title", sub(".zenodo.json", '"title": "omscs-preparation: ', '"title": "')),
+    (C[13], ".zenodo.json names another repository in the title", sub(".zenodo.json", '"title": "omscs-preparation: ', '"title": "self-correction: ')),
+    (C[13], ".zenodo.json gives a contributor an affiliation and says no affiliation elsewhere", sub(".zenodo.json", '"upload_type": ', '"contributors": [{"name": "x", "type": "Other", "affiliation": "y"}], "comment": "no affiliation", "upload_type": ')),
 ]
 
 if __name__ == "__main__":
