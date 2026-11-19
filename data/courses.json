@@ -1,0 +1,29 @@
+{
+  "_": [
+    "Preparing Yourself for OMSCS（https://omscs.gatech.edu/preparing-yourself-omscs）が勧める科目です。その頁は、この作業の環境から開けていません。並びと名は、2026-11-19 の依頼に引かれた頁の要約と、同じ日の検索の要約によります。",
+    "url は、確かめた URL だけに置きます。確かめていないものは null です。確かめたかどうかと、そのやり方は verified_urls にあります。"
+  ],
+  "verified_urls": {
+    "https://edx.org/es/learn/python/the-georgia-institute-of-technology-computing-in-python-i-fundamentals-and-procedural-programming": "2026-11-19 の依頼に、確かめた edX の頁として挙がっていた。同じ日の検索（WebSearch）の結果にも、同じ URL が edX の頁として出た。この作業の環境からは開けない。"
+  },
+  "courses": [
+    {
+      "id": "python-1",
+      "name": "Computing in Python I: Fundamentals and Procedural Programming",
+      "area": "Introduction to Python Programming（CS1301 の教材）",
+      "url": "https://edx.org/es/learn/python/the-georgia-institute-of-technology-computing-in-python-i-fundamentals-and-procedural-programming"
+    },
+    { "id": "python-2", "name": "Computing in Python II", "area": "Introduction to Python Programming（CS1301 の教材）", "url": null },
+    { "id": "python-3", "name": "Computing in Python III", "area": "Introduction to Python Programming（CS1301 の教材）", "url": null },
+    { "id": "python-4", "name": "Computing in Python IV", "area": "Introduction to Python Programming（CS1301 の教材）", "url": null },
+    { "id": "java", "name": "Introduction to Object-Oriented Programming with Java", "area": "CS1331 の教材", "url": null },
+    { "id": "dsa-1", "name": "Data Structures & Algorithms I", "area": "CS1332 の教材", "url": null },
+    { "id": "dsa-2", "name": "Data Structures & Algorithms II", "area": "CS1332 の教材", "url": null },
+    { "id": "dsa-3", "name": "Data Structures & Algorithms III", "area": "CS1332 の教材", "url": null },
+    { "id": "dsa-4", "name": "Data Structures & Algorithms IV", "area": "CS1332 の教材", "url": null },
+    { "id": "linear-algebra", "name": "Introductory Linear Algebra", "area": "数学", "url": null },
+    { "id": "linear-algebra-applications", "name": "Applications of Linear Algebra", "area": "数学", "url": null },
+    { "id": "probability", "name": "Probability / Random Variables", "area": "数学", "url": null },
+    { "id": "statistics", "name": "Statistics, Confidence Intervals and Hypothesis Tests", "area": "数学", "url": null }
+  ]
+}
