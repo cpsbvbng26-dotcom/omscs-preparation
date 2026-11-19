@@ -2,7 +2,7 @@
   "_": [
     "散文に書いた数の台帳です（cpsbvbng26-dotcom の決めごと 5）。verification/check.py は README.md と README.en.md から数を拾い、ここのどれかに当たらなければ落ちます。",
     "dates は、書いてよい日です。fixed は、決めた値とその形です。counts は、数えて確かめる数で、re の一つ目の括弧が数、count が数え方の名です。",
-    "README.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、その表の行を飛ばします。"
+    "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。"
   ],
   "dates": {
     "2026-11-19": "決めた日。要件を読んだ日"
