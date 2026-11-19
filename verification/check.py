@@ -136,15 +136,18 @@ def readme_and_data(F):
         bad.append("README.md: the decision differs from data/progress.json")
     if bullets(F.get("README.en.md", ""), "## The decision of 2026-11-19") != first.get("items_en"):
         bad.append("README.en.md: the decision differs from data/progress.json")
-    rows = [line.split(" | ") for line in F.get("README.md", "").split("\n")
-            if re.match(r"^\| [a-z][a-z-]+ \| ", line)]
-    got = [(r[0][2:], r[1], r[2].rstrip(" |")) for r in rows]
-    want = [(r["id"], r["requirement"], R["statuses"].get(r["status"], ["?"])[0]) for r in R["rows"]]
-    if got != want:
-        bad.append("README.md: the table of requirements differs from data/requirements.json")
-    for status in R["statuses"].values():
-        if "| " + status[0] + " | " not in F.get("README.md", ""):
-            bad.append("README.md: the status " + status[0] + " is not explained")
+    # The table of requirements in each README is a copy of data/requirements.json: id, the requirement in that
+    # language, and the status in that language. Each README also explains every status in a table of its own.
+    for f, text_key, lang in (("README.md", "requirement", 0), ("README.en.md", "requirement_en", 1)):
+        rows = [line.split(" | ") for line in F.get(f, "").split("\n")
+                if re.match(r"^\| [a-z][a-z-]+ \| ", line)]
+        got = [(r[0][2:], r[1], r[2].rstrip(" |")) for r in rows if len(r) == 3]
+        want = [(r["id"], r.get(text_key), R["statuses"].get(r["status"], ["?", "?"])[lang]) for r in R["rows"]]
+        if got != want or len(rows) != len(got):
+            bad.append(f + ": the table of requirements differs from data/requirements.json")
+        for status in R["statuses"].values():
+            if not re.search(r"^\| " + re.escape(status[lang]) + r" \| [^|]+ \|$", F.get(f, ""), re.M):
+                bad.append(f + ": the status " + status[lang] + " is not explained")
     return bad
 
 
@@ -173,15 +176,15 @@ CHECKS = [
     ("Every row of requirements has a source, a date read, a status and how it was read", requirements),
     ("The courses link only verified pages", courses),
     ("The progress log starts with the decision of 2026-11-19, keeps date order, and has no future date as done and no personal academic record", progress),
-    ("README agrees with the data: the decision, the table of requirements, the statuses", readme_and_data),
+    ("Both READMEs agree with the data: the decision, the table of requirements, the statuses", readme_and_data),
     ("Copies of the canonical files and the licences are byte-identical (sha256)", rules.copies),
-    ("No university name, other place of creative work, self-title, item of rule 10 or single relative", rules.words_not_written),
+    ("No name of the operator's own university in any spelling, other place of creative work, self-title, item of rule 10 or single relative", rules.words_not_written),
     ("No e-mail address in any file", rules.no_email),
     ("Workflows: actions pinned to commits, permissions, timeouts; Dependabot", rules.workflows),
     ("labels.yml makes the labels of the canonical workflows", lambda F: rules.labels(F)),
     ("CLAUDE.md carries rules 16, 17 and 18 (10 times)", rules.claude_md),
     ("The writing rules: です/ます, no second person, no bold, one dash per paragraph, short sentences", lambda F: rules.prose(F, PROSE, allow=("Preparing Yourself for OMSCS",))),
-    ("Every number in prose is in the ledger of numbers, and every count matches the data", lambda F: rules.numbers(F, PROSE, COUNTERS, ("README.md",)) + orcid_ok(F)),
+    ("Every number in prose is in the ledger of numbers, and every count matches the data", lambda F: rules.numbers(F, PROSE, COUNTERS, ("README.md", "README.en.md")) + orcid_ok(F)),
     ("README.md and README.en.md link each other, disclose the language model and name the licences", rules.readme_pair),
     (".zenodo.json: one creator with the ORCID iD, the licence of LICENSE, the disclosure, the licence sentence, related identifiers found in the repository", rules.zenodo),
 ]
@@ -215,9 +218,17 @@ BREAKS = [
     (C[2], "the decision moved off the first entry", sub("data/progress.json", '"kind": "decision"', '"kind": "other"')),
     (C[3], "README changes one item of the decision", sub("README.md", "- AI は、概念の説明を受けるためにだけ使います。", "- AI は、課題にも使います。")),
     (C[3], "README changes the status of a row", sub("README.md", "| english-old-faq | 古い OMSCS の FAQ は、TOEFL 100 と書いていた | 確かめていない |", "| english-old-faq | 古い OMSCS の FAQ は、TOEFL 100 と書いていた | 公式の頁の検索結果から |")),
+    (C[3], "README.en.md changes the text of a requirement", sub("README.en.md", "| deadline-fall | The application deadline for Fall matriculation is March 1 |", "| deadline-fall | The application deadline for Fall matriculation is March 15 |")),
+    (C[3], "README.en.md changes the status of a row", sub("README.en.md", "| english-old-faq | An old OMSCS FAQ gave TOEFL 100 | not confirmed |", "| english-old-faq | An old OMSCS FAQ gave TOEFL 100 | from search results of the official page |")),
+    (C[3], "README.en.md drops a row", sub("README.en.md", "| recommenders | Recommendations from three individuals | from search results of the official page |\n", "")),
+    (C[3], "README.en.md does not explain a status", sub("README.en.md", "| from a third-party page | Read on a page that is not official |\n", "")),
     (C[4], "one character of SECURITY.md", sub("SECURITY.md", "7 日以内", "8 日以内")),
     (C[4], "one character of LICENSE-CODE", sub("LICENSE-CODE", "MIT License", "MIT Licence")),
+    (C[4], "the note on the copies says the cross-repository check compares them", sub("verification/copies.json", "いま正本と写しを突き合わせるのは、このリポジトリの検査（verification/rules.py の copies）だけです。cpsbvbng26-dotcom の横断の検査（verification/check_ecosystem.js）は、まだこのリポジトリを見ていません。", "cpsbvbng26-dotcom の verification/check_ecosystem.js も、正本と写しを突き合わせます。")),
     (C[5], "the university's name", add("README.md", "\n" + rules.dec("WkVO") + rules.dec("5aSn5a2m") + "\n")),
+    (C[5], "the university's name, romanised", add("README.md", "\n" + rules.dec("emVu") + " " + rules.dec("ZGFpZ2FrdQ==") + "\n")),
+    (C[5], "the university's name in hiragana", add("README.md", "\n" + rules.dec("44Gc44KT") + rules.dec("44Gg44GE44GM44GP") + "\n")),
+    (C[5], "the university's name in katakana, spelt out", add("README.md", "\n" + rules.dec("44K844Oz") + rules.dec("44OA44Kk44Ks44Kv") + "\n")),
     (C[5], "the other place of creative work", add("data/progress.json", rules.OTHER_PLACE[0])),
     (C[5], "a self-title", add("README.en.md", "\n" + rules.dec("SW5kZXBlbmRlbnQ=") + " " + rules.dec("UmVzZWFyY2hlcg==") + "\n")),
     (C[5], "a word for a single relative", add("README.md", "\n" + rules.RELATIVES[0] + "\n")),
