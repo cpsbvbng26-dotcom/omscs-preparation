@@ -1,0 +1,28 @@
+{
+  "_": [
+    "進み具合の記録です。日付の順に足します。決めたこと（decision）と、したこと（started・finished・other）だけを書きます。これからの作業の一覧は置きません。",
+    "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。"
+  ],
+  "entries": [
+    {
+      "date": "2026-11-19",
+      "kind": "decision",
+      "done": true,
+      "items": [
+        "学士号を得たあと、Georgia Tech の OMSCS（Online Master of Science in Computer Science）で修士号を取ることを目指します。",
+        "Georgia Tech が自分で出している MOOC を、月に 1 本ずつ受けます。",
+        "最初の MOOC は、edX の Computing in Python I: Fundamentals and Procedural Programming です。",
+        "評価を受ける課題は、AI を使わずに仕上げます。",
+        "AI は、概念の説明を受けるためにだけ使います。"
+      ],
+      "items_en": [
+        "The aim is a master's degree through Georgia Tech's OMSCS (Online Master of Science in Computer Science), after the bachelor's degree.",
+        "Georgia Tech's own MOOCs are taken one per month.",
+        "The first MOOC is Computing in Python I: Fundamentals and Procedural Programming, on edX.",
+        "Graded work is done without AI.",
+        "AI is used only to explain concepts."
+      ],
+      "source": "利用者が 2026-11-19 に決めた。修士号の目標は researcher-profile の site.json の aims にある（2026-11-19 の main、コミット 942dc9c で読んだ）。MOOC の進め方と AI の使い方は、その日の site.json には書かれていない。"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "_": [
+    "OMSCS の出願の要件を、行ごとに置きます。各行は出典の URL、読んだ日、状態、どう確かめたかを持ちます。",
+    "状態は statuses の四つのどれかです。omscs.gatech.edu は、この作業の環境から届きません（2026-11-19 に WebFetch が名前を引けなかった）。そのため、公式の頁を開いて確かめた行はありません。",
+    "「公式の頁の検索結果から」は、検索の結果に出た要約か抜粋で読んだという意味です。頁そのものは開いていません。",
+    "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。"
+  ],
+  "statuses": {
+    "confirmed": ["公式の頁で確かめた", "confirmed on the official page"],
+    "search": ["公式の頁の検索結果から", "from search results of the official page"],
+    "third-party": ["第三者の頁から", "from a third-party page"],
+    "unconfirmed": ["確かめていない", "not confirmed"]
+  },
+  "rows": [
+    {
+      "id": "degree",
+      "requirement": "入学までに学士号を得ていること。教育の年数は 16 年以上",
+      "requirement_en": "A bachelor's degree, with at least 16 years of education, before matriculation",
+      "source": "https://omscs.gatech.edu/admission-criteria",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": false,
+      "how": "依頼に引かれた、それより前の検索の抜粋による。2026-11-19 の検索の要約は、入学までに学士号か同等のものが要ることを prospective-student-faqs の頁として示した。16 年という年数は、その要約には出なかった。"
+    },
+    {
+      "id": "field-and-gpa",
+      "requirement": "計算機科学か近い分野の学士号と、累積 GPA 3.0 以上が望ましい（必須ではない）。満たさない出願は一件ずつ判断される",
+      "requirement_en": "An undergraduate degree in computer science or a related field and a cumulative GPA of 3.0 or higher are preferred, not required. Applicants who do not meet them are evaluated case by case",
+      "source": "https://omscs.gatech.edu/admission-criteria",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、admission-criteria の頁の文として示した。近い分野の例として、数学・計算機工学・電気工学が挙がっていた。"
+    },
+    {
+      "id": "recommenders",
+      "requirement": "推薦者が 3 人",
+      "requirement_en": "Recommendations from three individuals",
+      "source": "https://omscs.gatech.edu/admission-criteria",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。今と前の教員や上司のほうが、同級生や同僚より説得力があるとも書かれていた。"
+    },
+    {
+      "id": "resume",
+      "requirement": "履歴書（résumé）。出さなければ出願は評価されない",
+      "requirement_en": "A résumé. Without one, the application is not evaluated",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、Additional Application Guidelines の頁の文として示した。deadlines-decisions-requirements-and-guidelines の頁も、要る物として挙げているとあった。"
+    },
+    {
+      "id": "supplemental-questions",
+      "requirement": "補足の質問への答え。自由記述には字数の上限があり、最後の 8 問は確認の質問",
+      "requirement_en": "Answers to the supplemental questions. The free-form answers have length limits, and the last eight questions are checklist questions",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、Additional Application Guidelines の頁の文として示した。志望理由書（Statement of Purpose）は読まれない、ともあった。質問そのものの文は読んでいない。"
+    },
+    {
+      "id": "english-test",
+      "requirement": "留学生には TOEFL か IELTS-Academic の点が要る。点は出願を終えるときまでに出す",
+      "requirement_en": "International applicants need TOEFL or IELTS-Academic scores, due when the application is completed",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、prospective-student-faqs の頁の文として示した。GRE は要らないともあった。OMSCS の頁としての最低点は、その要約には出なかった。"
+    },
+    {
+      "id": "english-minimum",
+      "requirement": "Georgia Tech の大学院の最低点は、TOEFL iBT で合計 90 以上かつ各技能 19 以上、または IELTS で総合 7.0 以上",
+      "requirement_en": "The Institute minimum is a TOEFL iBT total of 90 with at least 19 in each section, or an IELTS overall band of 7.0",
+      "source": "https://grad.gatech.edu/english-proficiency",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、Georgia Tech の大学院の頁（grad.gatech.edu）と Language Institute の頁の文として示した。OMSCS の頁ではない。学部や課程によってはこれより高い線を置く、ともあった。IELTS の各技能の線（Reading・Listening・Speaking 6.5、Writing 5.5）も同じ要約にあった。"
+    },
+    {
+      "id": "english-old-faq",
+      "requirement": "古い OMSCS の FAQ は、TOEFL 100 と書いていた",
+      "requirement_en": "An old OMSCS FAQ gave TOEFL 100",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-19",
+      "status": "unconfirmed",
+      "seen_on_2026_11_19": false,
+      "how": "依頼に引かれた、それより前の検索の抜粋だけによる。2026-11-19 の検索では、この数は出なかった。いつの版の FAQ かも分からない。"
+    },
+    {
+      "id": "toefl-scale",
+      "requirement": "TOEFL の点の尺度が 2026 年 1 月に変わった",
+      "requirement_en": "The TOEFL score scale changed in January 2026",
+      "source": "https://inta.gatech.edu/graduate/admissions-faq",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、Georgia Tech の国際関係の学部の頁の文として、2026-01-21 に尺度が変わったと示した。OMSCS の頁ではない。新しい尺度で上の最低点がどう読み替えられるかは、確かめていない。"
+    },
+    {
+      "id": "deadline-fall",
+      "requirement": "秋の入学の出願の締め切りは 3 月 1 日",
+      "requirement_en": "The application deadline for Fall matriculation is March 1",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。結果は締め切りのおよそ 10 から 12 週あとに出る、ともあった。"
+    },
+    {
+      "id": "deadline-spring",
+      "requirement": "春の入学の出願の締め切りは 8 月 15 日",
+      "requirement_en": "The application deadline for Spring matriculation is August 15",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。"
+    },
+    {
+      "id": "conditional-admission",
+      "requirement": "入学は条件付き。入学から 1 年のうちに、基礎の科目 2 つを B 以上で終えると、正式の入学になる",
+      "requirement_en": "Admission is conditional. Passing two foundational courses with a B or better within a year of matriculation gives full admission",
+      "source": "https://omscs.gatech.edu/admission-criteria",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。2026 年春のオリエンテーションの文書も、入学から 1 暦年と書いているとあった。"
+    },
+    {
+      "id": "preparation-by-application",
+      "requirement": "勧められた準備は、出願を出すときまでに終えていることが期待される。MOOC だけでは、STEM の学士号の無い人には足りることがまれ",
+      "requirement_en": "The recommended preparation is expected to be complete when the application is submitted. These MOOCs alone are rarely sufficient for applicants without a bachelor's degree in a STEM field",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-19",
+      "status": "search",
+      "seen_on_2026_11_19": true,
+      "how": "2026-11-19 の検索の要約が、Preparing Yourself for OMSCS の頁の文として示した。科目を終えても入学は保証されない、ともあった。"
+    }
+  ]
+}
