@@ -21,9 +21,35 @@ The original text of the decision is the first entry of [data/progress.json](./d
 ## Application requirements
 
 [data/requirements.json](./data/requirements.json) holds one row per requirement, each with its source URL, the date it was read, a status and how it was checked.
-The status is one of: confirmed on the official page, from search results of the official page, from a third-party page, not confirmed.
+The status is one of the following.
+
+| Status | Meaning |
+| --- | --- |
+| confirmed on the official page | The official page was opened and read |
+| from search results of the official page | Read in the summary or excerpt of a search result; the page was not opened |
+| from a third-party page | Read on a page that is not official |
+| not confirmed | The source could not be read |
+
 omscs.gatech.edu cannot be reached from the environment this record was written in, so no row is confirmed on the official page.
 There are 13 rows.
+
+| Row | Requirement | Status |
+| --- | --- | --- |
+| degree | A bachelor's degree, with at least 16 years of education, before matriculation | from search results of the official page |
+| field-and-gpa | An undergraduate degree in computer science or a related field and a cumulative GPA of 3.0 or higher are preferred, not required. Applicants who do not meet them are evaluated case by case | from search results of the official page |
+| recommenders | Recommendations from three individuals | from search results of the official page |
+| resume | A résumé. Without one, the application is not evaluated | from search results of the official page |
+| supplemental-questions | Answers to the supplemental questions. The free-form answers have length limits, and the last eight questions are checklist questions | from search results of the official page |
+| english-test | International applicants need TOEFL or IELTS-Academic scores, due when the application is completed | from search results of the official page |
+| english-minimum | The Institute minimum is a TOEFL iBT total of 90 with at least 19 in each section, or an IELTS overall band of 7.0 | from search results of the official page |
+| english-old-faq | An old OMSCS FAQ gave TOEFL 100 | not confirmed |
+| toefl-scale | The TOEFL score scale changed in January 2026 | from search results of the official page |
+| deadline-fall | The application deadline for Fall matriculation is March 1 | from search results of the official page |
+| deadline-spring | The application deadline for Spring matriculation is August 15 | from search results of the official page |
+| conditional-admission | Admission is conditional. Passing two foundational courses with a B or better within a year of matriculation gives full admission | from search results of the official page |
+| preparation-by-application | The recommended preparation is expected to be complete when the application is submitted. These MOOCs alone are rarely sufficient for applicants without a bachelor's degree in a STEM field | from search results of the official page |
+
+The source URL and how each row was read are in `data/requirements.json`.
 
 ## Recommended courses
 
