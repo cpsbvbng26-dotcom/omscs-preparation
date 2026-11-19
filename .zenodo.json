@@ -1,0 +1,21 @@
+{
+  "title": "omscs-preparation: a dated record of the preparation for an application to Georgia Tech's OMSCS",
+  "description": "<p>A dated record of the preparation for an application to the Online Master of Science in Computer Science (OMSCS) of Georgia Tech: the decision of 2026-11-19, the application requirements with their sources, the dates they were read and how far each was confirmed, the courses that the programme recommends, and a progress log. It records what was decided and what was done. It holds no list of tasks to come, and no grades or other personal academic records.</p><p>Georgia Tech の OMSCS に出願するための準備を、日付つきで残す記録です。決めたこと、出典と読んだ日と確かめた程度つきの要件、勧められている科目、進み具合の記録を置いています。</p>",
+  "upload_type": "dataset",
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "jpn",
+  "creators": [
+    {
+      "name": "Nemoto, Takuya",
+      "orcid": "0009-0000-1406-0547"
+    }
+  ],
+  "keywords": [
+    "machine-readable record",
+    "computer science",
+    "graduate admissions",
+    "MOOC"
+  ],
+  "notes": "Claude Code (Anthropic) was used to write the record, the data and the checks, at the author's request. The author decided what is recorded and reviewed it. The author is responsible for the content. Claude is not an author. The text and the data are CC BY 4.0 (LICENSE); the check scripts are MIT (LICENSE-CODE). The licence field of this record covers the text and the data only. Texts by others that this repository quotes, or keeps to verify its quotations, are not licensed under CC BY 4.0 or the MIT License and remain their owners'."
+}
