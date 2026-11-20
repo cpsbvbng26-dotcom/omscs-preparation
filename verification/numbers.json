@@ -5,7 +5,8 @@
     "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。"
   ],
   "dates": {
-    "2026-11-19": "決めた日。要件を読んだ日"
+    "2026-11-19": "決めた日。要件を読んだ日",
+    "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日"
   },
   "fixed": [
     { "re": "CC BY 4\\.0", "why": "LICENSE の版" },
@@ -16,6 +17,12 @@
     { "re": "要件の行は (\\d+) 行", "count": "requirements" },
     { "re": "There are (\\d+) rows", "count": "requirements" },
     { "re": "科目は (\\d+) 本", "count": "courses" },
-    { "re": "There are (\\d+) courses", "count": "courses" }
+    { "re": "There are (\\d+) courses", "count": "courses" },
+    { "re": "公式の頁で確かめた行は (\\d+) 行", "count": "confirmed" },
+    { "re": "Of them, (\\d+) are confirmed", "count": "confirmed" },
+    { "re": "開いて読んだ頁は (\\d+) つ", "count": "pages_read" },
+    { "re": "(\\d+) pages were opened and read", "count": "pages_read" },
+    { "re": "項目は (\\d+) 件", "count": "assets" },
+    { "re": "There are (\\d+) items", "count": "assets" }
   ]
 }
