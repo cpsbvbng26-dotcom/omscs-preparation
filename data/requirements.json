@@ -1,146 +1,369 @@
 {
   "_": [
     "OMSCS の出願の要件を、行ごとに置きます。各行は出典の URL、読んだ日、状態、どう確かめたかを持ちます。",
-    "状態は statuses の四つのどれかです。omscs.gatech.edu は、この作業の環境から届きません（2026-11-19 に WebFetch が名前を引けなかった）。そのため、公式の頁を開いて確かめた行はありません。",
+    "状態は statuses の四つのどれかです。omscs.gatech.edu は、2026-11-19 にはこの作業の環境から届きませんでした（WebFetch が名前を引けなかった）。2026-11-20 に、網の設定が omscs.gatech.edu と grad.gatech.edu を通すようになり、pages_read の六つの頁を開いて読みました。",
+    "confirmed の行の source は pages_read のどれかで、quotes にはその頁の英語の文を一字一句そのまま置きます。how は、どの頁のどの文によるかを書きます。",
     "「公式の頁の検索結果から」は、検索の結果に出た要約か抜粋で読んだという意味です。頁そのものは開いていません。",
-    "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。"
+    "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。null の行は、2026-11-20 に頁を読んで足した行です。"
   ],
   "statuses": {
-    "confirmed": ["公式の頁で確かめた", "confirmed on the official page"],
-    "search": ["公式の頁の検索結果から", "from search results of the official page"],
-    "third-party": ["第三者の頁から", "from a third-party page"],
-    "unconfirmed": ["確かめていない", "not confirmed"]
+    "confirmed": [
+      "公式の頁で確かめた",
+      "confirmed on the official page"
+    ],
+    "search": [
+      "公式の頁の検索結果から",
+      "from search results of the official page"
+    ],
+    "third-party": [
+      "第三者の頁から",
+      "from a third-party page"
+    ],
+    "unconfirmed": [
+      "確かめていない",
+      "not confirmed"
+    ]
+  },
+  "pages_read": {
+    "https://omscs.gatech.edu/admission-criteria": "Admission Criteria。2026-11-20 に開いて全文を読んだ。https://omscs.gatech.edu/program-info/admission-criteria は、この頁への恒久の転送（301）を返す。",
+    "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines": "Deadlines, Decisions, Requirements, and Guidelines。2026-11-20 に開いて全文を読んだ。",
+    "https://omscs.gatech.edu/additional-app-guidelines": "Additional Application Guidelines。2026-11-20 に開いて全文を読んだ。",
+    "https://omscs.gatech.edu/preparing-yourself-omscs": "Preparing Yourself for OMSCS。2026-11-20 に開いて全文を読んだ。",
+    "https://omscs.gatech.edu/prospective-student-faqs": "Prospective Student FAQs。2026-11-20 に開いて全文を読んだ。",
+    "https://grad.gatech.edu/english-proficiency": "Georgia Tech の大学院の English Proficiency。OMSCS の頁ではない。2026-11-20 に開いて全文を読んだ。"
   },
   "rows": [
     {
       "id": "degree",
-      "requirement": "入学までに学士号を得ていること。教育の年数は 16 年以上",
-      "requirement_en": "A bachelor's degree, with at least 16 years of education, before matriculation",
+      "requirement": "入学までに、学士号かそれと同等以上の学位を得ていること。職歴は学位の代わりにならない",
+      "requirement_en": "A bachelor's degree, its equivalent, or a higher degree before matriculation. Work experience does not substitute for a degree",
       "source": "https://omscs.gatech.edu/admission-criteria",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": false,
-      "how": "依頼に引かれた、それより前の検索の抜粋による。2026-11-19 の検索の要約は、入学までに学士号か同等のものが要ることを prospective-student-faqs の頁として示した。16 年という年数は、その要約には出なかった。"
+      "quotes": [
+        "Evidence of award of a bachelor's degree, its equivalent, or higher degree (prior to matriculation) from a regionally accredited institution",
+        "In no case can work experience substitute for having earned an academic degree."
+      ],
+      "how": "Admission Criteria の頁の、Institute Catalog から引かれた文と、その次の文による。2026-11-19 には、検索の要約から（search）の行だった。前の行にあった「教育の年数は 16 年以上」は、2026-11-20 に開いた六つの頁のどれにも無かった。そのため行から外した。"
     },
     {
       "id": "field-and-gpa",
       "requirement": "計算機科学か近い分野の学士号と、累積 GPA 3.0 以上が望ましい（必須ではない）。満たさない出願は一件ずつ判断される",
       "requirement_en": "An undergraduate degree in computer science or a related field and a cumulative GPA of 3.0 or higher are preferred, not required. Applicants who do not meet them are evaluated case by case",
       "source": "https://omscs.gatech.edu/admission-criteria",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、admission-criteria の頁の文として示した。近い分野の例として、数学・計算機工学・電気工学が挙がっていた。"
+      "quotes": [
+        "Preferred qualifications for admitted OMSCS students are an undergraduate degree in computer science or related field (typically mathematics, computer engineering or electrical engineering) with a cumulative GPA of 3.0 or higher.",
+        "Applicants who do not meet these criteria will be evaluated on a case-by-case basis."
+      ],
+      "how": "Admission Criteria の頁の最初の二文による。Preparing Yourself for OMSCS の頁と FAQ の頁にも同じ文がある。2026-11-19 には、検索の要約から（search）の行だった。"
     },
     {
       "id": "recommenders",
-      "requirement": "推薦者が 3 人",
-      "requirement_en": "Recommendations from three individuals",
-      "source": "https://omscs.gatech.edu/admission-criteria",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "requirement": "推薦者が 3 人。出願では推薦者のメールアドレスを書き、推薦者にはメールで案内が届き、推薦はオンラインで出す。紙の推薦状は要らない",
+      "requirement_en": "Recommendations from three individuals. The application gives their e-mail addresses, they are contacted by e-mail and submit online, and no physical letter is required",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。今と前の教員や上司のほうが、同級生や同僚より説得力があるとも書かれていた。"
+      "quotes": [
+        "Applicants must procure recommendations from three individuals.",
+        "Those individuals will be contacted through email and provided instructions on how to submit their recommendations online.",
+        "A physical letter will not be required."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「How many recommenders will I need? What is the process?」への答えによる。2026-11-19 には、検索の要約から（search）の行だった。"
+    },
+    {
+      "id": "recommenders-not",
+      "requirement": "推薦状を頼まない相手として、職場の同僚、今か前の同級生、家族（配偶者と親族を含む）、宗教の指導者、友人が挙がっている",
+      "requirement_en": "Work peers, current or former classmates, family (spouses and relatives included), religious leaders and friends are listed as people not to ask for letters",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "DO NOT ask work peers, current or former classmates, spouses, in-laws, siblings, parents, children, religious leaders, friends, etc. to write letters of recommendation."
+      ],
+      "how": "Additional Application Guidelines の頁の Don'ts の四つ目の文による。同じ頁の Tips for Letters of Recommendation にも、同級生を除いた同じ並びがある。2026-11-20 に足した行。"
+    },
+    {
+      "id": "academic-references",
+      "requirement": "学術の推薦者を少なくとも 1 人、できれば 2 人。計算機科学に関わる授業（そうした授業が少なければ、難しい技術の授業）で教えた教員に頼み、技術の力について具体的に書いてもらう",
+      "requirement_en": "At least one academic reference, preferably two: a teacher who taught the applicant in a computer science related class, or else in a challenging technical course, writing specifically about technical abilities",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Since you are applying to an academic program, you should have at least 1 (preferably 2) academic reference.",
+        "For an academic reference, ask a professor/teacher who had you as a student in a Computer Science-related class.",
+        "ask a professor who taught you in a challenging, technical course.",
+        "Regardless, ask them to comment specifically on your technical abilities"
+      ],
+      "how": "Additional Application Guidelines の頁の Tips for Letters of Recommendation の三つ目と四つ目の段落による。Do's にも、計算機科学の力について具体的に書いてもらうよう頼む、という文がある。2026-11-20 に足した行。"
     },
     {
       "id": "resume",
       "requirement": "履歴書（résumé）。出さなければ出願は評価されない",
       "requirement_en": "A résumé. Without one, the application is not evaluated",
       "source": "https://omscs.gatech.edu/additional-app-guidelines",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、Additional Application Guidelines の頁の文として示した。deadlines-decisions-requirements-and-guidelines の頁も、要る物として挙げているとあった。"
+      "quotes": [
+        "Include a résumé—your application will NOT be evaluated if you do not submit a résumé."
+      ],
+      "how": "Additional Application Guidelines の頁の Do's の五つ目の文による。Deadlines, Decisions, Requirements, and Guidelines の頁にも「Resume: A resume is required.」とある。2026-11-19 には、検索の要約から（search）の行だった。"
     },
     {
       "id": "supplemental-questions",
-      "requirement": "補足の質問への答え。自由記述には字数の上限があり、最後の 8 問は確認の質問",
-      "requirement_en": "Answers to the supplemental questions. The free-form answers have length limits, and the last eight questions are checklist questions",
-      "source": "https://omscs.gatech.edu/additional-app-guidelines",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "requirement": "補足の質問への答えが全部要る。自由記述の問いは答えの長さに上限があり、最後の 8 問は Yes/No で答える確認の問い",
+      "requirement_en": "Answers to all of the supplemental questions are required. The free-form answers have length limits, and the final eight questions are Yes/No checklist questions",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、Additional Application Guidelines の頁の文として示した。志望理由書（Statement of Purpose）は読まれない、ともあった。質問そのものの文は読んでいない。"
+      "quotes": [
+        "this section contains several free-form questions and \"Yes/No\" questions.",
+        "The free-form questions are limited in the length of the response that you can give.",
+        "are checklist questions for you to ensure you have submitted an accurate and complete application.",
+        "Answers to ALL of the OMSCS supplemental questions are required."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Answers to OMSCS supplemental questions の段落による。2026-11-19 には、Additional Application Guidelines の頁として、検索の要約から（search）の行だった。質問そのものの文は、まだ読んでいない。"
+    },
+    {
+      "id": "no-statement-of-purpose",
+      "requirement": "志望理由書（Statement of Purpose）やほかの補足の文書は出さない。出しても読まれない",
+      "requirement_en": "No Statement of Purpose or any other supplementary statement. It will not be read",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "DO NOT submit a Statement of Purpose (or ANY other supplementary statement) - it will NOT be read."
+      ],
+      "how": "Additional Application Guidelines の頁の Don'ts の最初の文による。2026-11-20 に足した行。2026-11-19 の検索の要約にも、志望理由書は読まれないとあった（supplemental-questions の行の当時の確かめ方）。"
+    },
+    {
+      "id": "transcripts",
+      "requirement": "単位を得るために通ったすべての教育機関の、正式に発行された成績証明書などの写し（スキャン）を出す。学位を終えていない機関のものも要る",
+      "requirement_en": "Scans of officially issued academic documents, such as transcripts, from every institution attended for academic credit, even where no degree was completed",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Scans of officially issued academic credentials/documents (transcripts, mark sheets, or diploma supplement) must be submitted.",
+        "Documents from every institution attended for academic credit must be submitted—even if you did not complete a degree at that institution."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Academic history の段落による。Web の成績表や学位の監査の書類のような別の種類の書類は受け付けない、ともある。2026-11-20 に足した行。"
+    },
+    {
+      "id": "transcripts-problems",
+      "requirement": "よくある問題として、在学中の学位の成績証明書が出願の日より 30 日を超えて古いことが挙がっている。10 頁を超える成績証明書は出し直しを求められ、出願は止まる",
+      "requirement_en": "Listed as common problems: a transcript for a degree in progress that is more than 30 days older than the application date. A transcript longer than 10 pages must be resubmitted, and the application is put on hold",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Transcripts for in-progress degrees that are out-of-date (meaning >30 days older than the application date).",
+        "Applicants submitting transcripts longer than 10 pages will be notified to re-submit those transcripts, and their applications will be put on indefinite hold."
+      ],
+      "how": "Additional Application Guidelines の頁の Common Application Problems の最初の二つの項目による。2026-11-20 に足した行。"
+    },
+    {
+      "id": "transcripts-translation",
+      "requirement": "留学生は、出願のときに、成績証明書の英語の非公式の訳と、元の言語の成績証明書を出す。GPA を自分で換算しない",
+      "requirement_en": "International applicants provide an unofficial English translation of the transcript and the native language transcript with the application. The GPA is not converted by the applicant",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "You will be asked to provide an unofficial English translation of your transcript AND native language transcripts upon application.",
+        "If your undergraduate institution does not grade on a 4.0 scale, you do NOT need to convert your GPA."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「I am an international student. Do I need to have my transcripts translated or converted?」への答えによる。2026-11-20 に足した行。"
     },
     {
       "id": "english-test",
-      "requirement": "留学生には TOEFL か IELTS-Academic の点が要る。点は出願を終えるときまでに出す",
-      "requirement_en": "International applicants need TOEFL or IELTS-Academic scores, due when the application is completed",
-      "source": "https://omscs.gatech.edu/prospective-student-faqs",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "requirement": "留学生には、TOEFL か IELTS-Academic の十分な点が要る",
+      "requirement_en": "International applicants need satisfactory TOEFL or IELTS-Academic scores",
+      "source": "https://omscs.gatech.edu/admission-criteria",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、prospective-student-faqs の頁の文として示した。GRE は要らないともあった。OMSCS の頁としての最低点は、その要約には出なかった。"
+      "quotes": [
+        "For international applicants, satisfactory scores on the Test of English as a Foreign Language (TOEFL) or IELTS-Academic are required."
+      ],
+      "how": "Admission Criteria の頁の文による。その文が指す OMSCS Summary の頁は、2026-11-20 には Page Not Found を返した。2026-11-19 には、点を出す時期と一つの行で、FAQ の頁として、検索の要約から（search）の行だった。時期は english-test-due の行に分けた。"
+    },
+    {
+      "id": "english-test-due",
+      "requirement": "TOEFL か IELTS の点は、出願を終えるときまでに出す。出願の手続きが終わったあとには出せない",
+      "requirement_en": "TOEFL or IELTS scores are due when the application is completed, not after the application process ends",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": true,
+      "quotes": [
+        "No. TOEFL or IELTS scores are due upon completion of your application."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「Can I submit my TOEFL or IELTS scores after the application process ends?」への答えによる。2026-11-19 には english-test の行の一部で、検索の要約から（search）だった。同じ頁に、GRE は要らない（Do applicants need to take the GRE? への答えが No.）ともある。"
+    },
+    {
+      "id": "english-faq-toefl",
+      "requirement": "OMSCS の FAQ の頁は、留学生に TOEFL 100 以上を求めると書いている",
+      "requirement_en": "The OMSCS FAQ page asks international applicants for a TOEFL score of at least 100",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": false,
+      "quotes": [
+        "International students applying to OMSCS are required to submit a TOEFL score (Test of English as a Foreign Language) of at least 100 as part of their application."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「Are all courses taught in English?」への答えによる。2026-11-19 には english-old-faq の行で、「古い FAQ が 100 と書いていた」として確かめていない（unconfirmed）だった。いまの FAQ の頁にこの文がある。100 は 2026 年 1 月より前の 0 から 120 の尺度の数である（english-minimum と toefl-scale の行）。新しい 1 から 6 の尺度で OMSCS がどの点を求めるかは、読んだ頁のどれにも書かれていない。"
     },
     {
       "id": "english-minimum",
-      "requirement": "Georgia Tech の大学院の最低点は、TOEFL iBT で合計 90 以上かつ各技能 19 以上、または IELTS で総合 7.0 以上",
-      "requirement_en": "The Institute minimum is a TOEFL iBT total of 90 with at least 19 in each section, or an IELTS overall band of 7.0",
+      "requirement": "Georgia Tech の大学院の最低点は、TOEFL iBT では 2026 年 1 月より前の尺度で合計 90 以上かつ各技能 19 以上、後の尺度で合計 4.5 以上。IELTS Academic では総合 7 以上",
+      "requirement_en": "The Institute minimum is a TOEFL iBT total of 90 with at least 19 in each section on the scale before January 2026, or 4.5 on the later scale, or an IELTS Academic overall band of 7",
       "source": "https://grad.gatech.edu/english-proficiency",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、Georgia Tech の大学院の頁（grad.gatech.edu）と Language Institute の頁の文として示した。OMSCS の頁ではない。学部や課程によってはこれより高い線を置く、ともあった。IELTS の各技能の線（Reading・Listening・Speaking 6.5、Writing 5.5）も同じ要約にあった。"
-    },
-    {
-      "id": "english-old-faq",
-      "requirement": "古い OMSCS の FAQ は、TOEFL 100 と書いていた",
-      "requirement_en": "An old OMSCS FAQ gave TOEFL 100",
-      "source": "https://omscs.gatech.edu/prospective-student-faqs",
-      "read_on": "2026-11-19",
-      "status": "unconfirmed",
-      "seen_on_2026_11_19": false,
-      "how": "依頼に引かれた、それより前の検索の抜粋だけによる。2026-11-19 の検索では、この数は出なかった。いつの版の FAQ かも分からない。"
+      "quotes": [
+        "Below are minimum institutional requirements. Individual graduate programs may require higher scores.",
+        "TOEFL iBT Prior to January 2026: 90 or higher",
+        "TOEFL iBT After January 2026: 4.5 or higher",
+        "TOEFL iBT Prior to January 2026: 19 or higher",
+        "IELTS Academic 7 or higher"
+      ],
+      "how": "Georgia Tech の大学院の English Proficiency の頁の表による。OMSCS の頁ではない。後の尺度の各技能の線は Reading・Listening・Writing 4 以上、Speaking 3.5 以上。IELTS の各技能の線は Reading・Listening・Speaking 6.5 以上、Writing 5.5 以上。同じ頁は、英語で教える学位などで英語の力を示す道も挙げている。2026-11-19 には、検索の要約から（search）の行だった。"
     },
     {
       "id": "toefl-scale",
-      "requirement": "TOEFL の点の尺度が 2026 年 1 月に変わった",
-      "requirement_en": "The TOEFL score scale changed in January 2026",
-      "source": "https://inta.gatech.edu/graduate/admissions-faq",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "requirement": "TOEFL の点は、2026-01-21 からは 1 から 6 の新しい尺度で出る。それより前の点は 0 から 120 の尺度",
+      "requirement_en": "TOEFL scores earned on or after 2026-01-21 are reported on the new 1 to 6 scale, and earlier scores on the 0 to 120 scale",
+      "source": "https://grad.gatech.edu/english-proficiency",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、Georgia Tech の国際関係の学部の頁の文として、2026-01-21 に尺度が変わったと示した。OMSCS の頁ではない。新しい尺度で上の最低点がどう読み替えられるかは、確かめていない。"
+      "quotes": [
+        "TOEFL scores earned before January 21, 2026, are reported on the 0–120 scale and remain valid for two years from date of test.",
+        "TOEFL scores earned on or after January 21, 2026, are reported on the new 1–6 scale."
+      ],
+      "how": "Georgia Tech の大学院の English Proficiency の頁の FAQ の問い「I took the TOEFL before January 2026. Which score scale applies?」への答えによる。2026-11-19 には、Georgia Tech の国際関係の学部の頁（inta.gatech.edu）として、検索の要約から（search）の行だった。その頁は 2026-11-20 にもこの作業の環境から開けなかった。"
     },
     {
       "id": "deadline-fall",
       "requirement": "秋の入学の出願の締め切りは 3 月 1 日",
       "requirement_en": "The application deadline for Fall matriculation is March 1",
       "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。結果は締め切りのおよそ 10 から 12 週あとに出る、ともあった。"
+      "quotes": [
+        "Application deadline for Fall matriculation: March 1"
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。結果は締め切りのおよそ 10 から 12 週あとに出る、ともある。夏の入学は無い。2026-11-19 には、検索の要約から（search）の行だった。"
     },
     {
       "id": "deadline-spring",
       "requirement": "春の入学の出願の締め切りは 8 月 15 日",
       "requirement_en": "The application deadline for Spring matriculation is August 15",
       "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。"
+      "quotes": [
+        "Application deadline for Spring matriculation: August 15"
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。2026-11-19 には、検索の要約から（search）の行だった。"
+    },
+    {
+      "id": "after-deadline",
+      "requirement": "締め切りのあとに終えた学業は、出願の評価に入らない。締め切りまでに終わらない在学中の科目も入らない",
+      "requirement_en": "Academic work completed after the application deadline is not considered, including coursework in progress and not completed before the deadline",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Please note that any academic work completed after the application deadline will not be considered for the purposes of evaluating your application.",
+        "For example, academic coursework which is in progress and not completed before the application deadline will not be considered"
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落の後半による。2026-11-20 に足した行。"
     },
     {
       "id": "conditional-admission",
       "requirement": "入学は条件付き。入学から 1 年のうちに、基礎の科目 2 つを B 以上で終えると、正式の入学になる",
       "requirement_en": "Admission is conditional. Passing two foundational courses with a B or better within a year of matriculation gives full admission",
-      "source": "https://omscs.gatech.edu/admission-criteria",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、公式の頁の文として示した。2026 年春のオリエンテーションの文書も、入学から 1 暦年と書いているとあった。"
+      "quotes": [
+        "Applicants who are selected for admission will be conditionally admitted into the degree program and must pass two OMSCS foundational courses with a grade of B or better within a year from when they matriculate to be fully admitted."
+      ],
+      "how": "Prospective Student FAQs の頁の文による。Admission Criteria の頁にも、入学から 12 か月のあとも続けるには基礎の科目 2 つを B 以上で終える、とある。2026-11-19 には、検索の要約から（search）の行だった。"
     },
     {
       "id": "preparation-by-application",
       "requirement": "勧められた準備は、出願を出すときまでに終えていることが期待される。MOOC だけでは、STEM の学士号の無い人には足りることがまれ",
       "requirement_en": "The recommended preparation is expected to be complete when the application is submitted. These MOOCs alone are rarely sufficient for applicants without a bachelor's degree in a STEM field",
       "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
-      "read_on": "2026-11-19",
-      "status": "search",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
       "seen_on_2026_11_19": true,
-      "how": "2026-11-19 の検索の要約が、Preparing Yourself for OMSCS の頁の文として示した。科目を終えても入学は保証されない、ともあった。"
+      "quotes": [
+        "the OMSCS Admissions Committee expects you to have completed the preparation by the time that your application is submitted.",
+        "Specifically, these MOOCs alone are rarely sufficient for those who do not hold a Bachelor's or higher level degree in a STEM field."
+      ],
+      "how": "Preparing Yourself for OMSCS の頁による。科目を終えても入学は保証されない、ともある。2026-11-19 には、検索の要約から（search）の行だった。"
+    },
+    {
+      "id": "no-mooc-listing",
+      "requirement": "成績の付かない、単位にならない MOOC の類の学習は、出願に並べない",
+      "requirement_en": "Non-graded, non-academic-credit MOOC-type coursework is not listed in the application",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "DO NOT list non-graded, non-academic-credit MOOC-type coursework."
+      ],
+      "how": "Additional Application Guidelines の頁の Don'ts の六つ目の文による。2026-11-20 に足した行。"
+    },
+    {
+      "id": "no-pre-undergrad",
+      "requirement": "学部より前（中等教育や高校）の経歴は並べない",
+      "requirement_en": "No background before undergraduate study, such as secondary or high school, is listed",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "DO NOT list any background prior to your undergraduate work (e.g., secondary or high school)—it is irrelevant to graduate school."
+      ],
+      "how": "Additional Application Guidelines の頁の Don'ts の最後の文による。同じ頁の Don'ts は、大学より前の動機や経験を書かない、ともいう。2026-11-20 に足した行。"
+    },
+    {
+      "id": "professional-development",
+      "requirement": "補足の書類は、出願の Professional Development の欄に上げる。成績証明書は Academic History の欄に上げる",
+      "requirement_en": "Supporting documents are uploaded to the Professional Development area of the application, and transcripts to the Academic History area",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-20",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Upload into the Professional Development area of your application any supporting documents (except transcripts, which should be uploaded into the Academic History area)."
+      ],
+      "how": "Additional Application Guidelines の頁の Do's の三つ目の文による。2026-11-20 に足した行。"
     }
   ]
 }

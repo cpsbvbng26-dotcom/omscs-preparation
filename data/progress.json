@@ -23,6 +23,22 @@
         "AI is used only to explain concepts."
       ],
       "source": "利用者が 2026-11-19 に決めた。修士号の目標は researcher-profile の site.json の aims にある（2026-11-19 の main、コミット 942dc9c で読んだ）。MOOC の進め方と AI の使い方は、その日の site.json には書かれていない。"
+    },
+    {
+      "date": "2026-11-20",
+      "kind": "other",
+      "done": true,
+      "items": [
+        "推薦の枠の状態を記録しました。1 つ目と 2 つ目の枠は依頼する候補を決めてあり、3 つ目の枠はまだ決めていません。",
+        "枠には状態だけを書き、人については書きません。",
+        "OMSCS の公式の頁を開き、推薦者の扱い（人数、学術の推薦者、頼まない相手）を読みました。"
+      ],
+      "items_en": [
+        "The state of the recommendation slots was recorded: for the first and second slots a candidate to ask has been chosen, and the third slot is not decided.",
+        "The slots hold only their state and nothing about the people.",
+        "The official OMSCS pages were opened, and their treatment of recommenders (how many, academic references, people not to ask) was read."
+      ],
+      "source": "枠の状態は、利用者が 2026-11-20 に Claude に伝えた。公式の頁は 2026-11-20 に開いて読んだ（data/requirements.json の pages_read）。枠の状態は data/assets.json の recommendation_slots、公式の頁の扱いは recommendation_guidance にある。"
     }
   ]
 }
