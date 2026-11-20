@@ -10,8 +10,10 @@ cpsbvbng26-dotcom の十の外に置く。横断の検査（`check_ecosystem.js`
    利用者の仕事として並べない（cpsbvbng26-dotcom の決めごと 16）。`data/progress.json` は日付の順に足す。
    済んだこと（`done: true`）を、検査を走らせる日より後の日付で書けば、検査が落ちる。
 2. **要件は、出典の URL・読んだ日・状態・確かめ方と一緒に置く**。状態は四つだけ：公式の頁で確かめた／
-   公式の頁の検索結果から／第三者の頁から／確かめていない。omscs.gatech.edu はこの作業の環境から届かない。
-   検索の要約で読んだものを「公式の頁で確かめた」にしない。開けたときに、行ごとに上げる。
+   公式の頁の検索結果から／第三者の頁から／確かめていない。omscs.gatech.edu は 2026-11-19 にはこの作業の環境から届かなかった。
+   2026-11-20 に網の設定が omscs.gatech.edu と grad.gatech.edu を通すようになり、頁を開いて行ごとに上げた。
+   「公式の頁で確かめた」の行は、開いて読んだ頁（`verification/check.py` の `PAGES_READ`）を出典にし、頁の英語の文を
+   `quotes` に一字一句そのまま置く。検索の要約で読んだものを「公式の頁で確かめた」にしない。
 3. **URL を推測で書かない**。書く URL は、その作業で読んだものか、すでにリポジトリにあるものだけ。
    科目の URL は `data/courses.json` の `verified_urls` にあるものだけを置く。ほかは `null`。
 4. **成績・点・GPA など、個人の学業の記録を書かない**。要件の文にある GPA は要件であって、記録ではない。
@@ -21,6 +23,8 @@ cpsbvbng26-dotcom の十の外に置く。横断の検査（`check_ecosystem.js`
    出願先の Georgia Tech のように、記録の主題として出てくるほかの大学の名は、この決めの外にある。
    使わない語は `verification/rules.py` に符号にして置いてある。書き写せば、この文書自身が検査に掛かる。
 6. **存命の人物は「両親」という語までにする**（cpsbvbng26-dotcom の決めごと 10）。
+   推薦の枠（`data/assets.json` の `recommendation_slots`）は、枠の番号と状態だけを持つ。頼む人の名・所属・学校・SNS・分野・
+   肩書き・間柄・予定は書かない。検査が枠の欄の名と、語の型を見る。
 7. **新しい連絡先を作らない。メールアドレスを書かない**。窓口は誤りの知らせの様式と `SECURITY.md` だけ。
    `SECURITY.md`・`.github/ISSUE_TEMPLATE/error-report.yml`・`.github/checked-intake/verify.js`・
    `.github/workflows/checked-intake.yml`・`.github/workflows/empty-issue.yml` は cpsbvbng26-dotcom の正本の
@@ -59,7 +63,7 @@ cpsbvbng26-dotcom の十の外に置く。横断の検査（`check_ecosystem.js`
     確かめた回数とやり方は、報告に一行で書く。2026-11-18 に利用者が 3 回と決め、2026-11-19 に 10 回へ引き上げた。
 
 ```
-python3 verification/check.py            # 要件・科目・記録・README とデータ・写し・使わない語・書き方・数
+python3 verification/check.py            # 要件・科目・記録・持っているもの・推薦の枠・README とデータ・写し・使わない語・書き方・数
 python3 verification/check.py --break    # 検査を一つずつ壊し、どれも落ちることを確かめる
 node .github/checked-intake/verify.js --test
 ```
