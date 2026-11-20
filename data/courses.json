@@ -1,6 +1,6 @@
 {
   "_": [
-    "Preparing Yourself for OMSCS（https://omscs.gatech.edu/preparing-yourself-omscs）が勧める科目です。その頁は、この作業の環境から開けていません。並びと名は、2026-11-19 の依頼に引かれた頁の要約と、同じ日の検索の要約によります。",
+    "Preparing Yourself for OMSCS（https://omscs.gatech.edu/preparing-yourself-omscs）が勧める科目です。その頁は、2026-11-19 にはこの作業の環境から開けませんでした。並びと名は、2026-11-19 の依頼に引かれた頁の要約と、同じ日の検索の要約によります。2026-11-20 にその頁を開いて読みました。三つの professional certificate の名（Introduction to Python Programming、Introduction to Object-Oriented Programming with Java、Data Structures & Algorithms）と、数学の四つの MOOC の名は、頁の文と同じです（Probability / Random Variables の斜線の前後の空白だけは、頁には無い）。I から IV に分けた科目の名は、頁の文にはありません。科目ごとの URL は、頁から辿っていません。",
     "url は、確かめた URL だけに置きます。確かめていないものは null です。確かめたかどうかと、そのやり方は verified_urls にあります。"
   ],
   "verified_urls": {

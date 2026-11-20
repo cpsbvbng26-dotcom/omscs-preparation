@@ -1,0 +1,324 @@
+{
+  "_": [
+    "いま持っているもの・出願で使えるものを、項目ごとに置きます。各項目は、何か（what）、証拠の URL（evidence）、状態（status）、公式の頁の扱い（official）と、その元の英語の文と出典（official_quotes）を持ちます。",
+    "evidence は、運営者のリポジトリにすでにある公開の URL か null です。official_quotes の source は、2026-11-20 に開いて読んだ頁（data/requirements.json の pages_read）のどれかで、quote はその頁の文を一字一句そのまま置きます。",
+    "状態は statuses の三つのどれかです。成績・点・GPA など、個人の学業の記録は書きません。",
+    "recommendation_slots は、推薦の枠ごとの状態だけを持ちます。人の名、所属、学校、SNS、分野、肩書き、間柄、予定は書きません（決めごと 6）。recommendation_guidance は、公式の頁が推薦者をどう扱っているかの文です。"
+  ],
+  "statuses": {
+    "met": [
+      "持っている",
+      "has it"
+    ],
+    "partly": [
+      "途中",
+      "in progress"
+    ],
+    "not-yet": [
+      "まだ無い",
+      "not yet"
+    ]
+  },
+  "items": [
+    {
+      "id": "cs50x",
+      "what": "CS50x（HarvardX）の edX の修了証。計算機科学の入門で、C・Python・SQL・Web の課題と最終課題を出して修了した。verified の種類の修了証かどうかは、ここでは確かめていない",
+      "what_en": "The edX certificate of CS50x (HarvardX), an introduction to computer science, completed with the problem sets in C, Python, SQL and the Web and a final project. Whether it is a verified certificate is not confirmed here",
+      "evidence": "https://courses.edx.org/certificates/eac0a01d3d424a32a00114c487288fbc",
+      "evidence_note": "cpsbvbng26-dotcom の README の修了証の欄にある URL。edX の頁は、2026-11-20 にこの作業の環境から開けなかった（接続が 403 で断られた）。",
+      "status": "met",
+      "official": "検証済みの修了証のある MOOC は考慮されうるが、単位の付く授業ほど厳密で記録の整ったものはまれ。ほかの MOOC の提供者の単位にならない課程も、足りるとされることはまれ。成績の付かない、単位にならない MOOC の類の学習は、出願に並べない",
+      "official_en": "MOOCs with verified certificates may be considered, but they are rarely as rigorous and well documented as for-credit classes. Non-credit courses from other MOOC providers are rarely considered sufficient. Non-graded, non-academic-credit MOOC-type coursework is not listed",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Other objectively-documented credentials may be considered—such as MOOCs with verified certificates and bootcamps—but it is rare that such instructional settings are as rigorous and well-documented as for-credit classes at recognized academic institutions."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Similarly, non-credit courses and curricula from other MOOC providers, bootcamp providers, etc. are rarely considered sufficient."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "DO NOT list non-graded, non-academic-credit MOOC-type coursework."
+        }
+      ]
+    },
+    {
+      "id": "cs50ai",
+      "what": "CS50AI（HarvardX）の edX の修了証。Python による人工知能の入門で、探索・論理推論・確率・最適化・機械学習・ニューラルネットワーク・言語処理を課題として実装した。verified の種類の修了証かどうかは、ここでは確かめていない",
+      "what_en": "The edX certificate of CS50AI (HarvardX), an introduction to artificial intelligence with Python, with search, logical inference, probability, optimization, machine learning, neural networks and language processing implemented as problem sets. Whether it is a verified certificate is not confirmed here",
+      "evidence": "https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807",
+      "evidence_note": "cpsbvbng26-dotcom の README の修了証の欄にある URL。edX の頁は、2026-11-20 にこの作業の環境から開けなかった（接続が 403 で断られた）。",
+      "status": "met",
+      "official": "検証済みの修了証のある MOOC は考慮されうるが、単位の付く授業ほど厳密で記録の整ったものはまれ。ほかの MOOC の提供者の単位にならない課程も、足りるとされることはまれ。成績の付かない、単位にならない MOOC の類の学習は、出願に並べない",
+      "official_en": "MOOCs with verified certificates may be considered, but they are rarely as rigorous and well documented as for-credit classes. Non-credit courses from other MOOC providers are rarely considered sufficient. Non-graded, non-academic-credit MOOC-type coursework is not listed",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Other objectively-documented credentials may be considered—such as MOOCs with verified certificates and bootcamps—but it is rare that such instructional settings are as rigorous and well-documented as for-credit classes at recognized academic institutions."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Similarly, non-credit courses and curricula from other MOOC providers, bootcamp providers, etc. are rarely considered sufficient."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "DO NOT list non-graded, non-academic-credit MOOC-type coursework."
+        }
+      ]
+    },
+    {
+      "id": "gt-moocs",
+      "what": "Georgia Tech の professional certificate（Python の入門、Java のオブジェクト指向、データ構造とアルゴリズム）の verified certificate の課程。最初の Computing in Python I を受けることは、2026-11-19 に決めた（data/progress.json）",
+      "what_en": "The verified certificate tracks of Georgia Tech's professional certificates (Introduction to Python Programming, Object-Oriented Programming with Java, Data Structures & Algorithms). Taking Computing in Python I first was decided on 2026-11-19 (data/progress.json)",
+      "evidence": null,
+      "evidence_note": "まだ受けていないので、証拠の URL は無い。科目の並びは data/courses.json にある。",
+      "status": "not-yet",
+      "official": "望ましい資格を満たさない出願のために、この課程を、中の評価と試験まで含めて終えることを勧めている。終えても入学は保証されず、STEM の学士号の無い人には、これだけで足りることはまれ",
+      "official_en": "For applicants without the preferred qualifications, the page recommends completing these verified certificate tracks, including all embedded assessments and exams. Completing them does not guarantee admission, and they alone are rarely sufficient without a bachelor's degree in a STEM field",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "We recommend completing the verified certificate tracks (including all embedded assessments and exams) for the following three Georgia Tech professional certificate programs."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Completing them does not guarantee admission to the program"
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Specifically, these MOOCs alone are rarely sufficient for those who do not hold a Bachelor's or higher level degree in a STEM field."
+        }
+      ]
+    },
+    {
+      "id": "bachelors",
+      "what": "学士号。在学中で、まだ得ていない。大学の名は書かない",
+      "what_en": "A bachelor's degree, in progress and not yet earned. The university is not named",
+      "evidence": null,
+      "evidence_note": "大学の名を書かないので、証拠の URL も置かない。",
+      "status": "partly",
+      "official": "入学までに、学士号か同等以上の学位が要る。在学中の学位の成績証明書が出願の日より 30 日を超えて古いのは、よくある問題として挙がっている。締め切りのあとに終えた学業は評価に入らない",
+      "official_en": "A bachelor's degree, its equivalent or a higher degree is required before matriculation. A transcript for a degree in progress more than 30 days older than the application date is listed as a common problem. Academic work completed after the deadline is not considered",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/admission-criteria",
+          "quote": "Evidence of award of a bachelor's degree, its equivalent, or higher degree (prior to matriculation) from a regionally accredited institution"
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Transcripts for in-progress degrees that are out-of-date (meaning >30 days older than the application date)."
+        },
+        {
+          "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+          "quote": "Please note that any academic work completed after the application deadline will not be considered for the purposes of evaluating your application."
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "what": "公開のリポジトリと、その機械の検査。プログラムを書いた記録。補足の書類として出すなら、Professional Development の欄に上げることになる",
+      "what_en": "The public repositories and their machine checks, a record of programming. Given as a supporting document, it would go in the Professional Development area",
+      "evidence": "https://github.com/cpsbvbng26-dotcom",
+      "evidence_note": "cpsbvbng26-dotcom の index.html と cv.html にある URL。この作業の環境から curl で開くと 403 が返り、頁そのものは開いていない。",
+      "status": "met",
+      "official": "補足の書類は、出願の Professional Development の欄に上げる。望ましい資格を満たさない出願では、客観的に記録された計算機科学の力が見られる。読んだ頁は、公開のコードの扱いを書いていない。重く見ているのは、単位の付く上級の授業をこなせることである",
+      "official_en": "Supporting documents go in the Professional Development area. For applicants without the preferred qualifications, objectively documented capability in computer science is looked for. The pages read do not say how public code is treated. What they weigh is the ability to do upper level for-credit coursework",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Upload into the Professional Development area of your application any supporting documents (except transcripts, which should be uploaded into the Academic History area)."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "In these cases, the Admissions Committee is looking for a demonstrated, objectively documented basic capability and knowledge in computer science."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "it is interested in your demonstrating the ability to perform upper level computer science academic coursework."
+        }
+      ]
+    },
+    {
+      "id": "resume",
+      "what": "履歴書（résumé）。この出願のためのものは、まだ書いていない",
+      "what_en": "A résumé. One for this application has not been written yet",
+      "evidence": null,
+      "evidence_note": "まだ無い。",
+      "status": "not-yet",
+      "official": "要る。出さなければ出願は評価されない",
+      "official_en": "Required. Without one, the application is not evaluated",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Include a résumé—your application will NOT be evaluated if you do not submit a résumé."
+        },
+        {
+          "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+          "quote": "Resume: A resume is required."
+        }
+      ]
+    },
+    {
+      "id": "supplemental-answers",
+      "what": "補足の質問への答え。まだ書いていない",
+      "what_en": "Answers to the supplemental questions, not yet written",
+      "evidence": null,
+      "evidence_note": "まだ無い。",
+      "status": "not-yet",
+      "official": "全部の問いに答えが要る。志望理由書は読まれない。入学審査の委員会が見るのは、短い答えだけ",
+      "official_en": "Answers to all of the questions are required. A Statement of Purpose is not read. The short answers are all the Admissions Committee looks at",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+          "quote": "Answers to ALL of the OMSCS supplemental questions are required."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "DO NOT submit a Statement of Purpose (or ANY other supplementary statement) - it will NOT be read."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Your responses to the short answer questions are all that the Admissions Committee is interested in."
+        }
+      ]
+    },
+    {
+      "id": "english-test",
+      "what": "TOEFL か IELTS の試験。まだ受けていない",
+      "what_en": "The TOEFL or IELTS test, not taken yet",
+      "evidence": null,
+      "evidence_note": "まだ無い。",
+      "status": "not-yet",
+      "official": "留学生には十分な点が要り、点は出願を終えるときまでに出す。OMSCS の FAQ の頁は、TOEFL 100 以上と書いている",
+      "official_en": "International applicants need satisfactory scores, due when the application is completed. The OMSCS FAQ page asks for a TOEFL score of at least 100",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/admission-criteria",
+          "quote": "For international applicants, satisfactory scores on the Test of English as a Foreign Language (TOEFL) or IELTS-Academic are required."
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "No. TOEFL or IELTS scores are due upon completion of your application."
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "International students applying to OMSCS are required to submit a TOEFL score (Test of English as a Foreign Language) of at least 100 as part of their application."
+        }
+      ]
+    },
+    {
+      "id": "upper-level-courses",
+      "what": "上級の、単位の付く計算機科学の科目を 2 から 4 つ、B 以上で終えること。この記録には、まだ無い",
+      "what_en": "Two to four upper level for-credit computer science courses passed with a B or better. None is in this record yet",
+      "evidence": null,
+      "evidence_note": "まだ無い。",
+      "status": "not-yet",
+      "official": "出願を強くする最もよい道は、ACM と IEEE の Computer Science Curricula 2013 を手がかりに、上級の科目を 2 から 4 つ選び、B 以上を取れることを示すこと。成績証明書は大学から出るもので、MOOC の提供者のような第三者のものではいけない",
+      "official_en": "The best way to strengthen an application is to use Computer Science Curricula 2013 by the ACM and IEEE, choose two to four upper level courses, and show the ability to earn a B or better. The transcript comes from the university, not from a third party such as a MOOC provider",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "The best way to strengthen your application is to refer to Computer Science Curricula 2013"
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "this must come from the university, not a third-party intermediary or platform such as a MOOC provider."
+        }
+      ]
+    },
+    {
+      "id": "math",
+      "what": "数学の準備（線形代数・確率・統計）。Preparing Yourself for OMSCS の頁が挙げる Georgia Tech の数学の MOOC は、この記録では、まだ受けていない",
+      "what_en": "Preparation in mathematics (linear algebra, probability, statistics). The Georgia Tech mathematics MOOCs named on Preparing Yourself for OMSCS have not been taken in this record",
+      "evidence": null,
+      "evidence_note": "まだ無い。科目の並びは data/courses.json にある。",
+      "status": "not-yet",
+      "official": "人工知能と機械学習の分野をはじめ、いくつかの科目は、線形代数・確率・統計の確かな素地を求める。Georgia Tech の公開の MOOC が、準備の助けとして挙がっている",
+      "official_en": "Some courses, especially in artificial intelligence and machine learning, require a solid background in linear algebra, probability and statistics. Georgia Tech's public MOOCs are named as help",
+      "official_quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "some classes in the OMSCS program—especially in the artificial intelligence and machine learning areas—require a solid background in advanced mathematics, especially linear algebra, probability, and statistics."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Georgia Tech has additional publicly-available MOOC series that may help you prepare"
+        }
+      ]
+    }
+  ],
+  "slot_statuses": {
+    "chosen": [
+      "依頼する候補を決めた",
+      "a candidate to ask has been chosen"
+    ],
+    "undecided": [
+      "決めていない",
+      "not decided"
+    ]
+  },
+  "recommendation_slots": [
+    {
+      "slot": 1,
+      "status": "chosen"
+    },
+    {
+      "slot": 2,
+      "status": "chosen"
+    },
+    {
+      "slot": 3,
+      "status": "undecided"
+    }
+  ],
+  "recommendation_guidance": [
+    {
+      "text": "推薦者は 3 人。推薦者にはメールで案内が届き、推薦はオンラインで出す",
+      "text_en": "Three recommenders, who are contacted by e-mail and submit online",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "Applicants must procure recommendations from three individuals."
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "Those individuals will be contacted through email and provided instructions on how to submit their recommendations online."
+        }
+      ]
+    },
+    {
+      "text": "学術の推薦者を少なくとも 1 人、できれば 2 人。教えた授業での技術の力について、具体的に書いてもらう",
+      "text_en": "At least one academic reference, preferably two, writing specifically about technical abilities in the course taught",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Since you are applying to an academic program, you should have at least 1 (preferably 2) academic reference."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "For an academic reference, ask a professor/teacher who had you as a student in a Computer Science-related class."
+        },
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "Regardless, ask them to comment specifically on your technical abilities"
+        }
+      ]
+    },
+    {
+      "text": "頼まない相手として、職場の同僚、今か前の同級生、家族、宗教の指導者、友人が挙がっている",
+      "text_en": "Work peers, current or former classmates, family, religious leaders and friends are listed under DO NOT",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/additional-app-guidelines",
+          "quote": "DO NOT ask work peers, current or former classmates, spouses, in-laws, siblings, parents, children, religious leaders, friends, etc. to write letters of recommendation."
+        }
+      ]
+    }
+  ]
+}
