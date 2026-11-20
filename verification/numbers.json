@@ -3,17 +3,19 @@
     "散文に書いた数の台帳です（cpsbvbng26-dotcom の決めごと 5）。verification/check.py は README.md と README.en.md から数を拾い、ここのどれかに当たらなければ落ちます。",
     "dates は、書いてよい日です。fixed は、決めた値とその形です。counts は、数えて確かめる数で、re の一つ目の括弧が数、count が数え方の名です。",
     "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。",
-    "学費の数（tuition_*）は、data/assets.json の tuition の項目にある頁の文（Bursar の表の OMSCS の行と FAQ の文）から、検査が読み直して計算し直します。在籍する大学のシラバスの数（syllabus_*）は、data/course-plan.json の sha256 の値の数です。"
+    "学費の数（tuition_*）は、data/assets.json の tuition の項目にある頁の文（Bursar の表の OMSCS の行と FAQ の文）から、検査が読み直して計算し直します。在籍する大学のシラバスの数（syllabus_*）は、data/course-plan.json の sha256 の値の数です。",
+    "博士課程の数（phd_*）は、data/phd-requirements.json の行と data/phd-assets.json の項目を、状態ごとに数えます。検査は、どの数も README.md と README.en.md の両方の博士課程の節にあることも見ます。"
   ],
   "dates": {
     "2026-11-19": "決めた日。要件を読んだ日",
-    "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日。在籍する大学のシラバスを読み、履修計画を決めた日。Bursar の学費の頁を読み、学費の申告を受けた日"
+    "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日。在籍する大学のシラバスを読み、履修計画を決めた日。Bursar の学費の頁を読み、学費の申告を受けた日。博士課程の目標を決め、Daily Nous の記事を読んだ日"
   },
   "fixed": [
     { "re": "CC BY 4\\.0", "why": "LICENSE の版" },
     { "re": "0009-0000-1406-0547", "check": "orcid", "why": "運営者の ORCID iD" },
     { "re": "月に 1 本", "why": "MOOC を受ける速さ（2026-11-19 の決めごと）" },
-    { "re": "by rule 5", "why": "この記録の決めごと 5（在籍する大学の名とアドレスを書かない）" }
+    { "re": "by rule 5", "why": "この記録の決めごと 5（在籍する大学の名とアドレスを書かない）" },
+    { "re": "HTTP 403", "why": "www.buffalo.edu が 2026-11-20 に自動の要求へ返した状態の番号" }
   ],
   "counts": [
     { "re": "要件の行は (\\d+) 行", "count": "requirements" },
@@ -49,6 +51,28 @@
     { "re": "1 学期に 2 科目（6 単位時間）ずつなら、(\\d+) 学期", "count": "tuition_semesters_2" },
     { "re": "At two courses \\(6 credit hours\\) per semester, it takes (\\d+) semesters", "count": "tuition_semesters_2" },
     { "re": "2 科目ずつの合計は、費用を含めて (\\d+) ドル", "count": "tuition_total_2" },
-    { "re": "The total at two courses per semester, with fees, is (\\d+) dollars", "count": "tuition_total_2" }
+    { "re": "The total at two courses per semester, with fees, is (\\d+) dollars", "count": "tuition_total_2" },
+    { "re": "博士課程の要件の表は (\\d+) 行", "count": "phd_rows" },
+    { "re": "The doctoral table of requirements has (\\d+) rows", "count": "phd_rows" },
+    { "re": "公式の頁の検索結果から読んだ行は (\\d+) 行", "count": "phd_search" },
+    { "re": "Of them, (\\d+) rows come from search results of the official pages", "count": "phd_search" },
+    { "re": "第三者の頁から読んだ行は (\\d+) 行", "count": "phd_third" },
+    { "re": "^(\\d+) rows come from a third-party page", "count": "phd_third" },
+    { "re": "出典が見つからず、確かめていない行は (\\d+) 行", "count": "phd_unconfirmed" },
+    { "re": "^(\\d+) rows are not confirmed, because no source was found", "count": "phd_unconfirmed" },
+    { "re": "公式の頁を開いて確かめた行は (\\d+) 行", "count": "phd_confirmed" },
+    { "re": "^(\\d+) rows were confirmed on an opened official page", "count": "phd_confirmed" },
+    { "re": "博士課程の記録で読めた頁は、Daily Nous の (\\d+) 頁", "count": "phd_pages_read" },
+    { "re": "Only (\\d+) page was read for the doctoral record", "count": "phd_pages_read" },
+    { "re": "博士課程の持ち物の表は (\\d+) 項目", "count": "phd_items" },
+    { "re": "The doctoral table of assets has (\\d+) items", "count": "phd_items" },
+    { "re": "持っているものは (\\d+) 件", "count": "phd_met" },
+    { "re": "The doctoral count is: held (\\d+)", "count": "phd_met" },
+    { "re": "途中のものは (\\d+) 件", "count": "phd_partly" },
+    { "re": ", in progress (\\d+), not yet", "count": "phd_partly" },
+    { "re": "まだ無いものは (\\d+) 件", "count": "phd_notyet" },
+    { "re": ", not yet (\\d+)\\.", "count": "phd_notyet" },
+    { "re": "要件に挙げているものは (\\d+) 件", "count": "phd_stated" },
+    { "re": "Of the doctoral items, (\\d+) are stated as requirements", "count": "phd_stated" }
   ]
 }
