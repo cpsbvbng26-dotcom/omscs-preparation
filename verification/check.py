@@ -5,7 +5,8 @@
   python3 verification/check.py --break   every check fails when the thing it watches is broken
 
 The checks of this repository's subject come first: the rows of requirements, the courses, the
-progress log, the assets and the recommendation slots, and the agreement of README with the data. The checks shared with the other two
+progress log, the assets and the recommendation slots, the agreement of README with the data, the course plan at the owner's
+university (and the words it must not carry), and the tuition item with its estimate. The checks shared with the other two
 new repositories (copies of the canonical files, words not written, e-mail addresses, workflows,
 CLAUDE.md, the writing rules, the ledger of numbers) are in verification/rules.py.
 """
@@ -24,7 +25,8 @@ OFFICIAL = ("https://omscs.gatech.edu/", "https://grad.gatech.edu/", "https://in
 EDX = ("https://edx.org/es/learn/python/the-georgia-institute-of-technology-computing-in-python-i-"
        "fundamentals-and-procedural-programming")
 # The pages opened and read on 2026-11-20, once the network setting let omscs.gatech.edu and grad.gatech.edu through.
-# A row can be confirmed only on one of these, with the page's own sentences in its quotes.
+# A row can be confirmed only on one of these, with the page's own sentences in its quotes. The Bursar's page of tuition and
+# fee rates was read on the same day; it is the source of the tuition item of data/assets.json, not of a requirement.
 READ_ON = "2026-11-20"
 PAGES_READ = {
     "https://omscs.gatech.edu/admission-criteria",
@@ -33,6 +35,7 @@ PAGES_READ = {
     "https://omscs.gatech.edu/preparing-yourself-omscs",
     "https://omscs.gatech.edu/prospective-student-faqs",
     "https://grad.gatech.edu/english-proficiency",
+    "https://bursar.gatech.edu/tuition-fees",
 }
 # Evidence in data/assets.json: public URLs that were already in the operator's repositories (cpsbvbng26-dotcom's
 # README for the two certificates; its index.html and cv.html for the GitHub page).
@@ -67,7 +70,7 @@ def requirements(F):
     if set(R["statuses"]) != {"confirmed", "search", "third-party", "unconfirmed"}:
         bad.append("the four statuses")
     if set(R.get("pages_read", {})) != PAGES_READ:
-        bad.append("the pages read are not the six pages opened on 2026-11-20")
+        bad.append("the pages read are not the seven pages opened on 2026-11-20")
     ids = [r.get("id") for r in R["rows"]]
     if len(ids) != len(set(ids)):
         bad.append("an id twice")
@@ -260,6 +263,18 @@ def urls_allowed(F):
     return ["data/assets.json: a URL not in the allowed list " + u for u in URL.findall(t) if u not in ALLOWED_URLS]
 
 
+# Items that may be held on the owner's own report, without evidence. The owner reported on 2026-11-20 that current savings
+# cover the estimated tuition; no amount and no evidence is kept. No other item is held without evidence.
+SELF_REPORTED = {"tuition"}
+
+
+def self_reported(a):
+    sr = a.get("self_report")
+    return (a.get("id") in SELF_REPORTED and isinstance(sr, dict) and set(sr) == {"by", "reported_on"}
+            and sr.get("by") == "owner" and is_date(sr.get("reported_on", "")) and sr["reported_on"] <= today()
+            and "申告" in a.get("what", "") and "self-report" in a.get("what_en", ""))
+
+
 def assets(F):
     A = jload(F, "data/assets.json")
     if not A:
@@ -281,8 +296,10 @@ def assets(F):
             bad.append(k + ": the status " + str(a.get("status")))
         if a.get("evidence") is not None and a.get("evidence") not in EVIDENCE:
             bad.append(k + ": evidence that is not already in the operator's repositories")
-        if a.get("status") == "met" and a.get("evidence") is None:
+        if a.get("status") == "met" and a.get("evidence") is None and not self_reported(a):
             bad.append(k + ": held, but no evidence")
+        if "self_report" in a and (a.get("evidence") is not None or not self_reported(a)):
+            bad.append(k + ": a self-report that is not one of the owner, dated, on an item allowed to be self-reported")
         qs = a.get("official_quotes")
         if not isinstance(qs, list) or not qs:
             bad.append(k + ": no sentence of the official pages")
@@ -347,13 +364,314 @@ def slots(F):
     return bad
 
 
+# ------------------------------------------------------------------ the course plan at the owner's university
+
+PREP = "https://omscs.gatech.edu/preparing-yourself-omscs"
+PLAN_SOURCE = ("在籍する大学の公開のシラバス（2026-11-20 に読んだ。大学の名とアドレスは決めごと 5 により書かない）",
+               "the public syllabus of the university where the owner is enrolled (read on 2026-11-20; "
+               "the university's name and address are not written, by rule 5)")
+# The items of preparation that the Preparing Yourself for OMSCS page names, with the page's own sentences, read on
+# 2026-11-20. A row of the plan serves exactly one of them.
+COMPETENCIES = {
+    "programming": "The fundamentals of programming.",
+    "oop": "Object-oriented design principles such as encapsulation, abstraction, polymorphism, and inheritance.",
+    "data-structures": "Data structures such as lists, stacks, queues, trees, and hashmaps.",
+    "algorithms": "Algorithms such as AVL, MST, Dijkstra’s, and dynamic programming.",
+    "languages": "Familiarity with multiple programming languages is recommended.",
+    "body-of-knowledge": "Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of "
+                         "these areas and demonstrate the ability to earn a B or better in those courses.",
+    "math": "In addition to CS knowledge, some classes in the OMSCS program—especially in the artificial intelligence and "
+            "machine learning areas—require a solid background in advanced mathematics, especially linear algebra, "
+            "probability, and statistics.",
+}
+PLAN_GROUPS = {"programming", "dsa", "oop", "languages", "systems", "theory", "networks", "data-security", "ai-ml", "math"}
+PLAN_ROW_KEYS = {"title", "category", "offered", "group", "competency", "source", "reason", "reason_en", "status"}
+PLAN_HEADS = ("## 在籍する大学の科目の履修計画", "## Planned courses at the owner's university")
+GAP_HEADS = ("### 確かめていないこと・足りないところ", "### What was not checked, and gaps")
+PLAN_STATUS = ["履修計画中", "planned"]
+
+
+def plan_load(F):
+    return jload(F, "data/course-plan.json")
+
+
+def course_plan(F):
+    D = plan_load(F)
+    if not D:
+        return ["data/course-plan.json cannot be read"]
+    bad = []
+    if (D.get("source"), D.get("source_en")) != PLAN_SOURCE:
+        bad.append("the source is not described in the fixed words")
+    if D.get("read_on") != READ_ON or D.get("decided_on") != READ_ON:
+        bad.append("the syllabus was read, and the plan decided, on 2026-11-20")
+    if D.get("statuses") != {"planned": PLAN_STATUS}:
+        bad.append("the only status is 履修計画中 / planned")
+    S = D.get("syllabus", {})
+    if set(S) != {"information", "mathematics"}:
+        bad.append("the two categories of the syllabus")
+    for k, cat in S.items():
+        h = cat.get("title_sha256", [])
+        if not h or len(h) != len(set(h)) or not all(re.fullmatch(r"[0-9a-f]{64}", x) for x in h):
+            bad.append(k + ": the sha256 of the syllabus titles")
+    C = D.get("competencies", {})
+    if set(C) != set(COMPETENCIES):
+        bad.append("the competencies are not the items of the preparation page")
+    for k, c in C.items():
+        if c.get("quote") != COMPETENCIES.get(k) or c.get("source") != PREP or not c.get("ja") or not c.get("en"):
+            bad.append(k + ": the competency is not the page's item, in its words, with the page's URL")
+    G = D.get("groups", {})
+    if set(G) != PLAN_GROUPS:
+        bad.append("the groups")
+    for k, g in G.items():
+        if g.get("competency") not in COMPETENCIES or not g.get("ja") or not g.get("en"):
+            bad.append(k + ": a group without a competency of the page")
+    rows = D.get("rows", [])
+    titles = [r.get("title") for r in rows]
+    if not rows or len(titles) != len(set(titles)):
+        bad.append("no row, or a title twice")
+    for r in rows:
+        t = str(r.get("title"))
+        if set(r) != PLAN_ROW_KEYS:
+            bad.append(t + ": the fields of a row " + str(sorted(set(r) ^ PLAN_ROW_KEYS)))
+        if rules.sha(t) not in S.get(r.get("category"), {}).get("title_sha256", []):
+            bad.append(t + ": not a title of the syllabus read, in its category")
+        if not re.fullmatch(r"20\d\d年度開講", str(r.get("offered"))):
+            bad.append(t + ": the year marker of the syllabus")
+        if r.get("status") != "planned":
+            bad.append(t + ": a status other than 履修計画中")
+        if r.get("group") not in G or r.get("competency") != G.get(r.get("group"), {}).get("competency"):
+            bad.append(t + ": the group and its competency")
+        if r.get("competency") not in COMPETENCIES:
+            bad.append(t + ": a competency outside the page's items")
+        if r.get("source") != PREP:
+            bad.append(t + ": the competency is not given with the preparation page's URL")
+        if not str(r.get("reason", "")).endswith("。") or not str(r.get("reason_en", "")).strip():
+            bad.append(t + ": the reason")
+        for key, val in r.items():
+            if RECORD_KEYS.search(key) or RECORD_VALUES.search(str(val)):
+                bad.append(t + ": a personal academic record (" + key + ")")
+    used = {r.get("competency") for r in rows}
+    gaps = {g.get("id"): g for g in D.get("gaps", [])}
+    if set(gaps) != {"algorithms", "year", "upper-level", "transcript"}:
+        bad.append("the gaps are not the four recorded")
+    # The gap on algorithms says no course names them; it stays exactly while no row serves that item.
+    if ("algorithms" in used) == ("algorithms" in gaps):
+        bad.append("a row serves the item on algorithms, and the gap still says none does, or the reverse")
+    for k, g in gaps.items():
+        if not g.get("text") or not g.get("text_en"):
+            bad.append(k + ": a gap without its text in both languages")
+        for q in g.get("quotes", []):
+            if q.get("source") not in PAGES_READ or q.get("quote", "") not in g.get("text", ""):
+                bad.append(k + ": a quote not from a page read, or not in the text")
+    for u in URL.findall(F.get("data/course-plan.json", "")):
+        if u not in PAGES_READ:
+            bad.append("data/course-plan.json: a URL not read " + u)
+    P = jload(F, "data/progress.json") or {"entries": []}
+    dec_ = [e for e in P["entries"] if e.get("date") == READ_ON and e.get("kind") == "decision"]
+    if not dec_ or not re.search(r"に挙げた %d 科目を、履修計画中" % len(rows), " ".join(dec_[0].get("items", []))) \
+            or "the %d courses listed in data/course-plan.json" % len(rows) not in " ".join(dec_[0].get("items_en", [])):
+        bad.append("the decision of 2026-11-20 does not name the plan and its number of rows")
+    return bad
+
+
+def plan_lines(D, lang):
+    sfx = "" if lang == 0 else "_en"
+    lab = "ja" if lang == 0 else "en"
+    comps = ["| %s | %s | %s |" % (k, c[lab], c["source"]) for k, c in D["competencies"].items()]
+    rows = []
+    for r in D["rows"]:
+        y = re.fullmatch(r"(\d{4})年度開講", r["offered"])
+        off = r["offered"] if lang == 0 else "academic year " + (y.group(1) if y else "?")
+        rows.append("| %s | %s | %s | %s | %s | %s |" % (r["title"], off, D["groups"][r["group"]][lab], r["competency"],
+                                                         r["reason" + sfx], D["statuses"][r["status"]][lang]))
+    gaps = [g["text" + sfx] for g in D["gaps"]]
+    return comps, rows, gaps
+
+
+def plan_readme(F):
+    D = plan_load(F)
+    if not D:
+        return ["data/course-plan.json cannot be read"]
+    bad = []
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        try:
+            comps, rows, gaps = plan_lines(D, lang)
+        except Exception as e:
+            bad.append(f + ": the tables of data/course-plan.json cannot be made (" + str(e) + ")")
+            continue
+        sec = section(F.get(f, ""), PLAN_HEADS[lang])
+        if not sec:
+            bad.append(f + ": no section " + PLAN_HEADS[lang])
+            continue
+        if PLAN_SOURCE[lang] not in sec:
+            bad.append(f + ": the source is not described in the fixed words")
+        top = sec[:sec.find("\n" + GAP_HEADS[lang] + "\n")] if GAP_HEADS[lang] in sec else sec
+        lines = table_lines(top)
+        if [x for x in lines if x.endswith(" | " + PREP + " |")] != comps:
+            bad.append(f + ": the table of competencies differs from data/course-plan.json")
+        if [x for x in lines if x.endswith(" | " + PLAN_STATUS[lang] + " |")] != rows:
+            bad.append(f + ": the table of planned courses differs from data/course-plan.json")
+        if len(lines) != 2 + len(comps) + len(rows):
+            bad.append(f + ": a table row that is not in data/course-plan.json")
+        if bullets(sec, GAP_HEADS[lang]) != gaps:
+            bad.append(f + ": the gaps differ from data/course-plan.json")
+    return bad
+
+
+# Words that the course plan must not carry, kept in base64 like rules.SCHOOL: the names of the company and partners behind
+# a course unique to the owner's university, the name of that course, and the syllabus site's address.
+PLAN_WORDS = [rules.dec(x) for x in ("44OJ44Ov44Oz44K0", "ZHdhbmdv", "cGl4aXY=", "44Ky44Oz44Ot44Oz", "Z2Vucm9u", "5p2+5bC+56CU",
+                                     "44K/44Kk44OS44Of44Ol", "dGVpY2ht", "5a6H5a6Z6Zqb", "c3lsbGFidXMuemVu")]
+
+
+def instructor_hits(F, names):
+    """The files in which some substring, normalised as the names were, hashes to one of the names."""
+    hs = set(names.get("sha256", []))
+    hits = []
+    for f, t in F.items():
+        if f in rules.SELF or f == "verification/excluded-names.json":
+            continue
+        n = re.sub(r"\s+", "", rules.norm(t))
+        for L in names.get("lengths", []):
+            if any(rules.sha(n[i:i + L]) in hs for i in range(len(n) - L + 1)):
+                hits.append(f)
+                break
+    return hits
+
+
+def plan_words(F):
+    bad = []
+    N = jload(F, "verification/excluded-names.json") or {}
+    H = N.get("sha256", [])
+    if len(H) != 36 or len(set(H)) != 36 or not all(re.fullmatch(r"[0-9a-f]{64}", x) for x in H) or not N.get("lengths"):
+        bad.append("verification/excluded-names.json does not hold the 36 hashed names and their lengths")
+    for f, t in F.items():
+        if f in rules.SELF:
+            continue
+        n = rules.norm(t)
+        if any(r.search(n) for r in rules.SCHOOL):
+            bad.append(f + ": the name or the domain of the owner's university")
+        for w in PLAN_WORDS:
+            if rules.norm(w) in n:
+                bad.append(f + ": a word of the forbidden list of the course plan")
+    bad += [f + ": the name of an instructor" for f in instructor_hits(F, N)]
+    return bad
+
+
+# ------------------------------------------------------------------ tuition: the rates read, Claude's estimate, no amount of the owner's
+
+BURSAR = "https://bursar.gatech.edu/tuition-fees"
+FAQ = "https://omscs.gatech.edu/prospective-student-faqs"
+OMSCS_ROW = re.compile(r"^Master of Science in Computer Science \(OMSCS\) \| \$(\d+) \| \$(\d+) \| \$(\d+) \| \$(\d+) \| \$(\d+)$")
+FAQ_TUITION = "Generally, students pay tuition per credit hour of enrollment, as well as fees per semester of enrollment."
+FAQ_HOURS = re.compile(r"^(\d+) credit hours are required to graduate\.$")
+FAQ_COURSE = "Therefore someone taking two courses at three credit hours each can expect to spend roughly 18 hours per week on coursework."
+# An amount in yen, in figures or in kanji, or a figure in the same sentence as a word for savings. Written with escapes so that
+# this file does not itself carry them.
+YEN = re.compile("\\d[\\d,.]*\\s*[\u4e07\u5343\u767e\u5104]?\\s*\u5186|[\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341\u767e\u5343\u4e07\u5104]+\u5186|"
+                 "[\u00a5\uffe5]\\s*\\d|\\d\\s*(?:yen|jpy)\\b|\\b(?:yen|jpy)\\s*\\d", re.I)
+SAVINGS = re.compile("\u8caf|\u9810\u91d1|\u8cc7\u7523|\u6240\u6301\u91d1|\u624b\u6301\u3061|\\bsavings?\\b|\\bsaved\\b|\\bbalance\\b", re.I)
+FIGURE = re.compile("\\d|[\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341\u767e\u5343\u4e07\u5104]+(?:\u5186|\u4e07)")
+
+
+def tuition_item(F):
+    A = jload(F, "data/assets.json") or {"items": []}
+    return next((a for a in A.get("items", []) if a.get("id") == "tuition"), None)
+
+
+def tuition_rates(F):
+    """The rates as the pages give them: from the row of the Bursar's table and the FAQ's sentences, not from the estimate."""
+    a = tuition_item(F) or {}
+    qs = [q.get("quote", "") for q in a.get("official_quotes", [])]
+    row = next((OMSCS_ROW.match(q) for q in qs if OMSCS_ROW.match(q)), None)
+    hours = next((FAQ_HOURS.match(q) for q in qs if FAQ_HOURS.match(q)), None)
+    if not row or not hours or FAQ_COURSE not in qs:
+        return None
+    r = {"rate": int(row.group(3)), "fee_small": int(row.group(4)), "fee_large": int(row.group(5)),
+         "hours": int(hours.group(1)), "per_course": 3}
+    r["tuition"] = r["hours"] * r["rate"]
+    for n in (1, 2):
+        h = n * r["per_course"]
+        r["semesters_%d" % n] = r["hours"] // h if r["hours"] % h == 0 else None
+        fee = r["fee_small"] if h < 4 else r["fee_large"]
+        r["total_%d" % n] = r["semesters_%d" % n] * (h * r["rate"] + fee) if r["semesters_%d" % n] else None
+    return r
+
+
+def tuition_texts(F):
+    """The tuition item, its rows in both READMEs, and the README sections on the estimate."""
+    a = tuition_item(F)
+    out = [json.dumps(a, ensure_ascii=False)] if a else []
+    for f, head in (("README.md", TUITION_HEADS[0]), ("README.en.md", TUITION_HEADS[1])):
+        out += [x for x in F.get(f, "").split("\n") if x.startswith("| tuition | ")]
+        out.append(section(F.get(f, ""), head))
+    return out
+
+
+TUITION_HEADS = ("### 学費の見積もり", "### Estimate of tuition")
+
+
+def tuition(F):
+    a = tuition_item(F)
+    if not a:
+        return ["no tuition item in data/assets.json"]
+    bad = []
+    if a.get("status") != "met" or a.get("evidence") is not None or not self_reported(a):
+        bad.append("tuition: held on the owner's report of 2026-11-20, without evidence")
+    srcs = {q.get("source") for q in a.get("official_quotes", [])}
+    if srcs != {BURSAR, FAQ}:
+        bad.append("tuition: the sources are the Bursar's page and the FAQ page")
+    if FAQ_TUITION not in [q.get("quote") for q in a.get("official_quotes", [])]:
+        bad.append("tuition: the FAQ's sentence on tuition per credit hour and fees per semester")
+    r = tuition_rates(F)
+    E = a.get("estimate", {})
+    if not r:
+        bad.append("tuition: the rates cannot be read from the quotes of the pages")
+    else:
+        want = {"tuition_per_credit_hour": r["rate"], "fee_fewer_than_4": r["fee_small"], "fee_4_or_more": r["fee_large"],
+                "credit_hours": r["hours"], "credit_hours_per_course": r["per_course"], "tuition_total": r["tuition"],
+                "plans": [{"courses_per_semester": 1, "semesters": r["semesters_1"], "total": r["total_1"]},
+                          {"courses_per_semester": 2, "semesters": r["semesters_2"], "total": r["total_2"]}]}
+        for k, v in want.items():
+            if E.get(k) != v:
+                bad.append("tuition: the estimate's %s is %s, the pages give %s" % (k, E.get(k), v))
+        for key in ("official", "official_en"):
+            for v in (r["rate"], r["fee_small"], r["fee_large"], r["hours"], r["tuition"], r["total_1"], r["total_2"]):
+                if not re.search(r"(?<![\d,])%d(?![\d,])" % v, a.get(key, "")):
+                    bad.append("tuition: %s does not carry %d" % (key, v))
+    for f, head in (("README.md", TUITION_HEADS[0]), ("README.en.md", TUITION_HEADS[1])):
+        if not section(F.get(f, ""), head).strip():
+            bad.append(f + ": no section " + head)
+    if E.get("by") != "Claude" or E.get("currency") != "USD":
+        bad.append("tuition: the estimate is Claude's own, in dollars")
+    note = E.get("note", "") + a.get("official", "")
+    note_en = E.get("note_en", "") + a.get("official_en", "")
+    if not all(w in note for w in ("Claude", "改定", "出願料", "為替")) or \
+            not all(w in note_en for w in ("Claude", "revised", "application fee", "exchange rate")):
+        bad.append("tuition: the estimate does not say it is Claude's, that rates are revised, what it leaves out, and why no yen")
+    # No amount of the owner's money: no amount in yen anywhere, and no figure beside a word for savings in the item or its rows.
+    for f, t in F.items():
+        if f not in rules.SELF and YEN.search(rules.norm(t)):
+            bad.append(f + ": an amount in yen")
+    for t in tuition_texts(F):
+        for sentence in re.split(r"[\u3002\n|]|\.\s", t):
+            if SAVINGS.search(sentence) and FIGURE.search(sentence):
+                bad.append("tuition: a figure beside a word for savings「" + sentence[:30] + "」")
+    return bad
+
+
 COUNTERS = {
     "requirements": lambda F: len((jload(F, "data/requirements.json") or {"rows": []})["rows"]),
     "courses": lambda F: len((jload(F, "data/courses.json") or {"courses": []})["courses"]),
     "confirmed": lambda F: sum(r.get("status") == "confirmed" for r in (jload(F, "data/requirements.json") or {"rows": []})["rows"]),
     "pages_read": lambda F: len((jload(F, "data/requirements.json") or {}).get("pages_read", {})),
     "assets": lambda F: len((jload(F, "data/assets.json") or {"items": []})["items"]),
+    "plan_rows": lambda F: len((plan_load(F) or {"rows": []})["rows"]),
+    "syllabus_information": lambda F: len((plan_load(F) or {}).get("syllabus", {}).get("information", {}).get("title_sha256", [])),
+    "syllabus_mathematics": lambda F: len((plan_load(F) or {}).get("syllabus", {}).get("mathematics", {}).get("title_sha256", [])),
 }
+for _k in ("rate", "fee_small", "fee_large", "hours", "tuition", "semesters_1", "total_1", "semesters_2", "total_2"):
+    COUNTERS["tuition_" + _k] = (lambda k: lambda F: (tuition_rates(F) or {}).get(k))(_k)
 
 
 def orcid_ok(F):
@@ -388,6 +706,10 @@ CHECKS = [
     ("Every asset has what it is, a status of the three, evidence already public or none, and the official pages' sentences", assets),
     ("Every URL in data/assets.json is in the allowed list", urls_allowed),
     ("The recommendation slots hold only their number and state, and nothing about a person", slots),
+    ("The course plan: every title is a syllabus title, the status is planned, each competency is an item of the preparation page", course_plan),
+    ("Both READMEs show the course plan, its competencies and its gaps as the data has them", plan_readme),
+    ("No name or domain of the owner's university, word of the plan's forbidden list or instructor's name in any file", plan_words),
+    ("Tuition: held on the owner's report, the rates as the pages give them, Claude's estimate recomputed, no amount in yen or of savings", tuition),
 ]
 
 FUTURE = (datetime.date.today() + datetime.timedelta(days=400)).isoformat()
@@ -434,6 +756,110 @@ def _drop_guidance_row(G):
     lines = G["README.md"].split("\n")
     i = next(n for n, line in enumerate(lines) if line.startswith("| 推薦者は 3 人。"))
     G["README.md"] = "\n".join(lines[:i] + lines[i + 1:])
+
+
+def _plan(G, fn):
+    D = json.loads(G["data/course-plan.json"])
+    fn(D)
+    G["data/course-plan.json"] = json.dumps(D, ensure_ascii=False)
+
+
+def _tuition(G, fn):
+    A = json.loads(G["data/assets.json"])
+    fn(next(a for a in A["items"] if a["id"] == "tuition"))
+    G["data/assets.json"] = json.dumps(A, ensure_ascii=False)
+
+
+def _fake_instructor(G):
+    # A made-up name, hashed and added as the real names were; the break then writes the name in README.md with a space.
+    import unicodedata
+    N = json.loads(G["verification/excluded-names.json"])
+    N["sha256"].append(rules.sha(re.sub(r"\s+", "", unicodedata.normalize("NFKC", "\u5c71\u7530 \u592a\u90ce").casefold())))
+    N["sha256"].pop(0)
+    G["verification/excluded-names.json"] = json.dumps(N, ensure_ascii=False)
+    G["README.md"] += "\n\u5c71\u7530　\u592a\u90ce\n"
+
+
+def _drop_name(G):
+    N = json.loads(G["verification/excluded-names.json"])
+    N["sha256"].pop()
+    G["verification/excluded-names.json"] = json.dumps(N, ensure_ascii=False)
+
+
+def _plan_row_status(D):
+    D["rows"][3]["status"] = "履修済み"
+
+
+def _plan_row_title(D):
+    D["rows"][0]["title"] = "Pythonプログラミング2"
+
+
+def _plan_row_category(D):
+    D["rows"][0]["category"] = "mathematics"
+
+
+def _plan_competency_outside(D):
+    D["rows"][5]["competency"] = "systems-programming"
+
+
+def _plan_competency_quote(D):
+    D["competencies"]["oop"]["quote"] = "Object-oriented design principles."
+
+
+def _plan_extra_competency(D):
+    D["competencies"]["networking"] = {"ja": "x", "en": "x", "source": PREP, "quote": "x"}
+
+
+def _plan_algorithms_row(D):
+    D["groups"]["dsa"]["competency"] = "algorithms"
+    D["rows"][1]["competency"] = "algorithms"
+
+
+def _plan_drop_hash(D):
+    h = rules.sha(D["rows"][0]["title"])
+    D["syllabus"][D["rows"][0]["category"]]["title_sha256"].remove(h)
+
+
+def _plan_grade(D):
+    D["rows"][0]["grade"] = "A"
+
+
+def _plan_second_status(D):
+    D["statuses"]["taken"] = ["履修済み", "taken"]
+
+
+def _plan_url(D):
+    D["rows"][0]["source"] = "https://omscs.gatech.edu/summary"
+
+
+def _tuition_no_self_report(a):
+    del a["self_report"]
+
+
+def _tuition_yen(a):
+    a["evidence_note"] += "\u8caf\u3048\u306f 300 \u4e07\u5186\u3002"
+
+
+def _tuition_savings_figure(a):
+    a["what_en"] += ". Current savings are 20000 dollars"
+
+
+def _tuition_estimate(a):
+    a["estimate"]["plans"][1]["total"] = 10094
+
+
+def _tuition_rate(a):
+    a["official_quotes"][0]["quote"] = a["official_quotes"][0]["quote"].replace("$248", "$250")
+
+
+def _tuition_official_number(a):
+    a["official"] = a["official"].replace("9560", "9650")
+
+
+def _self_report_elsewhere(G):
+    A = json.loads(G["data/assets.json"])
+    A["items"][0]["self_report"] = {"by": "owner", "reported_on": "2026-11-20"}
+    G["data/assets.json"] = json.dumps(A, ensure_ascii=False)
 
 
 C = [c[0] for c in CHECKS]
@@ -489,8 +915,8 @@ BREAKS = [
     (C[10], "you in English", add("README.en.md", "\nYou can read the data.\n")),
     (C[11], "a count that differs from the data", sub("README.md", "要件の行は 24 行です。", "要件の行は 23 行です。")),
     (C[11], "a count of confirmed rows that differs from the data", sub("README.en.md", "Of them, 24 are confirmed", "Of them, 23 are confirmed")),
-    (C[11], "a count of assets that differs from the data", sub("README.md", "項目は 10 件です。", "項目は 11 件です。")),
-    (C[11], "a count of pages read that differs from the data", sub("README.md", "開いて読んだ頁は 6 つです。", "開いて読んだ頁は 5 つです。")),
+    (C[11], "a count of assets that differs from the data", sub("README.md", "項目は 11 件です。", "項目は 12 件です。")),
+    (C[11], "a count of pages read that differs from the data", sub("README.md", "開いて読んだ頁は 7 つです。", "開いて読んだ頁は 6 つです。")),
     (C[11], "a number not in the ledger", add("README.md", "\n準備には 2 年かけます。\n")),
     (C[11], "a number in kanji", add("README.md", "\n科目は十三本です。\n")),
     (C[11], "a date not in the ledger", add("README.en.md", "\nDecided on 2026-11-18.\n")),
@@ -514,6 +940,50 @@ BREAKS = [
     (C[15], "a doctorate in a slot row of README.md", sub("README.md", "| 2 | 依頼する候補を決めた |", "| 2 | 依頼する候補を決めた（博士） |")),
     (C[15], "a university in a slot row of README.en.md", sub("README.en.md", "| 1 | a candidate to ask has been chosen |", "| 1 | a candidate to ask has been chosen (University) |")),
     (C[15], "a high school in the record of the slots", sub("data/progress.json", "枠には状態だけを書き、人については書きません。", "枠には状態だけを書き、人については書きません。候補は高校で知った人です。")),
+    (C[16], "a planned course with a status other than 履修計画中", lambda G: _plan(G, _plan_row_status)),
+    (C[16], "a planned title that is not a syllabus title", lambda G: _plan(G, _plan_row_title)),
+    (C[16], "a planned title in the wrong category of the syllabus", lambda G: _plan(G, _plan_row_category)),
+    (C[16], "the syllabus title's hash removed", lambda G: _plan(G, _plan_drop_hash)),
+    (C[16], "a competency outside the page's items", lambda G: _plan(G, _plan_competency_outside)),
+    (C[16], "a competency whose quote is not the page's sentence", lambda G: _plan(G, _plan_competency_quote)),
+    (C[16], "a competency added that the page does not name", lambda G: _plan(G, _plan_extra_competency)),
+    (C[16], "a row serves algorithms while the gap says none does", lambda G: _plan(G, _plan_algorithms_row)),
+    (C[16], "a grade in a planned course", lambda G: _plan(G, _plan_grade)),
+    (C[16], "a second status", lambda G: _plan(G, _plan_second_status)),
+    (C[16], "a competency given with a URL other than the preparation page", lambda G: _plan(G, _plan_url)),
+    (C[16], "the source described otherwise", sub("data/course-plan.json", "大学の名とアドレスは決めごと 5 により書かない", "大学の名は書かない")),
+    (C[16], "the decision of 2026-11-20 names another number of courses", sub("data/progress.json", "に挙げた 25 科目を", "に挙げた 24 科目を")),
+    (C[17], "README.md changes the reason of a course", sub("README.md", "| 統計学入門 | 2026年度開講 |", "| 統計学入門 | 2027年度開講 |")),
+    (C[17], "README.en.md drops a planned course", lambda G: G.__setitem__("README.en.md", "\n".join(x for x in G["README.en.md"].split("\n") if not x.startswith("| 数理統計 | ")))),
+    (C[17], "README.md adds a course that is not in the data", sub("README.md", "| 数理統計 | ", "| 群論 | 2026年度開講 | 理論 | body-of-knowledge | x | 履修計画中 |\n| 数理統計 | ")),
+    (C[17], "README.en.md changes a competency's label", sub("README.en.md", "| programming | The fundamentals of programming |", "| programming | Programming |")),
+    (C[17], "README.md changes a gap", sub("README.md", "- 科目ごとの履修想定年次は、確かめていません。", "- 科目ごとの履修想定年次は、一年次です。")),
+    (C[17], "README.en.md drops the description of the source", sub("README.en.md", ", by rule 5)", ")")),
+    (C[18], "the university's name in the course plan", lambda G: G.__setitem__("data/course-plan.json", G["data/course-plan.json"] + rules.dec("WkVO") + rules.dec("5aSn5a2m"))),
+    (C[18], "the university's domain in README.en.md", add("README.en.md", "\n" + rules.dec("c3lsbGFidXMuemVu") + ".ac.jp\n")),
+    (C[18], "the company behind a course", add("README.md", "\n" + PLAN_WORDS[0] + "\n")),
+    (C[18], "a partner in Latin letters", add("data/course-plan.json", PLAN_WORDS[2].upper())),
+    (C[18], "a partner in katakana", add("README.md", "\n" + PLAN_WORDS[3] + "\n")),
+    (C[18], "the laboratory", add("README.en.md", "\n" + PLAN_WORDS[5] + "\n")),
+    (C[18], "the unique course's name", add("data/course-plan.json", PLAN_WORDS[8] + PLAN_WORDS[6])),
+    (C[18], "an instructor's name, hashed as the real ones are", _fake_instructor),
+    (C[18], "a hashed name removed", _drop_name),
+    (C[18], "a hashed name that is not a sha256", sub("verification/excluded-names.json", '"sha256": [\n    "', '"sha256": [\n    "0')),
+    (C[19], "tuition held without the owner's report", lambda G: _tuition(G, _tuition_no_self_report)),
+    (C[19], "an amount in yen in the tuition item", lambda G: _tuition(G, _tuition_yen)),
+    (C[19], "a figure beside savings in the tuition item", lambda G: _tuition(G, _tuition_savings_figure)),
+    (C[19], "an amount in yen in README.md", add("README.md", "\n\u5b66\u8cbb\u306f 150 \u4e07\u5186\u3067\u3059\u3002\n")),
+    (C[19], "a figure beside savings in the README row", sub("README.en.md", "current savings cover the estimated total", "current savings of 12000 dollars cover the estimated total")),
+    (C[19], "a total of the estimate that is not the computation", lambda G: _tuition(G, _tuition_estimate)),
+    (C[19], "a rate of the page changed", lambda G: _tuition(G, _tuition_rate)),
+    (C[19], "a number of the official text changed", lambda G: _tuition(G, _tuition_official_number)),
+    (C[19], "README.en.md loses the estimate", sub("README.en.md", "### Estimate of tuition\n", "### Tuition\n")),
+    (C[13], "an item other than tuition held on a self-report", _self_report_elsewhere),
+    (C[0], "the Bursar's page dropped from the pages read", lambda G: G.__setitem__("data/requirements.json", G["data/requirements.json"].replace('"https://bursar.gatech.edu/tuition-fees":', '"https://bursar.gatech.edu/fees":', 1))),
+    (C[11], "a tuition total in prose that differs from the computation", sub("README.md", "費用を含めて 10095 ドル", "費用を含めて 10059 ドル")),
+    (C[11], "a rate in English prose that differs from the page", sub("README.en.md", "Out-of-Country tuition is 248 dollars", "Out-of-Country tuition is 247 dollars")),
+    (C[11], "a count of planned rows that differs from the data", sub("README.md", "計画の行は 25 行です。", "計画の行は 26 行です。")),
+    (C[11], "a count of the syllabus that differs from the data", sub("README.en.md", "has 65 courses", "has 66 courses")),
 ]
 
 if __name__ == "__main__":

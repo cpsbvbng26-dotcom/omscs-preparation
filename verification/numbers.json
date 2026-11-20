@@ -2,16 +2,18 @@
   "_": [
     "散文に書いた数の台帳です（cpsbvbng26-dotcom の決めごと 5）。verification/check.py は README.md と README.en.md から数を拾い、ここのどれかに当たらなければ落ちます。",
     "dates は、書いてよい日です。fixed は、決めた値とその形です。counts は、数えて確かめる数で、re の一つ目の括弧が数、count が数え方の名です。",
-    "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。"
+    "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。",
+    "学費の数（tuition_*）は、data/assets.json の tuition の項目にある頁の文（Bursar の表の OMSCS の行と FAQ の文）から、検査が読み直して計算し直します。在籍する大学のシラバスの数（syllabus_*）は、data/course-plan.json の sha256 の値の数です。"
   ],
   "dates": {
     "2026-11-19": "決めた日。要件を読んだ日",
-    "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日"
+    "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日。在籍する大学のシラバスを読み、履修計画を決めた日。Bursar の学費の頁を読み、学費の申告を受けた日"
   },
   "fixed": [
     { "re": "CC BY 4\\.0", "why": "LICENSE の版" },
     { "re": "0009-0000-1406-0547", "check": "orcid", "why": "運営者の ORCID iD" },
-    { "re": "月に 1 本", "why": "MOOC を受ける速さ（2026-11-19 の決めごと）" }
+    { "re": "月に 1 本", "why": "MOOC を受ける速さ（2026-11-19 の決めごと）" },
+    { "re": "by rule 5", "why": "この記録の決めごと 5（在籍する大学の名とアドレスを書かない）" }
   ],
   "counts": [
     { "re": "要件の行は (\\d+) 行", "count": "requirements" },
@@ -23,6 +25,30 @@
     { "re": "開いて読んだ頁は (\\d+) つ", "count": "pages_read" },
     { "re": "(\\d+) pages were opened and read", "count": "pages_read" },
     { "re": "項目は (\\d+) 件", "count": "assets" },
-    { "re": "There are (\\d+) items", "count": "assets" }
+    { "re": "There are (\\d+) items", "count": "assets" },
+    { "re": "計画の行は (\\d+) 行", "count": "plan_rows" },
+    { "re": "The plan has (\\d+) rows", "count": "plan_rows" },
+    { "re": "情報の分類には (\\d+) 科目", "count": "syllabus_information" },
+    { "re": "The information category has (\\d+) courses", "count": "syllabus_information" },
+    { "re": "数理の分類には (\\d+) 科目", "count": "syllabus_mathematics" },
+    { "re": "the mathematical sciences category has (\\d+)", "count": "syllabus_mathematics" },
+    { "re": "国外の学生で 1 単位時間あたり (\\d+) ドル", "count": "tuition_rate" },
+    { "re": "Out-of-Country tuition is (\\d+) dollars per credit hour", "count": "tuition_rate" },
+    { "re": "4 単位時間未満で (\\d+) ドル", "count": "tuition_fee_small" },
+    { "re": "(\\d+) dollars per semester for fewer than 4 credit hours", "count": "tuition_fee_small" },
+    { "re": "4 単位時間以上で (\\d+) ドル", "count": "tuition_fee_large" },
+    { "re": "and (\\d+) dollars for 4 or more", "count": "tuition_fee_large" },
+    { "re": "修了には (\\d+) 単位時間", "count": "tuition_hours" },
+    { "re": "(\\d+) credit hours are required to graduate", "count": "tuition_hours" },
+    { "re": "授業料の合計は (\\d+) ドル", "count": "tuition_tuition" },
+    { "re": "Tuition comes to (\\d+) dollars in all", "count": "tuition_tuition" },
+    { "re": "1 学期に 1 科目（3 単位時間）ずつなら、(\\d+) 学期", "count": "tuition_semesters_1" },
+    { "re": "At one course \\(3 credit hours\\) per semester, it takes (\\d+) semesters", "count": "tuition_semesters_1" },
+    { "re": "1 科目ずつの合計は、費用を含めて (\\d+) ドル", "count": "tuition_total_1" },
+    { "re": "The total at one course per semester, with fees, is (\\d+) dollars", "count": "tuition_total_1" },
+    { "re": "1 学期に 2 科目（6 単位時間）ずつなら、(\\d+) 学期", "count": "tuition_semesters_2" },
+    { "re": "At two courses \\(6 credit hours\\) per semester, it takes (\\d+) semesters", "count": "tuition_semesters_2" },
+    { "re": "2 科目ずつの合計は、費用を含めて (\\d+) ドル", "count": "tuition_total_2" },
+    { "re": "The total at two courses per semester, with fees, is (\\d+) dollars", "count": "tuition_total_2" }
   ]
 }
