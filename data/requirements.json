@@ -1,7 +1,7 @@
 {
   "_": [
     "OMSCS の出願の要件を、行ごとに置きます。各行は出典の URL、読んだ日、状態、どう確かめたかを持ちます。",
-    "状態は statuses の四つのどれかです。omscs.gatech.edu は、2026-11-19 にはこの作業の環境から届きませんでした（WebFetch が名前を引けなかった）。2026-11-20 に、網の設定が omscs.gatech.edu と grad.gatech.edu を通すようになり、pages_read の六つの頁を開いて読みました。",
+    "状態は statuses の四つのどれかです。omscs.gatech.edu は、2026-11-19 にはこの作業の環境から届きませんでした（WebFetch が名前を引けなかった）。2026-11-20 に、網の設定が omscs.gatech.edu と grad.gatech.edu を通すようになり、pages_read の頁を開いて読みました。Bursar の頁（bursar.gatech.edu）も、同じ日に開いて読みました。",
     "confirmed の行の source は pages_read のどれかで、quotes にはその頁の英語の文を一字一句そのまま置きます。how は、どの頁のどの文によるかを書きます。",
     "「公式の頁の検索結果から」は、検索の結果に出た要約か抜粋で読んだという意味です。頁そのものは開いていません。",
     "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。null の行は、2026-11-20 に頁を読んで足した行です。"
@@ -30,7 +30,8 @@
     "https://omscs.gatech.edu/additional-app-guidelines": "Additional Application Guidelines。2026-11-20 に開いて全文を読んだ。",
     "https://omscs.gatech.edu/preparing-yourself-omscs": "Preparing Yourself for OMSCS。2026-11-20 に開いて全文を読んだ。",
     "https://omscs.gatech.edu/prospective-student-faqs": "Prospective Student FAQs。2026-11-20 に開いて全文を読んだ。",
-    "https://grad.gatech.edu/english-proficiency": "Georgia Tech の大学院の English Proficiency。OMSCS の頁ではない。2026-11-20 に開いて全文を読んだ。"
+    "https://grad.gatech.edu/english-proficiency": "Georgia Tech の大学院の English Proficiency。OMSCS の頁ではない。2026-11-20 に開いて全文を読んだ。",
+    "https://bursar.gatech.edu/tuition-fees": "Georgia Tech の Bursar の Tuition and Fee Rates。OMSCS の頁ではない。2026-11-20 に開いて、Fall 2026・Spring 2027・Summer 2027 の表を読んだ。要件の行の出典ではなく、data/assets.json の学費の項目の出典である。"
   },
   "rows": [
     {
