@@ -2,7 +2,10 @@
 
 [English](./README.en.md)
 
-Georgia Tech の OMSCS（Online Master of Science in Computer Science）に出願するための準備を、日付つきで残す記録です。
+大学院への進学の準備を、日付つきで残す記録です。
+Georgia Tech の OMSCS（Online Master of Science in Computer Science）に出願するための準備を記録しています。
+2026-11-20 からは、University at Buffalo の応用オントロジーの博士課程（PhD in Applied Ontology）の準備も記録しています。
+リポジトリの名は、最初の目標の OMSCS のままです。
 決めたことと、したことだけを書きます。
 これからの作業の一覧は置きません。
 
@@ -211,10 +214,145 @@ body-of-knowledge の項目が指す CS2013 そのものは、読んでいませ
 - これらの科目が、準備の頁の言う「upper-level (i.e., junior, senior, or graduate level)」に当たるかどうかは、確かめていません。頁の文は「Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses.」です。
 - 準備の頁は「Note that academic coursework means that the university is able to provide a transcript notating your performance is worthy of academic credit; this must come from the university, not a third-party intermediary or platform such as a MOOC provider.」と書いています。計画の科目は大学の単位の付く科目なので、その大学の成績証明書に載ります。どの科目が頁の求める水準に当たるかは、入学審査の委員会が判断することです。
 
+## 博士課程の準備（University at Buffalo、応用オントロジー）
+
+この節は、博士課程の準備の記録です。
+目指す課程は、University at Buffalo の哲学科の、オンラインの応用オントロジーの博士課程（PhD in Applied Ontology）です。
+前の節までの OMSCS の修士号は、それより前からの別の目標です。
+
+### 2026-11-20 に決めた博士課程の目標
+
+- University at Buffalo の、オンラインの応用オントロジーの博士課程（PhD in Applied Ontology）を、博士課程の目標にします。
+- 学費は、運営者の貯えからまかないます。
+- 学費の分が貯まってから、この課程に進みます。
+- 額は、この記録に書きません。
+
+これは、2026-11-20 に運営者が決めたことです。
+決めたことの元の文は、[data/progress.json](./data/progress.json) の最後の行にあります。
+額は、どの通貨でも書きません。
+
+### 読めた出典と、読めなかった出典
+
+www.buffalo.edu の頁は、この作業の環境から開けませんでした。
+自動の要求には、Akamai が「Access Denied」（HTTP 403）を返しました。
+その拒否を回り込むことは、していません。
+そのため、University at Buffalo の頁の事実は、検索の結果の要約だけで読んでいます。
+その行の状態は、「公式の頁の検索結果から」です。
+出典の URL は、検索の結果がその要約の出典として示した頁です。
+検索の要約は、頁の文とは突き合わせていません。
+第三者の頁として、Daily Nous の記事を 2026-11-20 に開いて読みました。
+博士課程の記録で読めた頁は、Daily Nous の 1 頁だけです。
+Daily Nous の行には、記事の英語の文を一字一句そのまま添えてあります。
+状態の意味は、出願の要件の節の表と同じです。
+
+### 博士課程の要件
+
+[data/phd-requirements.json](./data/phd-requirements.json) に、行ごとに置いてあります。
+どの行も、出典の URL、読んだ日、状態、確かめ方を持ちます。
+博士課程の要件の表は 27 行です。
+公式の頁の検索結果から読んだ行は 16 行です。
+第三者の頁から読んだ行は 3 行です。
+出典が見つからず、確かめていない行は 8 行です。
+公式の頁を開いて確かめた行は 0 行です。
+University at Buffalo が自らを応用オントロジーの大学院の学位を出す世界で唯一の大学と言っているのは、大学自身の主張です。
+独立の確認は、見つけていません。
+締め切りの行は、古いかもしれません。
+別の University at Buffalo の頁が、出願は「will open soon」と書いていたためです。
+頁に載っている問い合わせ先の名・メールアドレス・電話番号は、写していません。
+
+| 行 | 要件 | 状態 | 出典 |
+| --- | --- | --- | --- |
+| credit-hours | 修了には 72 単位時間が要る | 公式の頁の検索結果から | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| time-to-degree | 修了までの年限（time to degree）は 5 年 | 公式の頁の検索結果から | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| online | 学位の要件は、すべてオンラインで満たせる。ハイブリッドの形も用意されている | 公式の頁の検索結果から | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| f1-visa | 全部オンラインの課程で、F-1 の学生の在留資格を保つ要件を満たさない | 公式の頁の検索結果から | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| contact-listed | 頁には課程の問い合わせ先が載っている。この記録には、その人の名・メールアドレス・電話番号を写さない | 公式の頁の検索結果から | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| start-fall-2026 | 2026 年の秋学期に始まる、新しい、全部オンラインで非同期の博士課程 | 公式の頁の検索結果から | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| worlds-only-claim | University at Buffalo は、応用オントロジーの大学院の学位を出す世界で唯一の大学だと自ら言っている。これは大学自身の主張で、独立の確認は見つけていない | 公式の頁の検索結果から | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| undergraduate-degree | 博士課程の出願者には、学部の学位が要る | 公式の頁の検索結果から | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| application-fee | 出願料は 75 ドル。2027 年の春と秋の学期には、出願料の免除がありうる | 公式の頁の検索結果から | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| deadlines | 応用オントロジーの MS と PhD の締め切りは、春の入学が 1 月 5 日、秋の入学が 8 月 1 日。別の University at Buffalo の頁は出願が「will open soon」と書いていたので、この締め切りは古いかもしれない | 公式の頁の検索結果から | https://www.buffalo.edu/cas/philosophy/graduate/admissions.html |
+| competence | 博士課程の出願者は、応用オントロジーのどこかの領域での力を示す必要がある | 公式の頁の検索結果から | https://www.buffalo.edu/cas/philosophy/graduate/admissions.html |
+| format | オンラインかハイブリッドか、全日制か定時制かを選べる。秋か春に始められる | 公式の頁の検索結果から | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| qualifying-paper | 早い段階で qualifying paper を出す | 公式の頁の検索結果から | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| rate-winter-2026 | Winter 2026、州外の学生、オンラインの課程の Graduate (includes Certificates) の額は、1 単位時間あたり授業料 565.00 ドルと費用 76.16 ドルで、合わせて 641.16 ドル | 公式の頁の検索結果から | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/winter-tuition-and-fees-for-online-academic-programs.non-resident-online.html |
+| rate-spring-2027 | Spring 2027、州外の学生、全日制の大学院の額は、1 学期あたり授業料 6785.00 ドルと費用 1003.92 ドルで、合わせて 7788.92 ドル | 公式の頁の検索結果から | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.non-resident-online-full-time.html |
+| comprehensive-fee-waiver | オンラインの課程の学生は、Comprehensive Fee の免除の対象になる | 公式の頁の検索結果から | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.non-resident-online-full-time.html |
+| dn-first-phd | Daily Nous は、University at Buffalo の哲学科が、応用オントロジーで最初になる博士課程を始めると伝えている | 第三者の頁から | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| dn-online-fall | Daily Nous は、全部オンラインで非同期の課程で、記事の年の秋から学生を受け入れると伝えている | 第三者の頁から | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| dn-masters | Daily Nous は、同じ学科が記事の前の年に、オンラインの応用オントロジーの修士課程を始めたと伝えている | 第三者の頁から | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| programme-tuition | この課程だけの学費の額 | 確かめていない | なし |
+| dissertation | 博士論文の要件 | 確かめていない | なし |
+| english-test | この博士課程の英語の試験の要件 | 確かめていない | なし |
+| recommendations | この博士課程の推薦状の要件 | 確かめていない | なし |
+| statement | この博士課程の志望の文書（statement）の要件 | 確かめていない | なし |
+| transcripts | この博士課程の成績証明書の要件 | 確かめていない | なし |
+| master-transfer | 修士課程の単位を移せるかどうか | 確かめていない | なし |
+| funding | 奨学金や助成などの資金があるかどうか | 確かめていない | なし |
+
+### 博士課程（応用オントロジー）で持っているもの・使えるもの
+
+[data/phd-assets.json](./data/phd-assets.json) に、項目ごとに置いてあります。
+状態の分け方は、OMSCS の持っているものの表と同じです。
+要件の欄は、読んだ出典がその項目を要件に挙げているかを示します。
+要件の行の欄は、その根拠になる要件の表の行です。
+博士課程の持ち物の表は 7 項目です。
+数えると、持っているものは 0 件、途中のものは 1 件、まだ無いものは 6 件です。
+そのうち、読んだ出典が要件に挙げているものは 3 件です。
+証拠の無い「持っている」は置いていません。
+
+| 項目 | 何か | 状態 | 要件 | 要件の扱い | 要件の行 |
+| --- | --- | --- | --- | --- | --- |
+| bachelors | 学士号。在学中で、まだ得ていない。大学の名は書かない | 途中 | 読んだ出典が要件に挙げている | 博士課程の出願者には、学部の学位が要る（検索の結果の要約による） | undergraduate-degree |
+| ontology-competence | 応用オントロジーのどこかの領域での力。これを示すものは、まだ無い。関わる事実は別に挙げるが、それが要件を満たすとはしない | まだ無い | 読んだ出典が要件に挙げている | 博士課程の出願者は、応用オントロジーのどこかの領域での力を示す必要がある（検索の結果の要約による）。どの水準で足りるかは、読んだ出典に無い | competence |
+| tuition | 学費。運営者の貯えからまかなう。学費の分が貯まってから、この課程に進む。額は書かない | まだ無い | 読んだ出典が要件に挙げている | この課程だけの学費の額は、どの出典にも見つかっていない。Claude の見積もりは、この項目の estimate にある | rate-winter-2026、rate-spring-2027、comprehensive-fee-waiver |
+| masters | 修士号。持っていない。OMSCS の修士号は、この記録の前からの別の目標 | まだ無い | 読んだ出典は要件に挙げていない | 読んだ出典は、博士課程の出願に学部の学位が要るとだけ書き、修士号を要件に挙げていない。修士の単位を移せるかどうかは見つかっていない | undergraduate-degree、master-transfer |
+| english-test | 英語の試験。まだ受けていない | まだ無い | 要件が見つからない（確かめていない） | この博士課程の英語の試験の要件は、見つかっていない | english-test |
+| recommendations | 推薦状。この博士課程のためのものは、まだ無い | まだ無い | 要件が見つからない（確かめていない） | この博士課程の推薦状の要件は、見つかっていない | recommendations |
+| statement | 志望の文書（statement）。この博士課程のためのものは、まだ書いていない | まだ無い | 要件が見つからない（確かめていない） | この博士課程の志望の文書の要件は、見つかっていない | statement |
+
+### 応用オントロジーの力に関わる事実
+
+応用オントロジーの力の項目に関わる事実として、公開した哲学の論文と、履修計画中の科目を、題だけで挙げます。
+これらが要件を満たすとは、この記録では言いません。
+どの論文も査読前です。
+どの科目も、まだ履修していません。
+
+| 事実 | 種類 | 出典 |
+| --- | --- | --- |
+| The Nobility and Exemplarity of the Celibate Individual | 公開した哲学の論文（査読前） | cpsbvbng26-dotcom の README.md の論文の表（2026-11-20 に、main のコミット 7cc1521 で読んだ） |
+| Manifesto of Imperial Selfhood | 公開した哲学の論文（査読前） | cpsbvbng26-dotcom の README.md の論文の表（2026-11-20 に、main のコミット 7cc1521 で読んだ） |
+| Fragmentarian Spiritual Individualism | 公開した哲学の論文（査読前） | cpsbvbng26-dotcom の README.md の論文の表（2026-11-20 に、main のコミット 7cc1521 で読んだ） |
+| Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | 公開した哲学の論文（査読前） | cpsbvbng26-dotcom の README.md の論文の表（2026-11-20 に、main のコミット 7cc1521 で読んだ） |
+| 記号論理 | 在籍する大学の科目（履修計画中） | data/course-plan.json |
+| 集合と論理 | 在籍する大学の科目（履修計画中） | data/course-plan.json |
+
+### 博士課程の学費の見積もり
+
+次の表の数は、Claude が計算した見積もりです。
+もとの額は、検索の結果の要約で読んだ University at Buffalo の学費の頁の額です。
+額が変わらないと仮定しています。
+額は改定されます。
+この課程だけの学費の額は、どの出典にも見つかっていません。
+そのため、オンラインの課程の大学院の単位時間ごとの額と、全日制の大学院の学期ごとの額を使いました。
+学期の数は Claude の仮定で、出典にはありません。
+全日制の学期あたりの単位時間も、読んだ出典にはありません。
+Comprehensive Fee の免除は、差し引いていません。
+出願料・本・試験は含めていません。
+為替の率を出典から読んでいないため、円には換算していません。
+学費は、運営者の貯えからまかなうと決めています。
+運営者の貯えの額は書きません。
+
+| 見積もり | 計算 | 合計 |
+| --- | --- | --- |
+| 1 単位時間あたりの額（授業料と費用）で 72 単位時間 | 72 × 641.16 | 46163.52 ドル |
+| 1 単位時間あたりの授業料だけで 72 単位時間 | 72 × 565.00 | 40680.00 ドル |
+| 全日制の 1 学期あたりの額で 6 学期（学期の数は Claude の仮定） | 6 × 7788.92 | 46733.52 ドル |
+
 ## 進み具合の記録
 
 [data/progress.json](./data/progress.json) に、日付の順に足していきます。
-いまあるのは、2026-11-19 に決めたこと、2026-11-20 に推薦の枠の状態を記録したこと、同じ日に決めた履修計画です。
+いまあるのは、2026-11-19 に決めたこと、2026-11-20 に推薦の枠の状態を記録したこと、同じ日に決めた履修計画と博士課程の目標です。
 同じ日に、在籍する大学は推薦状の依頼を受け付けないと、運営者から聞きました。
 このことは、公開の頁では確かめていません。
 済んだこととして書いた行の日付が、検査を走らせた日より後なら、検査が落ちます。
@@ -225,6 +363,7 @@ body-of-knowledge の項目が指す CS2013 そのものは、読んでいませ
 所属も書きません。
 在籍する大学の名と、そのシラバスのアドレス、科目の担当の教員の名も書きません。
 運営者の貯えの額は、どの通貨でも書きません。
+博士課程の頁に載っている問い合わせ先の名・メールアドレス・電話番号も写しません。
 推薦を頼む人の名や、その人についてのことも書きません。
 要件の行にある GPA は、出願の要件の文であって、運営者の記録ではありません。
 

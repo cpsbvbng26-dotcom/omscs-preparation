@@ -1,7 +1,8 @@
 {
   "_": [
     "進み具合の記録です。日付の順に足します。決めたこと（decision）と、したこと（started・finished・other）だけを書きます。これからの作業の一覧は置きません。",
-    "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。"
+    "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。",
+    "topic が doctorate の行は、2026-11-20 に決めた博士課程の目標です。推薦の枠の検査は、この行を見ません。かわりに博士課程の検査が、この行に推薦の枠のことも、人のことも、額も書かれていないことを見ます。"
   ],
   "entries": [
     {
@@ -53,6 +54,25 @@
         "The owner reported that the place where the owner is enrolled does not take requests for letters of recommendation. This was received from the owner and not confirmed on a page."
       ],
       "source": "どちらも、運営者が 2026-11-20 に Claude に伝えた。履修計画の科目と、それぞれの状態・開講年度・準備の頁の項目・理由は data/course-plan.json にある。推薦状の依頼のことは、運営者から受け取っただけで、公開の頁では確かめていない。"
+    },
+    {
+      "date": "2026-11-20",
+      "kind": "decision",
+      "done": true,
+      "topic": "doctorate",
+      "items": [
+        "University at Buffalo の、オンラインの応用オントロジーの博士課程（PhD in Applied Ontology）を、博士課程の目標にします。",
+        "学費は、運営者の貯えからまかないます。",
+        "学費の分が貯まってから、この課程に進みます。",
+        "額は、この記録に書きません。"
+      ],
+      "items_en": [
+        "The doctoral aim is the University at Buffalo's online PhD in Applied Ontology.",
+        "The tuition is paid from the owner's savings.",
+        "The program is pursued once the tuition has been saved.",
+        "No amount is written in this record."
+      ],
+      "source": "運営者が 2026-11-20 に決めた。課程の要件と学費の額は data/phd-requirements.json に、持っているもの・使えるものは data/phd-assets.json にある。運営者の貯えの額は書かない。"
     }
   ]
 }
