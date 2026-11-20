@@ -39,6 +39,20 @@
         "The official OMSCS pages were opened, and their treatment of recommenders (how many, academic references, people not to ask) was read."
       ],
       "source": "枠の状態は、利用者が 2026-11-20 に Claude に伝えた。公式の頁は 2026-11-20 に開いて読んだ（data/requirements.json の pages_read）。枠の状態は data/assets.json の recommendation_slots、公式の頁の扱いは recommendation_guidance にある。"
+    },
+    {
+      "date": "2026-11-20",
+      "kind": "decision",
+      "done": true,
+      "items": [
+        "在籍先の公開のシラバスにある科目のうち、data/course-plan.json に挙げた 25 科目を、履修計画中とすることを運営者が決めました。",
+        "在籍先は推薦状の依頼を受け付けないと、運営者から聞きました。公開の頁では確かめていません。"
+      ],
+      "items_en": [
+        "The owner decided to plan the 25 courses listed in data/course-plan.json, from the public syllabus of the place where the owner is enrolled (status: planned).",
+        "The owner reported that the place where the owner is enrolled does not take requests for letters of recommendation. This was received from the owner and not confirmed on a page."
+      ],
+      "source": "どちらも、運営者が 2026-11-20 に Claude に伝えた。履修計画の科目と、それぞれの状態・開講年度・準備の頁の項目・理由は data/course-plan.json にある。推薦状の依頼のことは、運営者から受け取っただけで、公開の頁では確かめていない。"
     }
   ]
 }

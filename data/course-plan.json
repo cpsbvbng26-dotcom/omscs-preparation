@@ -1,0 +1,568 @@
+{
+  "_": [
+    "在籍する大学の科目の履修計画です。どの行も状態は「履修計画中」で、これは運営者が 2026-11-20 に決めました。",
+    "出典の大学の名とシラバスのアドレスは、決めごと 5 により書きません。担当の教員の名も書きません。",
+    "syllabus の title_sha256 は、読んだ分類のすべての科目の名の sha256（UTF-8）です。科目の名をそのまま並べると、大学を特定できる科目の名も並ぶため、値だけを置きます。行の title は、どれもこの値のどれかに当たります。",
+    "competency は、Preparing Yourself for OMSCS の頁の項目です。quote はその頁の英語の文で、一字一句そのままです。body-of-knowledge の項目が指す CS2013 そのものは読んでいません。科目がその中のどの領域に当たるかは確かめていません。",
+    "reason は、シラバスの科目の説明だけによります。成績・点など個人の学業の記録は、どの欄にも書きません。"
+  ],
+  "source": "在籍する大学の公開のシラバス（2026-11-20 に読んだ。大学の名とアドレスは決めごと 5 により書かない）",
+  "source_en": "the public syllabus of the university where the owner is enrolled (read on 2026-11-20; the university's name and address are not written, by rule 5)",
+  "read_on": "2026-11-20",
+  "how": "ブラウザで描いて読んだ。科目の名・説明・開講年度を写し取った。",
+  "decided_on": "2026-11-20",
+  "statuses": {
+    "planned": [
+      "履修計画中",
+      "planned"
+    ]
+  },
+  "syllabus": {
+    "information": {
+      "ja": "情報",
+      "en": "information",
+      "title_sha256": [
+        "04db509282eea45dee75cf5c02da9aee90b3f202535e3345d067b7e6fd3baae5",
+        "09752e883c1dc035b00a4946709d1635e793dbb4883822b21c86b2bb87a79a0b",
+        "0b11754321c52131e8108c2b28e2510476a005c783b7cfbb8c1ddf436f8af821",
+        "1174b4356c98c971f79963438b7d60244bb51ddfaa2c67f94925f7a88d76cc34",
+        "1230312328f9ce916c70f696ad6ea1dffe3e50baf34e5bd33f06ce2d3befee7d",
+        "138061f8bff7e017516fbb1d2523af01b67dcbbe30f3415b108c8398d216fd14",
+        "1894566b7f425351e1859fa46b4365adbaca3556cad46322b65f26008ae04fb2",
+        "19266d268e1850988bc35b0bd2b2b45d17f44609c488a823172359604e9fd281",
+        "1a96fb929c7040987c7e4fbbc09cb39d838403edde4cdda21294e2de805ffb61",
+        "1b42f2f5347a87f6d1ba33763f88f686b8a318341f402f9a0de36d4a11de22bd",
+        "1dcca988da1a37e50d8d6f71481fd589803d63a19b7cf641de11dc0452c08359",
+        "23d71eaa0d8dd32e78e805b3c842d80185238b87f0fd59bbd3e7a4526beecc17",
+        "327db919186421e678f31e7e0e2324c8f5cc8577b9ab0f056a11837167935f16",
+        "3281bf3056c0a5b995553a4a299140d97893fe594fb22ec2ebe2bc0893de3e8c",
+        "32d60fef79227dceeac221a9fbbb8c374412b2dfae914a2b36144478cb843b55",
+        "3b59168913aeea304a7c2faab4971e2818081ae53dd5751d081addc0d87e997c",
+        "3cd432df61a71650e025e363e879aed043675c456680e637cbcc8468c1dab626",
+        "410f5aa5158e5d1441a624804f33a9b9ae105d567ea5e228646bea8b702b23a8",
+        "4566dd9a11bbe40b8ae4474a14ab59077b57426de21d17c132cc7e266115db88",
+        "4d0bfb7107eec6fdd603038c3b5ea52f025520fc93c01f7bd8b324f347e533e4",
+        "50c627528ab2f48fccf2d4652798c7d2782c7019f718b6fcf4dc000f3aeee39e",
+        "52fe27f2234b6c1840cc4df9dc74ef993665f405ce369b5a08a02be87ac2cb07",
+        "538b24f6b44dc00c97f06c92b72ef925ee59df05cf107e8f5f0d398259fe5b89",
+        "641ec743663a0476d0569236addefd42f8f66f1ae2c8a8304c6bd79e3b2cf44b",
+        "648bc700ce118f9c96e9c3b9ae210ac580a506d84e89591f0298bfd170eceb17",
+        "6680f2a8e334ccb8d5ada092ef4908eb9c8a52bf8e731c6cdf65b038644dc567",
+        "6aa59087757e82660b1169b03428e65d51e267e7273efcbeec80556e0ba57f69",
+        "7903e1f0c066666dbc38335a239b9815012bc502ab20e20d025be980198d2cd4",
+        "79092561b308ef73c379ee0577e129cc19f59ba532b4b052a0ef02a1a81e421f",
+        "7931b26c9944a042109b37f378eb1f43b0945f1a73871094601d9e03f6cddf77",
+        "81c81e241fb355ddf85a25c128c225b629287d6c59b1e726c4a9bbaa603bf718",
+        "82275f9c28cbf31b9adcadfe242d07de2a7d88fa0361931d410448278234f035",
+        "84379c15b01b24442ae7366c5a6b3d27a214b019a0e89bf5447683c31caeed27",
+        "888b5435d850ae40149ba6f4a064c8b249b7e48d80b41a9f63e30372112a610e",
+        "88d05c4f673269957cba2c49e5c0217725a218ab1dc6507235cd9a068594fa30",
+        "88d9e556da351a92b8ae44ae4474fa8ffcd0a86d25cb50d13260d7646570409f",
+        "8dacf26c6e7d4cfc12dd0399ec2141bd583aa12e9acc29d7b8efe5cfab5182c1",
+        "967894744732ead6be0a549ef1d26bc626e895310efffdcd65c2393941ec1881",
+        "993fe8505567b386e02fc57738df60027037e60070c6891aa4671d0837ff40bc",
+        "9c6d8445b9fe5635b48feb60313bf51bad8127c17e1666b2b5ef368e48daa725",
+        "9ea2f6b539c0ff5810a077a92436995a5f25d2b4f52ecbdb54cb63e3416cc590",
+        "a0bfc9e6912c1ead67ce587355a62b66fde8b853ecf9c39542e49177baa040bd",
+        "a2d1a4b41035a8a3ec4cf62779aba66d57517cd8b1821a30a0caaea1746902d9",
+        "a86ccb6e7839c17000dd91bf90674e1b1ef502d533b60a974c8b4532fb7763f9",
+        "a9f613295b957b6713e45d02e172e277a9cad68c8a10f4c4c28f95d82f969181",
+        "abb1ae63bc7ce43025289622e8953bcffa77e7966b7a36238297e3c16e4b7d7a",
+        "ac05e1a576b2e060d851c33ac8dd8940260c953e8a6b8fd501b0c5a30e1d9dfe",
+        "b086ae0fd13faecac1cad4b1ad62608d1432ff35f854e0061c754b2c6bed2c94",
+        "b89a68cff934358220a6a2187669b584868f076d19caf750031d2f0d3f850032",
+        "b9761240d9977704e11c3deee2e1f3866358f5785369830a8bb99c9430806335",
+        "bfb427aef383cd44c45a1ec33a6725015894a02ffc0352dcf62a077d6944d707",
+        "c380f3fa7578edd287ea0c8af1d2b5e29ead615bcf6ca4245d5f6ca149406bfc",
+        "cdf8b81196173e981be1d8e25aff15e3a07936669457a7e41f0f8cf50a8d31a3",
+        "ce357848c31fb00368874aedd537a8f79b547a685d20ce6086d81d3fe30cab50",
+        "d601c5f5d637d4d2d3b848e7b38487c9164fbb5d2b86bd02a429acf24eabb391",
+        "d86f122aa288e77c9e51eef489425c4b927995aa6bdfaa49803376ebdb527562",
+        "e0681ce46a53d0f67ce5a9fcced0450a42456cc32a90f7cd3875e4c84ec1e56c",
+        "e4ba3fbb98b5d412775ce76c8dcfffdf6da7bce06816c4990914c73a39bb7ed6",
+        "e9e11fe11d0b19c20fc0e49762c20a65091347d969747c51c72959c67664e066",
+        "ea5572e36543e452d0bcb22da0e6f928cf210764f0eb5564fd372ac52501d25a",
+        "eabe09313f57161f6146635cc1577f642ac208381434022fb2964ef2859f179c",
+        "eb10a9ffb988ce6bb6012567c71f53bc672a4713acdc6d12144a51485583e2dc",
+        "f554fb49437c06f422e26d2a5ce41f82396bb0ba3bb1128a573129df46740dbe",
+        "f7868ef382e8a9670e91c5e15eba6b25b91e97f5c06c7e1045f3fa3d3da03a3a",
+        "fce21ac5fbe77fd0726fe87a7dde5063b1cc2c62065acc47015d2184cf02799f"
+      ]
+    },
+    "mathematics": {
+      "ja": "数理",
+      "en": "mathematical sciences",
+      "title_sha256": [
+        "04284992e0125489cfe10f7f423ac4bd096d851aab140f4b038dce3b65b5ae09",
+        "08734459745182c9884acc029963c29cb900f852727546b70210b1e14eebb1cb",
+        "0bc1494de288f642189bd0720622473fc8eef692f99adc04fcfa3f97a710764c",
+        "0d460c5c35ad75e8fe01f0e9b29820f0214c78dd114b2ddafd31e37284140e5d",
+        "12183aee0ed30a236356c86fd4676c590873b0d6a1b731c043c680e488d8b6e6",
+        "183fd680009a6307dfa87fdff243527bc212f92540691cd3da3db97d24ff8eb1",
+        "1fc6a3b3035a5c3219564a05873ec80e602353cba6a410739672c28caa2a2276",
+        "270646ba604965729016d3e00c0234b7c10556c6915f64b76de36a123ba95cc7",
+        "2a209e1cb147ecd6daee4601eb0a0e18e6e76b1bfd4391ba85dd46a40614f5ee",
+        "2b180deae05b7732117b3441ecba87a08e8ad5a97f996727d0e41fd1a240f2a7",
+        "2c55955dbfc91fe9bb9be81ec6008cc4fe9bae574608f1bc81e68ba53f7c3f1b",
+        "2f0db4282ba80ebd2370e4fdb90b267df31a3774a81f6ef92a7f2355327b92b9",
+        "3678ada5560cfe58ad12107e2c549c55a624c4a97c9d6f426f7928843a40ec08",
+        "370bde17beeb1b4c66d13ed35af7283e6306c2fb06cc421e72118de21f7537b7",
+        "375f1bae077cf593e353f45c73c7e383b1c66f9bf6aadf343f6f4b370a2b31ce",
+        "385cd67de6cb30197b7bf2e37c0ceba722f26272e62c281b451e8c85a73dcf43",
+        "391baabfc1640c73e41c32dcea66626c303cb3c6b0d5832d1e3c829e8e1287b6",
+        "55150ba12cd2c7054f91c1dad28a99fca3258da05ed835000aa3131c231e660f",
+        "592307f51814c11e3a0d7dcfb8ca1fa66515ccbd55243437503636815cc105ba",
+        "5cb559949fae99ffe591d7b2502d4fa36d9ac67267f05c526892fbdf7471f8fd",
+        "5d50d845154ba32b97dd50440e78748ff4eefd966e738475be6ebe27f84e4a94",
+        "61fea729f3b896b1cdf2a8dc905730dbe52fad2b151ff1074e3748a90be2fa47",
+        "6c84ad69711040cfa7454ddf7ee4659775ca4f47e3be5a130676ac8aea05a123",
+        "7b27f11ee36711150132a0d0a04a6e3c7df377e83198a0e3ed70f10391f89b99",
+        "7c996dccaa9a50d77f952e63ea02e3b8c06afabe0e30261da824001a45be88d5",
+        "7df0529d3f7f127e2e6dd9e49fbb8b42462d66a4c4262b33bfb7ae38120b4ef9",
+        "854d57e362147262f8b286f601bb4a9529fba6eb01d3eb58d0186c7e487c581c",
+        "90255bccd088e2092a1abd1d9669faff0d26d9839e4eba595e50054afaa8af0a",
+        "98764ab4b883424e18461c6a7e3ab466f5c9bd1d2db8f3cbc2d67e218b54e53c",
+        "9ad3452da6b8e3b5d409779b94e131b5507f90fed85e33727558346c25f92977",
+        "a4b71e003f4fdc7844272ff1556f75f851b3df96d45f42d3e00a27ba24ad263f",
+        "b79da68aed81345b3d7ee7ee83b7cc9c45c5b00363517d6193bd6d69dbdd38c8",
+        "bf9ab201d65e579ab412ddf755282c4d5543235c73f51b6a693c5b314a08147f",
+        "c1fd41c659e80417209e9d4a53e3fc86c0132459be4cc69df172325c18ac9090",
+        "c2684dff60820b524c31d57b52362bbd2752360058ffc95760c4701e9b6289ea",
+        "c8b8879ebe093522689b1d9e053a96f6f8c7f5e8cc989bbdfe2db770c00b6e9c",
+        "d333ba85ad5f85d506da3cbcad9e0ee7682b9a814ebb488ce9afc0482d917014",
+        "d359230709a4ece3b8be849a4073a4bff34476f152812e4104d92cc424494c57",
+        "d65787673d4f6cb1ab970233b1c49a26ce6211f2e730c7725ba7fbd21968eb95",
+        "d6f9c36d95a5c331f93ed429286f96af59d52e5310d729557da9ca2dbac8bc72",
+        "de817f71ecc0688b9bc99d110a12a6853c276ece67e0ab9a7748fd1ae9ded185",
+        "ef4030e378edd081ec3e1671595823ab97f444116eccab1a2682b3417d319842",
+        "f0fd0f86bd7c25ae3ec2ab40a3870e26be061375d69cd088f34cdbe03c90b1b6",
+        "f1d04cdbc08ed757c4559b3d9d85ce216c9202ea732a51734decb200fd9cbcec",
+        "f3aa68a67c84fe862fa1b4f9255818d9409118c1e21fce33ea784f1c5cc15cde",
+        "f6c7b30978b58dbcffeb51f3ad363427111ca0abab14de971ba3934a51f98c81",
+        "fdedaed8ebb19f0b953602fb378eb3b41540aa3a61e63a6fe29ff627726b28a4"
+      ]
+    }
+  },
+  "competencies": {
+    "programming": {
+      "ja": "プログラミングの基礎",
+      "en": "The fundamentals of programming",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "The fundamentals of programming."
+    },
+    "oop": {
+      "ja": "オブジェクト指向の設計の原則（カプセル化・抽象化・多態・継承）",
+      "en": "Object-oriented design principles (encapsulation, abstraction, polymorphism, inheritance)",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "Object-oriented design principles such as encapsulation, abstraction, polymorphism, and inheritance."
+    },
+    "data-structures": {
+      "ja": "データ構造（リスト・スタック・キュー・木・ハッシュマップ）",
+      "en": "Data structures (lists, stacks, queues, trees, hashmaps)",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "Data structures such as lists, stacks, queues, trees, and hashmaps."
+    },
+    "algorithms": {
+      "ja": "アルゴリズム（AVL・MST・Dijkstra 法・動的計画法）",
+      "en": "Algorithms (AVL, MST, Dijkstra’s, dynamic programming)",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "Algorithms such as AVL, MST, Dijkstra’s, and dynamic programming."
+    },
+    "languages": {
+      "ja": "複数のプログラミング言語に慣れていること",
+      "en": "Familiarity with multiple programming languages",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "Familiarity with multiple programming languages is recommended."
+    },
+    "body-of-knowledge": {
+      "ja": "上級の科目で扱う、CS2013 の Body of Knowledge の領域",
+      "en": "Areas of the CS2013 Body of Knowledge, covered by upper-level courses",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses."
+    },
+    "math": {
+      "ja": "人工知能と機械学習のための数学（線形代数・確率・統計）",
+      "en": "Mathematics for AI and machine learning (linear algebra, probability, statistics)",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "quote": "In addition to CS knowledge, some classes in the OMSCS program—especially in the artificial intelligence and machine learning areas—require a solid background in advanced mathematics, especially linear algebra, probability, and statistics."
+    }
+  },
+  "groups": {
+    "programming": {
+      "ja": "プログラミングの基礎",
+      "en": "Programming fundamentals",
+      "competency": "programming"
+    },
+    "dsa": {
+      "ja": "データ構造・アルゴリズム・計算量",
+      "en": "Data structures, algorithms and complexity",
+      "competency": "data-structures"
+    },
+    "oop": {
+      "ja": "オブジェクト指向",
+      "en": "Object-oriented programming",
+      "competency": "oop"
+    },
+    "languages": {
+      "ja": "複数の言語と考え方",
+      "en": "Multiple languages and paradigms",
+      "competency": "languages"
+    },
+    "systems": {
+      "ja": "システム",
+      "en": "Systems",
+      "competency": "body-of-knowledge"
+    },
+    "theory": {
+      "ja": "理論",
+      "en": "Theory",
+      "competency": "body-of-knowledge"
+    },
+    "networks": {
+      "ja": "ネットワーク",
+      "en": "Networks",
+      "competency": "body-of-knowledge"
+    },
+    "data-security": {
+      "ja": "データと安全",
+      "en": "Data and security",
+      "competency": "body-of-knowledge"
+    },
+    "ai-ml": {
+      "ja": "人工知能・機械学習",
+      "en": "AI and machine learning",
+      "competency": "body-of-knowledge"
+    },
+    "math": {
+      "ja": "人工知能・機械学習のための数学",
+      "en": "Mathematics for AI and machine learning",
+      "competency": "math"
+    }
+  },
+  "rows": [
+    {
+      "title": "Pythonプログラミング",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "programming",
+      "competency": "programming",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "Python で簡単な作業を自動化するプログラムを書き、コーディングの演習でプログラミングの基礎を身に付ける科目です。",
+      "reason_en": "Writes Python programs that automate simple tasks, and builds the fundamentals of programming through coding exercises.",
+      "status": "planned"
+    },
+    {
+      "title": "コンピューターサイエンス概論",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "dsa",
+      "competency": "data-structures",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "アルゴリズムとデータ構造の基礎と、プログラムの効率や計算複雑性を、Python でプログラムを動かしながら扱う科目です。",
+      "reason_en": "Covers the basics of algorithms and data structures, program efficiency and computational complexity, running and changing programs in Python.",
+      "status": "planned"
+    },
+    {
+      "title": "オブジェクト指向プログラミング",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "oop",
+      "competency": "oop",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "Scala で、オブジェクト指向プログラミングの基本の概念と使い方を、デザインパターンまで含めて身につける科目です。",
+      "reason_en": "Teaches the basic concepts and use of object-oriented programming in Scala, including design patterns.",
+      "status": "planned"
+    },
+    {
+      "title": "Javaプログラミング演習",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "oop",
+      "competency": "oop",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "Java で、オブジェクト指向プログラミングの要素と、データ構造などの基本の文法、標準 API、単体テストを学ぶ科目です。",
+      "reason_en": "Teaches the elements of object-oriented programming in Java, with its basic syntax including data structures, its standard API and unit testing.",
+      "status": "planned"
+    },
+    {
+      "title": "関数型プログラミング",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "languages",
+      "competency": "languages",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "Scala で関数型プログラミングの考え方と技法を学び、パーサーコンビネーターのライブラリを実装する科目です。",
+      "reason_en": "Teaches the thinking and techniques of functional programming in Scala, up to implementing a parser-combinator library.",
+      "status": "planned"
+    },
+    {
+      "title": "論理回路概論",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "systems",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "ブール関数と論理ゲートから始め、HDL で論理回路を作り、機械語でのプログラミングまでを扱う科目です。",
+      "reason_en": "Starts from Boolean functions and logic gates, builds logic circuits in an HDL, and ends with programming in machine language.",
+      "status": "planned"
+    },
+    {
+      "title": "コンピュータ概論",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "systems",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "コンピュータの発展を概観し、いまのコンピュータの仕組みを理解する科目です。",
+      "reason_en": "Surveys how computers developed, to understand how present-day computers work.",
+      "status": "planned"
+    },
+    {
+      "title": "Linux概論",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "systems",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "Linux のコマンド操作、シェルプログラミング、セキュリティ対策を、手を動かしながら学ぶ科目です。",
+      "reason_en": "Teaches Linux commands, shell programming and security measures through hands-on work.",
+      "status": "planned"
+    },
+    {
+      "title": "並行処理プログラミング",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "systems",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "マルチスレッドによる並行処理の基本（スレッドセーフ、メモリの可視性）を、Java を中心に、ほかの言語とも比べて学ぶ科目です。",
+      "reason_en": "Teaches the basics of multithreaded concurrency (thread safety, memory visibility), mainly in Java and compared with other languages.",
+      "status": "planned"
+    },
+    {
+      "title": "オートマトンと形式言語理論",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "theory",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "オートマトンなどの計算機のモデルと形式言語、正則言語と文脈自由言語を扱う科目です。",
+      "reason_en": "Covers models of computation such as automata, formal languages, and regular and context-free languages.",
+      "status": "planned"
+    },
+    {
+      "title": "グラフ理論",
+      "category": "mathematics",
+      "offered": "2026年度開講",
+      "group": "theory",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "離散数学の主要な主題であるグラフ理論の、数理的な構造と定理と、工学や情報学への応用を扱う科目です。",
+      "reason_en": "Covers the mathematical structure and theorems of graph theory, a main topic of discrete mathematics, with applications in engineering and informatics.",
+      "status": "planned"
+    },
+    {
+      "title": "集合と論理",
+      "category": "mathematics",
+      "offered": "2026年度開講",
+      "group": "theory",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "集合論と論理学の基本の概念と、述語論理や量化子を用いた証明を扱う科目です。",
+      "reason_en": "Covers the basic concepts of set theory and logic, and proofs with predicate logic and quantifiers.",
+      "status": "planned"
+    },
+    {
+      "title": "記号論理",
+      "category": "mathematics",
+      "offered": "2026年度開講",
+      "group": "theory",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "命題と述語で文を論理式に表し、定理証明系を使って証明を書く科目です。",
+      "reason_en": "Expresses statements as formulas with propositions and predicates, and writes proofs with a theorem prover.",
+      "status": "planned"
+    },
+    {
+      "title": "組合せ論",
+      "category": "mathematics",
+      "offered": "2027年度開講",
+      "group": "theory",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "有限集合に入る構造を研究する組合せ論の、基本の概念と手法を、演習の形で扱う科目です。",
+      "reason_en": "Covers the basic concepts and methods of combinatorics, the study of structures on finite sets, as an exercise course.",
+      "status": "planned"
+    },
+    {
+      "title": "インターネット概論",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "networks",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "AS と BGP、TCP/IP、DNS など、インターネットを支える技術を解説する科目です。",
+      "reason_en": "Explains the technologies behind the Internet, such as AS and BGP connections, TCP/IP and DNS.",
+      "status": "planned"
+    },
+    {
+      "title": "インターネットのしくみ",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "networks",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "IP アドレスとドメイン名、その二つを紐づける DNS を、演習の形で学ぶ科目です。",
+      "reason_en": "Teaches IP addresses, domain names and the DNS that links them, in the form of exercises.",
+      "status": "planned"
+    },
+    {
+      "title": "データベース運用実践",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "data-security",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "データベースのインストールから運用までを、特に PostgreSQL の構築と運用で学ぶ科目です。",
+      "reason_en": "Teaches databases from installation to operation, in particular building and running PostgreSQL.",
+      "status": "planned"
+    },
+    {
+      "title": "暗号技術とその応用",
+      "category": "information",
+      "offered": "2027年度開講",
+      "group": "data-security",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "共通鍵暗号、公開鍵暗号、電子署名の安全性とその限界、代表的な実現方法を扱う科目です。",
+      "reason_en": "Covers symmetric-key and public-key cryptography and digital signatures: their security, its limits and typical constructions.",
+      "status": "planned"
+    },
+    {
+      "title": "機械学習概論",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "ai-ml",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "線形モデル、SVM、決定木、教師なし学習、次元圧縮など、機械学習の基本から応用までを実践的に学ぶ科目です。",
+      "reason_en": "Teaches machine learning from the basics to applications in practice, including linear models, SVMs, decision trees, unsupervised learning and dimensionality reduction.",
+      "status": "planned"
+    },
+    {
+      "title": "ディープラーニング1",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "ai-ml",
+      "competency": "body-of-knowledge",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "多層パーセプトロンから、活性化関数、確率的勾配降下法、最適化・初期化・正則化まで、深層学習の基礎を扱う科目です。",
+      "reason_en": "Covers the basics of deep learning, from multilayer perceptrons to activation functions, stochastic gradient descent, optimisation, initialisation and regularisation.",
+      "status": "planned"
+    },
+    {
+      "title": "線形代数1",
+      "category": "mathematics",
+      "offered": "2026年度開講",
+      "group": "math",
+      "competency": "math",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "ベクトルと行列の演算、連立方程式、基底と次元、直交化法と QR 分解を扱う科目です。",
+      "reason_en": "Covers vector and matrix operations, systems of linear equations, bases and dimension, orthogonalisation and QR decomposition.",
+      "status": "planned"
+    },
+    {
+      "title": "線形代数2",
+      "category": "mathematics",
+      "offered": "2026年度開講",
+      "group": "math",
+      "competency": "math",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "ベクトル空間と線型写像、固有値と固有ベクトル、対角化、特異値分解を扱う科目です。",
+      "reason_en": "Covers vector spaces and linear maps, eigenvalues and eigenvectors, diagonalisation and singular value decomposition.",
+      "status": "planned"
+    },
+    {
+      "title": "統計学入門",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "math",
+      "competency": "math",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "確率と確率分布、推測統計学を学ぶ科目です。",
+      "reason_en": "Teaches probability, probability distributions and inferential statistics.",
+      "status": "planned"
+    },
+    {
+      "title": "計算機実験で学ぶ確率とモンテカルロ法",
+      "category": "information",
+      "offered": "2026年度開講",
+      "group": "math",
+      "competency": "math",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "乱数を使った計算機実験で、大数の法則や中心極限定理などの確率の基礎と、モンテカルロ法の基礎を学ぶ科目です。",
+      "reason_en": "Teaches the basics of probability, including the law of large numbers and the central limit theorem, and of Monte Carlo methods, through computer experiments with random numbers.",
+      "status": "planned"
+    },
+    {
+      "title": "数理統計",
+      "category": "mathematics",
+      "offered": "2027年度開講",
+      "group": "math",
+      "competency": "math",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "reason": "確率変数と確率分布、極限定理、標本分布、統計的推測、仮説検定、区間推定、回帰を扱う科目です。",
+      "reason_en": "Covers random variables and distributions, limit theorems, sampling distributions, statistical inference, hypothesis tests, interval estimation and regression.",
+      "status": "planned"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "algorithms",
+      "text": "読んだ分類のどの科目の説明も、平衡木（AVL）、最小全域木、Dijkstra 法、動的計画法を挙げていません。グラフ理論は数学の理論の科目で、その説明も、これらのアルゴリズムを挙げていません。準備の頁は、項目として「Algorithms such as AVL, MST, Dijkstra’s, and dynamic programming.」を挙げています。同じ頁は「We recommend completing the verified certificate tracks (including all embedded assessments and exams) for the following three Georgia Tech professional certificate programs.」と書き、その中に「Data Structures & Algorithms, using the same material as CS1332: Data Structures & Algorithms at Georgia Tech.」を挙げています。この課程の中身は、この記録では読んでいません。",
+      "text_en": "No course description in the categories read names balanced trees (AVL), minimum spanning trees, Dijkstra's algorithm or dynamic programming. Graph theory (グラフ理論) is a mathematical theory course, and its description does not name these algorithms either. The preparation page names the item “Algorithms such as AVL, MST, Dijkstra’s, and dynamic programming”. The same page says “We recommend completing the verified certificate tracks (including all embedded assessments and exams) for the following three Georgia Tech professional certificate programs”. Among those programs it names “Data Structures & Algorithms, using the same material as CS1332: Data Structures & Algorithms at Georgia Tech”. The content of that track was not read for this record.",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Algorithms such as AVL, MST, Dijkstra’s, and dynamic programming."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "We recommend completing the verified certificate tracks (including all embedded assessments and exams) for the following three Georgia Tech professional certificate programs."
+        },
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Data Structures & Algorithms, using the same material as CS1332: Data Structures & Algorithms at Georgia Tech."
+        }
+      ]
+    },
+    {
+      "id": "year",
+      "text": "科目ごとの履修想定年次は、確かめていません。",
+      "text_en": "The year in which each course is expected to be taken was not checked.",
+      "quotes": []
+    },
+    {
+      "id": "upper-level",
+      "text": "これらの科目が、準備の頁の言う「upper-level (i.e., junior, senior, or graduate level)」に当たるかどうかは、確かめていません。頁の文は「Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses.」です。",
+      "text_en": "Whether these courses are “upper-level (i.e., junior, senior, or graduate level)” in the sense of the preparation page was not checked.",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses."
+        }
+      ]
+    },
+    {
+      "id": "transcript",
+      "text": "準備の頁は「Note that academic coursework means that the university is able to provide a transcript notating your performance is worthy of academic credit; this must come from the university, not a third-party intermediary or platform such as a MOOC provider.」と書いています。計画の科目は大学の単位の付く科目なので、その大学の成績証明書に載ります。どの科目が頁の求める水準に当たるかは、入学審査の委員会が判断することです。",
+      "text_en": "The preparation page says that “academic coursework means that the university is able to provide a transcript”. It adds that “this must come from the university, not a third-party intermediary or platform such as a MOOC provider”. The planned courses are for-credit courses at a university, so they appear on that university's transcript. Whether a given course meets the level the page asks for is for the Admissions Committee to judge.",
+      "quotes": [
+        {
+          "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+          "quote": "Note that academic coursework means that the university is able to provide a transcript notating your performance is worthy of academic credit; this must come from the university, not a third-party intermediary or platform such as a MOOC provider."
+        }
+      ]
+    }
+  ]
+}

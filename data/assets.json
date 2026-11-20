@@ -3,7 +3,9 @@
     "いま持っているもの・出願で使えるものを、項目ごとに置きます。各項目は、何か（what）、証拠の URL（evidence）、状態（status）、公式の頁の扱い（official）と、その元の英語の文と出典（official_quotes）を持ちます。",
     "evidence は、運営者のリポジトリにすでにある公開の URL か null です。official_quotes の source は、2026-11-20 に開いて読んだ頁（data/requirements.json の pages_read）のどれかで、quote はその頁の文を一字一句そのまま置きます。",
     "状態は statuses の三つのどれかです。成績・点・GPA など、個人の学業の記録は書きません。",
-    "recommendation_slots は、推薦の枠ごとの状態だけを持ちます。人の名、所属、学校、SNS、分野、肩書き、間柄、予定は書きません（決めごと 6）。recommendation_guidance は、公式の頁が推薦者をどう扱っているかの文です。"
+    "recommendation_slots は、推薦の枠ごとの状態だけを持ちます。人の名、所属、学校、SNS、分野、肩書き、間柄、予定は書きません（決めごと 6）。recommendation_guidance は、公式の頁が推薦者をどう扱っているかの文です。",
+    "tuition（学費の見通し）は、運営者の申告による項目です。証拠の URL は置かず、self_report に申告した人と受けた日を置きます。証拠の無い「持っている」は、この項目にだけ許します。運営者の持つ額は、円でもほかの通貨でも書きません。",
+    "tuition の estimate は、Claude が読んだ頁の額で計算した見積もりで、額が変わらないと仮定しています。verification/check.py が、頁の文から額を読み直して計算し直します。"
   ],
   "statuses": {
     "met": [
@@ -251,6 +253,70 @@
           "quote": "Georgia Tech has additional publicly-available MOOC series that may help you prepare"
         }
       ]
+    },
+    {
+      "id": "tuition",
+      "what": "学費の見通し。運営者の申告では、いまの貯えで、見積もりの総額をまかなえる。申告は 2026-11-20 に受けた。運営者の申告であり、証拠は置かない。額は書かない",
+      "what_en": "Tuition covered. By the owner's own report, current savings cover the estimated total. The report was received on 2026-11-20. This is a self-report: no evidence is kept, and no amount is written",
+      "evidence": null,
+      "evidence_note": "運営者の申告。証拠は置かない。運営者の持つ額は、どの通貨でも書かない。",
+      "self_report": {
+        "by": "owner",
+        "reported_on": "2026-11-20"
+      },
+      "status": "met",
+      "official": "授業料は登録した単位時間ごとに、費用は登録した学期ごとに払う。修了には 30 単位時間が要る。OMSCS の授業料は、国外の学生（Out-of-Country）で 1 単位時間あたり 248 ドル。必須の費用（Mandatory Student Fees）は学期ごとに、4 単位時間未満で 212 ドル、4 単位時間以上で 531 ドル（Fall 2026、Spring 2027、Summer 2027 の表で同じ）。Claude の計算では、この額が変わらないとして、授業料の合計は 7440 ドル。1 学期に 1 科目（3 単位時間）ずつ 10 学期なら、費用を含めて合計 9560 ドル。1 学期に 2 科目ずつ 5 学期なら、合計 10095 ドル。額は改定される。本・試験・出願料は含めない。為替の率を出典から読んでいないので、円には換算しない",
+      "official_en": "Tuition is paid per credit hour of enrollment, and fees per semester of enrollment. 30 credit hours are required to graduate. OMSCS tuition for Out-of-Country students is 248 dollars per credit hour. Mandatory Student Fees per semester are 212 dollars for fewer than 4 credit hours and 531 dollars for 4 or more (the same in the Fall 2026, Spring 2027 and Summer 2027 tables). By Claude's own computation at those rates, assuming they do not change, tuition comes to 7440 dollars. At one course (3 credit hours) per semester over 10 semesters, the total with fees is 9560 dollars. At two courses per semester over 5 semesters, it is 10095 dollars. Rates are revised. Books, tests and the application fee are excluded. No exchange rate was read from a source, so nothing is converted to yen",
+      "official_quotes": [
+        {
+          "source": "https://bursar.gatech.edu/tuition-fees",
+          "quote": "Master of Science in Computer Science (OMSCS) | $227 | $236 | $248 | $212 | $531"
+        },
+        {
+          "source": "https://bursar.gatech.edu/tuition-fees",
+          "quote": "In-State (Resident) | Out-of-State (Non-Resident) | Out-of-Country | Mandatory Student Fees"
+        },
+        {
+          "source": "https://bursar.gatech.edu/tuition-fees",
+          "quote": "Per Hour | Per Hour | Per Hour | <4 Credit Hrs | 4+  Credit Hrs"
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "Generally, students pay tuition per credit hour of enrollment, as well as fees per semester of enrollment."
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "30 credit hours are required to graduate."
+        },
+        {
+          "source": "https://omscs.gatech.edu/prospective-student-faqs",
+          "quote": "Therefore someone taking two courses at three credit hours each can expect to spend roughly 18 hours per week on coursework."
+        }
+      ],
+      "estimate": {
+        "by": "Claude",
+        "note": "Claude が、読んだ頁の額で計算した見積もり。額が変わらないと仮定した。額は改定される。本・試験・出願料は含めない。為替の率を出典から読んでいないので、円には換算しない。1 科目を 3 単位時間とするのは、FAQ の頁の例（two courses at three credit hours each）による。",
+        "note_en": "An estimate computed by Claude at the rates of the pages read, assuming they do not change. Rates are revised. Books, tests and the application fee are excluded. No exchange rate was read from a source, so nothing is converted to yen. A course is taken as 3 credit hours after the example on the FAQ page (two courses at three credit hours each).",
+        "currency": "USD",
+        "tuition_per_credit_hour": 248,
+        "fee_fewer_than_4": 212,
+        "fee_4_or_more": 531,
+        "credit_hours": 30,
+        "credit_hours_per_course": 3,
+        "tuition_total": 7440,
+        "plans": [
+          {
+            "courses_per_semester": 1,
+            "semesters": 10,
+            "total": 9560
+          },
+          {
+            "courses_per_semester": 2,
+            "semesters": 5,
+            "total": 10095
+          }
+        ]
+      }
     }
   ],
   "slot_statuses": {
