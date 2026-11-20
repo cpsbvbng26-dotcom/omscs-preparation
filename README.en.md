@@ -2,7 +2,10 @@
 
 [日本語](./README.md)
 
-A dated record of the preparation for an application to Georgia Tech's OMSCS (Online Master of Science in Computer Science).
+A dated record of the preparation for graduate study.
+It records the preparation for an application to Georgia Tech's OMSCS (Online Master of Science in Computer Science).
+From 2026-11-20 it also records the preparation for the University at Buffalo's PhD in Applied Ontology.
+The repository keeps the name of the first aim, OMSCS.
 It records what was decided and what was done.
 It holds no list of tasks to come.
 
@@ -201,9 +204,142 @@ CS2013 itself, which the item body-of-knowledge points to, was not read.
 - Whether these courses are “upper-level (i.e., junior, senior, or graduate level)” in the sense of the preparation page was not checked.
 - The preparation page says that “academic coursework means that the university is able to provide a transcript”. It adds that “this must come from the university, not a third-party intermediary or platform such as a MOOC provider”. The planned courses are for-credit courses at a university, so they appear on that university's transcript. Whether a given course meets the level the page asks for is for the Admissions Committee to judge.
 
+## Doctoral preparation (University at Buffalo, Applied Ontology)
+
+This section is the record of the preparation for a doctorate.
+The program aimed at is the online PhD in Applied Ontology of the Department of Philosophy at the University at Buffalo.
+The OMSCS master's degree of the sections above is a separate, earlier aim.
+
+### The doctoral decision of 2026-11-20
+
+- The doctoral aim is the University at Buffalo's online PhD in Applied Ontology.
+- The tuition is paid from the owner's savings.
+- The program is pursued once the tuition has been saved.
+- No amount is written in this record.
+
+This was decided by the owner on 2026-11-20.
+The original text of the decision is the last entry of [data/progress.json](./data/progress.json).
+No amount is written, in any currency.
+
+### Sources read, and sources that could not be opened
+
+The pages of www.buffalo.edu could not be opened from the environment of this record.
+Akamai answered every automated request with "Access Denied" (HTTP 403).
+Nothing was done to get around the refusal.
+The facts from the University at Buffalo's pages were therefore read only in search-result summaries.
+Those rows have the status "from search results of the official page".
+Each source URL is the page that the search result named as the source of its summary.
+The summaries were not compared with the text of the pages.
+The Daily Nous article, a third-party page, was opened and read on 2026-11-20.
+Only 1 page was read for the doctoral record: the Daily Nous article.
+The Daily Nous rows carry the article's own English sentences, word for word.
+The statuses mean the same as in the table of the section on application requirements.
+
+### Doctoral requirements
+
+[data/phd-requirements.json](./data/phd-requirements.json) holds one row per requirement or fact, each with its source URL, the date it was read, a status and how it was read.
+The doctoral table of requirements has 27 rows.
+Of them, 16 rows come from search results of the official pages.
+3 rows come from a third-party page.
+8 rows are not confirmed, because no source was found.
+0 rows were confirmed on an opened official page.
+The University at Buffalo's description of itself as the world's only university offering graduate-level degrees in applied ontology is the university's own claim.
+No independent confirmation was found.
+The row of deadlines may be out of date, because another University at Buffalo page said that applications "will open soon".
+The name, e-mail address and telephone number of the contact on the page are not copied.
+
+| Row | Requirement | Status | Source |
+| --- | --- | --- | --- |
+| credit-hours | 72 credit hours are required | from search results of the official page | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| time-to-degree | The time to degree is 5 years | from search results of the official page | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| online | 100 percent of the degree requirements can be fulfilled online; a hybrid option is also offered | from search results of the official page | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| f1-visa | The program is fully online and does not meet the requirements for maintaining F-1 student visa status | from search results of the official page | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| contact-listed | The page lists a program contact. The contact's name, e-mail address and telephone number are not copied into this record | from search results of the official page | https://www.buffalo.edu/grad/programs/applied-ontology-phd.html |
+| start-fall-2026 | A new, fully online, asynchronous PhD program, beginning in the fall 2026 semester | from search results of the official page | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| worlds-only-claim | UB calls itself the world's only university offering graduate-level degrees in applied ontology. This is the university's own claim; no independent confirmation was found | from search results of the official page | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| undergraduate-degree | PhD applicants require an undergraduate degree | from search results of the official page | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| application-fee | The application fee is 75 dollars; fee waivers may be available for the spring and fall 2027 terms | from search results of the official page | https://www.buffalo.edu/news/releases/2026/05/ontology-phd.html |
+| deadlines | The deadlines for the MS and PhD in Applied Ontology are January 5 (spring enrollment) and August 1 (fall enrollment). Another UB page said that applications "will open soon", so these deadlines may be out of date | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/admissions.html |
+| competence | PhD applicants must show competence in some area of applied ontology | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/admissions.html |
+| format | Online or hybrid, full-time or part-time; the program can be started in fall or spring | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| qualifying-paper | A qualifying paper is submitted early on | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| rate-winter-2026 | Winter 2026, non-resident, online academic programs, Graduate (includes Certificates): tuition 565.00 dollars and fees 76.16 dollars, 641.16 dollars per credit hour in all | from search results of the official page | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/winter-tuition-and-fees-for-online-academic-programs.non-resident-online.html |
+| rate-spring-2027 | Spring 2027, non-resident, full-time graduate: tuition 6785.00 dollars and fees 1003.92 dollars, 7788.92 dollars per semester in all | from search results of the official page | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.non-resident-online-full-time.html |
+| comprehensive-fee-waiver | Students in online academic programs are eligible for a Comprehensive Fee waiver | from search results of the official page | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.non-resident-online-full-time.html |
+| dn-first-phd | Daily Nous reports that the University at Buffalo Department of Philosophy is launching what will be the first PhD program in applied ontology | from a third-party page | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| dn-online-fall | Daily Nous reports that it will be a fully online, asynchronous program, enrolling students from the fall of the article's year | from a third-party page | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| dn-masters | Daily Nous reports that the department introduced an online master's degree in applied ontology the year before the article | from a third-party page | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
+| programme-tuition | A tuition rate specific to this program | not confirmed | none |
+| dissertation | The dissertation requirements | not confirmed | none |
+| english-test | The English-test requirement for this PhD | not confirmed | none |
+| recommendations | The requirement for letters of recommendation for this PhD | not confirmed | none |
+| statement | The requirement for a statement for this PhD | not confirmed | none |
+| transcripts | The transcript requirement for this PhD | not confirmed | none |
+| master-transfer | Whether credit from a master's degree transfers | not confirmed | none |
+| funding | Whether funding is available | not confirmed | none |
+
+### What the owner has, and what can be used, for the doctorate (Applied Ontology)
+
+[data/phd-assets.json](./data/phd-assets.json) holds one entry per item.
+The statuses are those of the OMSCS table of what the owner has.
+The requirement column tells whether a source read lists the item as a requirement.
+The rows column names the rows of the table of requirements that the item rests on.
+The doctoral table of assets has 7 items.
+The doctoral count is: held 0, in progress 1, not yet 6.
+Of the doctoral items, 3 are stated as requirements in the sources read.
+No item is marked as held without evidence.
+
+| Item | What | Status | Requirement | How the sources treat it | Rows |
+| --- | --- | --- | --- | --- | --- |
+| bachelors | A bachelor's degree, in progress and not yet earned. The university is not named | in progress | stated as a requirement in a source read | PhD applicants require an undergraduate degree (from search results) | undergraduate-degree |
+| ontology-competence | Competence in some area of applied ontology. Nothing that shows it is held yet. Related facts are listed separately, and they are not claimed to meet the requirement | not yet | stated as a requirement in a source read | PhD applicants must show competence in some area of applied ontology (from search results). What level suffices is not in the sources read | competence |
+| tuition | Tuition, to be paid from the owner's savings. The program is pursued once the tuition has been saved. No amount is written | not yet | stated as a requirement in a source read | No tuition rate specific to this program was found in any source. Claude's estimate is in this item's estimate | rate-winter-2026, rate-spring-2027, comprehensive-fee-waiver |
+| masters | A master's degree. Not held. The OMSCS master's degree is a separate, earlier aim of this record | not yet | not stated as a requirement in the sources read | The sources read say only that PhD applicants require an undergraduate degree, and do not list a master's degree as a requirement. Whether master's credit transfers was not found | undergraduate-degree, master-transfer |
+| english-test | An English test, not yet taken | not yet | requirement not found (not confirmed) | The English-test requirement for this PhD was not found | english-test |
+| recommendations | Letters of recommendation. None yet for this PhD | not yet | requirement not found (not confirmed) | The requirement for letters of recommendation for this PhD was not found | recommendations |
+| statement | A statement. Not yet written for this PhD | not yet | requirement not found (not confirmed) | The requirement for a statement for this PhD was not found | statement |
+
+### Facts related to competence in applied ontology
+
+The philosophy papers made public and the planned courses are listed, by title only, as facts related to the item on competence in applied ontology.
+This record does not say that they meet the requirement.
+None of the papers is peer-reviewed.
+None of the courses has been taken yet.
+
+| Fact | Kind | Source |
+| --- | --- | --- |
+| The Nobility and Exemplarity of the Celibate Individual | philosophy paper made public (not peer-reviewed) | the table of papers in cpsbvbng26-dotcom's README.md (read on 2026-11-20, at commit 7cc1521 of main) |
+| Manifesto of Imperial Selfhood | philosophy paper made public (not peer-reviewed) | the table of papers in cpsbvbng26-dotcom's README.md (read on 2026-11-20, at commit 7cc1521 of main) |
+| Fragmentarian Spiritual Individualism | philosophy paper made public (not peer-reviewed) | the table of papers in cpsbvbng26-dotcom's README.md (read on 2026-11-20, at commit 7cc1521 of main) |
+| Machine-mediated Rediscovery: A Case Study in Novelty, Priority, and Self-correction | philosophy paper made public (not peer-reviewed) | the table of papers in cpsbvbng26-dotcom's README.md (read on 2026-11-20, at commit 7cc1521 of main) |
+| 記号論理 | course at the owner's university (planned) | data/course-plan.json |
+| 集合と論理 | course at the owner's university (planned) | data/course-plan.json |
+
+### Estimate of doctoral tuition
+
+The figures in the table below are Claude's estimate.
+The rates are those of the University at Buffalo's tuition pages, as read in search-result summaries.
+The estimate assumes that the rates do not change.
+Rates are revised.
+No tuition rate specific to this program was found in any source.
+The graduate rate per credit hour for online academic programs and the full-time graduate rate per semester were therefore used.
+The number of semesters is Claude's assumption and is in no source.
+The sources read do not give the credit hours of a full-time semester either.
+The Comprehensive Fee waiver is not subtracted.
+The application fee, books and tests are left out.
+No exchange rate was read from a source, so nothing is converted to yen.
+The tuition is to be paid from the owner's savings.
+The amount of the owner's savings is not written.
+
+| Estimate | Computation | Total |
+| --- | --- | --- |
+| The rate per credit hour (tuition and fees) for 72 credit hours | 72 × 641.16 | 46163.52 dollars |
+| The tuition per credit hour alone for 72 credit hours | 72 × 565.00 | 40680.00 dollars |
+| The full-time rate per semester for 6 semesters (the number of semesters is Claude's assumption) | 6 × 7788.92 | 46733.52 dollars |
+
 ## Progress log
 
-[data/progress.json](./data/progress.json) grows in date order and holds the decision of 2026-11-19, the record of 2026-11-20 on the recommendation slots, and the course plan decided on the same day.
+[data/progress.json](./data/progress.json) grows in date order and holds the decision of 2026-11-19, the record of 2026-11-20 on the recommendation slots, and the course plan and the doctoral aim decided on the same day.
 On the same day the owner reported that the university where the owner is enrolled does not take requests for letters of recommendation.
 This was received from the owner and not confirmed on a page.
 A row marked as done with a date after the day the check runs fails the check.
@@ -213,6 +349,7 @@ A row marked as done with a date after the day the check runs fails the check.
 No grades, scores, GPA or other personal academic records, and no affiliation.
 No name of the university where the owner is enrolled, no address of its syllabus, and no names of the instructors of its courses.
 No amount of the owner's savings, in any currency.
+No name, e-mail address or telephone number of the contact on the doctoral program's page.
 Nothing about the people to be asked for recommendations, not even their names.
 The GPA in the rows of requirements is part of the text of a requirement, not a record of the operator.
 
