@@ -1152,6 +1152,85 @@ def _phd_status(val):
     return lambda F: sum(1 for r in (jload(F, PHD_REQ) or {}).get("rows", []) if r.get("status") == val)
 
 
+PLUS = "data/plus.json"
+PLUS_READ_ON = "2026-11-21"
+PLUS_PHD_STATUS = {"search": "公式の頁の検索結果から", "third-party": "第三者の頁から", "unconfirmed": "確かめていない"}
+PLUS_PHD_STATUS_EN = {"search": "from search results of the official pages", "third-party": "from a third-party page", "unconfirmed": "not confirmed"}
+PLUS_HEADS = ("### 修士課程（OMSCS）", "### Master's degree (OMSCS)")
+PLUS_PHD_HEADS = ("### 博士課程（応用オントロジー）", "### Doctorate (Applied Ontology)")
+PLUS_TOP = ("## 必須ではないが、出願を強くするもの", "## Not required, but strengthening an application")
+
+
+def plus(F):
+    """What strengthens an application without being required. OMSCS rows rest on a page that was read, with its sentences;
+    doctoral rows rest on search results only, since www.buffalo.edu cannot be opened, and are never confirmed."""
+    D = jload(F, PLUS)
+    if not D:
+        return [PLUS + " cannot be read"]
+    bad = []
+    A = {a.get("id") for a in (jload(F, "data/assets.json") or {"items": []})["items"]}
+    rows = D.get("omscs", []) + D.get("phd", [])
+    ids = [r.get("id") for r in rows]
+    if not D.get("omscs") or len(ids) != len(set(ids)):
+        bad.append("no OMSCS row, or an id twice")
+    if D.get("read_on") != PLUS_READ_ON:
+        bad.append("the date read of the record")
+    for r in D.get("omscs", []):
+        k = r.get("id", "?")
+        for field in ("factor", "factor_en", "source", "how", "now", "now_en"):
+            if not str(r.get(field, "")).strip():
+                bad.append(k + ": no " + field)
+        if r.get("status") != "confirmed" or r.get("source") not in PAGES_READ or r.get("read_on") != PLUS_READ_ON:
+            bad.append(k + ": not confirmed on a page that was read, on the day it was read")
+        q = r.get("quotes")
+        if not isinstance(q, list) or not q or not all(isinstance(x, str) and len(x.strip()) >= 15 for x in q):
+            bad.append(k + ": no sentence of the page in quotes")
+        if "頁" not in r.get("how", "") or PLUS_READ_ON not in r.get("how", ""):
+            bad.append(k + ": the way it was read does not name the page and the day")
+        if not isinstance(r.get("assets"), list) or any(a not in A for a in r.get("assets", [])):
+            bad.append(k + ": an item that data/assets.json does not have")
+    for r in D.get("phd", []):
+        k = r.get("id", "?")
+        for field in ("factor", "factor_en", "source", "how"):
+            if not str(r.get(field, "")).strip():
+                bad.append(k + ": no " + field)
+        if r.get("status") not in PLUS_PHD_STATUS:
+            bad.append(k + ": a doctoral row is confirmed, or has no status of the three")
+        if r.get("source") not in UB_SEARCH:
+            bad.append(k + ": the source is not a page named by the search results")
+        if r.get("status") == "search" and "検索" not in r.get("how", ""):
+            bad.append(k + ": from search results, but the way it was read does not name the search")
+        if "quotes" in r:
+            bad.append(k + ": a search summary given as the page's own sentences")
+    if not str(D.get("phd_not_found", "")).strip():
+        bad.append("the record does not say that no doctoral sentence on strengthening an application was found")
+    return bad
+
+
+def plus_readme(F):
+    D = jload(F, PLUS) or {"omscs": [], "phd": []}
+    bad = []
+    for f, heads, en in (("README.md", (PLUS_HEADS[0], PLUS_PHD_HEADS[0]), False), ("README.en.md", (PLUS_HEADS[1], PLUS_PHD_HEADS[1]), True)):
+        t = F.get(f, "")
+        a, b = section(t, heads[0]), section(t, heads[1])
+        if not a or not b:
+            bad.append(f + ": a section of what strengthens an application is missing")
+            continue
+        want = ["| %s | %s | %s | %s |" % (r["id"], r["factor_en" if en else "factor"], (", " if en else "、").join(r["assets"]) or ("none" if en else "なし"), r.get("now_en" if en else "now")) for r in D.get("omscs", [])]
+        if [x for x in table_lines(a) if not x.startswith("| ---")][1:] != want:
+            bad.append(f + ": the OMSCS table is not the rows of " + PLUS)
+        st = PLUS_PHD_STATUS_EN if en else PLUS_PHD_STATUS
+        want = ["| %s | %s | %s | %s |" % (r["id"], r["factor_en" if en else "factor"], st.get(r["status"], "?"), r["source"]) for r in D.get("phd", [])]
+        if [x for x in table_lines(b) if not x.startswith("| ---")][1:] != want:
+            bad.append(f + ": the doctoral table is not the rows of " + PLUS)
+        say = ("No row guarantees admission." if en else "どの行も、入学を保証しません。")
+        none = ("No sentence of the University at Buffalo on what strengthens an application was found." if en
+                else "出願を強くするものを書いた University at Buffalo の文は、見つかりませんでした。")
+        if say not in section(t, PLUS_TOP[1 if en else 0]) or none not in b:
+            bad.append(f + ": the section does not say that nothing is guaranteed, or that no doctoral sentence was found")
+    return bad
+
+
 COUNTERS = {
     "requirements": lambda F: len((jload(F, "data/requirements.json") or {"rows": []})["rows"]),
     "courses": lambda F: len((jload(F, "data/courses.json") or {"courses": []})["courses"]),
@@ -1163,6 +1242,7 @@ COUNTERS = {
     "syllabus_mathematics": lambda F: len((plan_load(F) or {}).get("syllabus", {}).get("mathematics", {}).get("title_sha256", [])),
 }
 COUNTERS.update({
+    "plus_omscs": lambda F: len((jload(F, PLUS) or {}).get("omscs", [])),
     "phd_rows": lambda F: len((jload(F, PHD_REQ) or {}).get("rows", [])),
     "phd_confirmed": _phd_status("confirmed"),
     "phd_search": _phd_status("search"),
@@ -1225,6 +1305,8 @@ CHECKS = [
     ("Doctorate: every URL is a page named by the search results or the article read", phd_urls),
     ("Doctorate: the decision of 2026-11-20 is one entry, names the programme and its funding, and carries no figure", phd_decision),
     ("Doctorate: Japanese and English say the same, in the data and in the README sections", phd_parity),
+    ("Not required, but strengthening: OMSCS rows on a page read on 2026-11-21 with its sentences; doctoral rows from search, never confirmed", plus),
+    ("Not required, but strengthening: both READMEs show the rows as the data has them, say nothing is guaranteed and that no doctoral sentence was found", plus_readme),
 ]
 
 FUTURE = (datetime.date.today() + datetime.timedelta(days=400)).isoformat()
@@ -1643,6 +1725,32 @@ PHD_BREAKS = [
 ]
 _BYFN = {fn.__name__: name for name, fn in CHECKS}
 BREAKS += [(_BYFN.get(k, k), d, m) for k, d, m in PHD_BREAKS]
+
+
+def _plus(fn):
+    def m(G):
+        D = json.loads(G[PLUS])
+        fn(D)
+        G[PLUS] = json.dumps(D, ensure_ascii=False)
+    return m
+
+
+BREAKS += [
+    (_BYFN["plus"], "an OMSCS row without the page's sentences", _plus(lambda D: D["omscs"][0].__setitem__("quotes", []))),
+    (_BYFN["plus"], "an OMSCS row read on another day", _plus(lambda D: D["omscs"][1].__setitem__("read_on", "2026-11-20"))),
+    (_BYFN["plus"], "an OMSCS row from a page that was not read", _plus(lambda D: D["omscs"][2].__setitem__("source", "https://omscs.gatech.edu/apply"))),
+    (_BYFN["plus"], "an OMSCS row naming an item that does not exist", _plus(lambda D: D["omscs"][3]["assets"].append("phd"))),
+    (_BYFN["plus"], "a doctoral row from search marked confirmed", _plus(lambda D: D["phd"][0].__setitem__("status", "confirmed"))),
+    (_BYFN["plus"], "a doctoral search summary given as the page's sentences", _plus(lambda D: D["phd"][0].__setitem__("quotes", ["Prior learning credit is available."]))),
+    (_BYFN["plus"], "an OMSCS row without what the owner has now", _plus(lambda D: D["omscs"][5].__setitem__("now_en", ""))),
+    (_BYFN["plus"], "the record no longer says that no doctoral sentence was found", _plus(lambda D: D.__setitem__("phd_not_found", ""))),
+    (_BYFN["plus_readme"], "README.md drops an OMSCS row", lambda G: G.__setitem__("README.md", "\n".join(x for x in G["README.md"].split("\n") if not x.startswith("| explain-gpa | ")))),
+    (_BYFN["plus_readme"], "README.en.md changes a doctoral row's status",
+     sub("README.en.md", "| from search results of the official pages | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |", "| confirmed on the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |")),
+    (_BYFN["plus_readme"], "README.md stops saying that no row guarantees admission", sub("README.md", "どの行も、入学を保証しません。\n", "")),
+    ("Every number in prose is in the ledger of numbers, and every count matches the data",
+     "a count of strengthening rows that differs from the data", sub("README.md", "出願を強くするものは 12 件です。", "出願を強くするものは 11 件です。")),
+]
 
 
 if __name__ == "__main__":
