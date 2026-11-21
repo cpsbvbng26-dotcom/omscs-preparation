@@ -73,6 +73,20 @@
         "No amount is written in this record."
       ],
       "source": "運営者が 2026-11-20 に決めた。課程の要件と学費の額は data/phd-requirements.json に、持っているもの・使えるものは data/phd-assets.json にある。運営者の貯えの額は書かない。"
+    },
+    {
+      "date": "2026-11-21",
+      "kind": "other",
+      "done": true,
+      "items": [
+        "必須ではないが出願を強くするものを、OMSCS の公式の頁を開いて読み、data/plus.json に記録しました。",
+        "博士課程の分は検索の結果の要約で探しましたが、出願を強くするものを書いた University at Buffalo の文は見つかりませんでした。"
+      ],
+      "items_en": [
+        "What strengthens an application without being required was read on the official OMSCS pages and recorded in data/plus.json.",
+        "For the doctorate, the summaries of search results were searched, and no sentence of the University at Buffalo on what strengthens an application was found."
+      ],
+      "source": "利用者が 2026-11-21 に求め、Claude が同じ日に公式の頁を読んで記録した。"
     }
   ]
 }

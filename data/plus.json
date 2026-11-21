@@ -1,0 +1,229 @@
+{
+  "_": [
+    "必須ではないが、出願を強くするものの記録です。必須の要件は data/requirements.json と data/phd-requirements.json にあります。",
+    "omscs の行は、2026-11-21 に開いて読んだ公式の頁によります。どの行も、頁の英語の文を quotes に一字一句そのまま置きます。assets は、data/assets.json の関わる項目です。",
+    "phd の行は、www.buffalo.edu の頁が開けないため、検索の結果の要約だけによります。状態は公式の頁の検索結果からで、公式の頁で確かめた行にはしません。",
+    "どの行も、入学を保証するものとしては書きません。"
+  ],
+  "read_on": "2026-11-21",
+  "omscs": [
+    {
+      "id": "document-cs",
+      "factor": "計算機科学の知識を、記録と裏付けで示すこと。大学院の水準の厳しい授業をこなせる理由を、説明すること",
+      "factor_en": "Documenting and substantiating computer science knowledge, and explaining why one is capable of rigorous, graduate-level coursework",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Use these suggestions as guidelines for preparing a stronger application for the OMSCS program.",
+        "Following them does NOT guarantee that you will be accepted.",
+        "Focus on documenting and substantiating your computer science knowledge, and on explaining why you are capable of rigorous, graduate-level computer science coursework."
+      ],
+      "assets": [
+        "github",
+        "supplemental-answers"
+      ],
+      "now": "公開のリポジトリと、その機械の検査がある（github の項目）。出願では Professional Development の欄に上げることになる。読んだ頁は、公開のコードの扱いを書いていない",
+      "now_en": "Public repositories with their machine checks (item github); in an application they would go in the Professional Development area. The pages read do not say how public code is treated"
+    },
+    {
+      "id": "succinct",
+      "factor": "問いに、短く要点だけで答えること",
+      "factor_en": "Answering every question succinctly and to the point",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Answer all questions succinctly and to the point."
+      ],
+      "assets": [
+        "supplemental-answers"
+      ],
+      "now": "補足の質問への答えは、まだ書いていない",
+      "now_en": "The answers to the supplemental questions are not written yet"
+    },
+    {
+      "id": "upper-level",
+      "factor": "上級（3・4 年次か大学院）の計算機科学の単位科目を 2 から 4 つ選び、B 以上を取れることを示すこと。頁は、出願を強くする最もよい道として CS2013 を手がかりにすることを挙げ、続けてこれを勧めている",
+      "factor_en": "Choosing 2 to 4 upper-level (junior, senior or graduate) computer science courses and showing the ability to earn a B or better; the page names referring to CS2013 as the best way to strengthen an application and recommends this as its next step",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "The best way to strengthen your application is to refer to Computer Science Curricula 2013",
+        "Find 2-4 upper-level (i.e., junior, senior, or graduate level) courses of interest that cover some of these areas and demonstrate the ability to earn a B or better in those courses.",
+        "The Admissions Committee is not interested in the specific courses that you choose; it is interested in your demonstrating the ability to perform upper level computer science academic coursework."
+      ],
+      "assets": [
+        "upper-level-courses"
+      ],
+      "now": "まだ無い。在籍する大学の履修計画に 25 科目があるが、上級に当たるかは確かめていない",
+      "now_en": "None yet. The plan at the owner's university has 25 courses, but whether they are upper-level is not checked"
+    },
+    {
+      "id": "gt-certificates",
+      "factor": "望ましい資格の力を示せない人に向けて、Georgia Tech の三つの professional certificate の課程を、中の評価と試験まで含めて、verified certificate の形で終えることが勧められている。終えても入学は保証されない",
+      "factor_en": "For those who cannot yet demonstrate the competencies, completing the verified certificate tracks of three Georgia Tech professional certificate programmes, with every embedded assessment and exam, is recommended; completing them does not guarantee admission",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "If you cannot currently demonstrate those competencies, but still wish to pursue eventual admission to the program, you do have some options.",
+        "We recommend completing the verified certificate tracks (including all embedded assessments and exams) for the following three Georgia Tech professional certificate programs.",
+        "Completing them does not guarantee admission to the program"
+      ],
+      "assets": [
+        "gt-moocs"
+      ],
+      "now": "最初の Computing in Python I を受けると、2026-11-19 に決めた。verified certificate の形で受けるかは、記録に無い",
+      "now_en": "Taking Computing in Python I first was decided on 2026-11-19. Whether it is taken as a verified certificate is not in the record"
+    },
+    {
+      "id": "other-credentials",
+      "factor": "客観的に記録された、ほかの資格。verified certificate のある MOOC や bootcamp は考慮されうるが、単位の付く授業ほど厳密で記録の整ったものはまれ",
+      "factor_en": "Other objectively documented credentials: MOOCs with verified certificates and bootcamps may be considered, but they are rarely as rigorous and well documented as for-credit classes",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Other objectively-documented credentials may be considered—such as MOOCs with verified certificates and bootcamps—but it is rare that such instructional settings are as rigorous and well-documented as for-credit classes at recognized academic institutions."
+      ],
+      "assets": [
+        "cs50x",
+        "cs50ai"
+      ],
+      "now": "CS50x と CS50AI の edX の修了証がある。verified の種類かどうかは確かめていない。成績の付かない、単位にならない MOOC の類は出願に並べないとも、頁は書いている",
+      "now_en": "edX certificates of CS50x and CS50AI. Whether they are verified certificates is not checked. The pages also say not to list non-graded, non-academic-credit MOOC-type coursework"
+    },
+    {
+      "id": "languages",
+      "factor": "複数のプログラミング言語に慣れていること",
+      "factor_en": "Familiarity with several programming languages",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Familiarity with multiple programming languages is recommended."
+      ],
+      "assets": [],
+      "now": "CS50x で C・Python・SQL・Web の課題を出した（cs50x の項目）。公開のリポジトリには、Python と JavaScript で書いた検査がある",
+      "now_en": "Assignments in C, Python, SQL and the web were submitted in CS50x (item cs50x). The public repositories hold checks written in Python and JavaScript"
+    },
+    {
+      "id": "math-moocs",
+      "factor": "線形代数・確率・統計を学んでいないか、学び直したいときは、Georgia Tech の公開の数学の MOOC が準備の助けになりうる",
+      "factor_en": "Georgia Tech's public mathematics MOOCs may help with preparation, where linear algebra, probability and statistics have not been studied or need brushing up",
+      "source": "https://omscs.gatech.edu/preparing-yourself-omscs",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "If you have not previously completed courses in these areas, or if you need to brush up on the subject matter, Georgia Tech has additional publicly-available MOOC series that may help you prepare"
+      ],
+      "assets": [
+        "math"
+      ],
+      "now": "Georgia Tech の数学の MOOC は、まだ受けていない（math の項目）。在籍する大学の履修計画に、線形代数・確率・統計の科目がある",
+      "now_en": "Georgia Tech's mathematics MOOCs are not taken yet (item math). The plan at the owner's university has courses in linear algebra, probability and statistics"
+    },
+    {
+      "id": "technical-letters",
+      "factor": "推薦状が、人柄ではなく計算機科学の技術の力について書くこと。推薦者が、計算機科学について書ける理由（その人の資格）を書くこと",
+      "factor_en": "Letters that speak to technical computer science skills rather than personal characteristics, with the recommender stating their own credentials in computer science",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Your personal characteristics (e.g., punctuality, a \"thirst\" for knowledge, being a great team player, leadership skills, etc.) are NOT important.",
+        "Your technical Computer Science skills ARE important!",
+        "Ask the reference to state their credentials as they relate to Computer Science, i.e., why are they competent to comment on your Computer Science skills?"
+      ],
+      "assets": [],
+      "now": "推薦の枠の状態だけを記録している。推薦者についてのことは、この記録に書かない",
+      "now_en": "Only the state of the recommendation slots is recorded. Nothing about a recommender is written here"
+    },
+    {
+      "id": "work-reference",
+      "factor": "職場の推薦者なら、技術の仕事を直に知る上司に頼むこと。仕事の技術の中身を分からない上の役職の人は、よい推薦状を書けない",
+      "factor_en": "For a work reference, a supervisor with direct knowledge of technical work; a high-level executive who does not understand its details cannot write a good letter",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "For a work reference, it should be a supervisor who has DIRECT knowledge of your TECHNICAL Computer Science-related skills",
+        "A high-level executive who doesn’t understand the technical details of your work cannot write a good letter of recommendation.",
+        "The reference should specifically comment on projects or tasks that you undertook"
+      ],
+      "assets": [],
+      "now": "推薦の枠の状態だけを記録している。推薦者についてのことは、この記録に書かない",
+      "now_en": "Only the state of the recommendation slots is recorded. Nothing about a recommender is written here"
+    },
+    {
+      "id": "compelling-recommenders",
+      "factor": "よく知っていて、知的な力・分野の知識・伝える力などについて確かに書ける人を推薦者に選ぶこと。一般に、今か前の教員や上司のほうが、前の同級生や同僚より説得力がある",
+      "factor_en": "Recommenders who know the applicant well and can comment with authority on scholarly characteristics; generally, current and former teachers and supervisors are more compelling than former classmates or co-workers",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "You should choose recommenders who know you well and can comment authoritatively on your scholarly characteristics (e.g., intellectual ability, knowledge of your chosen field, communication skills, etc.).",
+        "Generally, current and former teachers and supervisors make more compelling recommenders than former classmates or co-workers."
+      ],
+      "assets": [],
+      "now": "推薦の枠の状態だけを記録している。推薦者についてのことは、この記録に書かない",
+      "now_en": "Only the state of the recommendation slots is recorded. Nothing about a recommender is written here"
+    },
+    {
+      "id": "explain-gpa",
+      "factor": "学部か大学院の GPA が低いときに、その理由を説明すること。説明しないことが、よくある問題として挙がっている",
+      "factor_en": "Explaining a poor undergraduate or graduate GPA; failing to explain one is listed among the most common problems",
+      "source": "https://omscs.gatech.edu/additional-app-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "The most common problems we see are:",
+        "Failure to explain poor undergraduate and/or graduate GPA."
+      ],
+      "assets": [],
+      "now": "この記録には、成績を書かない（決めごと 4）",
+      "now_en": "This record does not hold grades (rule 4)"
+    },
+    {
+      "id": "awards",
+      "factor": "受賞・表彰・フェローシップ・奨学金。出願で書く欄がある",
+      "factor_en": "Awards, recognitions, fellowships and scholarships, for which the application has a place",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-21",
+      "status": "confirmed",
+      "how": "2026-11-21 に公式の頁を開いて読んだ。英語の文は頁のとおりに写した。",
+      "quotes": [
+        "Awards, recognitions, fellowships, scholarships."
+      ],
+      "assets": [],
+      "now": "この記録には、受賞などの項目は無い",
+      "now_en": "This record has no item of awards or the like"
+    }
+  ],
+  "phd": [
+    {
+      "id": "prior-learning",
+      "factor": "資格のある学業・産業・政府・商業の経験に、先行学習の単位（prior learning credit）が出る",
+      "factor_en": "Prior learning credit is available for qualifying academic, industry, government or commercial experience",
+      "source": "https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html",
+      "read_on": "2026-11-21",
+      "status": "search",
+      "how": "2026-11-21 の検索の結果の要約による。頁は開けなかった（HTTP 403）。要約は頁の文と突き合わせていない。"
+    }
+  ],
+  "phd_not_found": "出願を強くするものを書いた University at Buffalo の文は、2026-11-21 の検索では見つからなかった。"
+}
