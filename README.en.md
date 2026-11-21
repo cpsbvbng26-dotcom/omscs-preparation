@@ -137,6 +137,50 @@ The official pages treat recommenders as follows.
 | At least one academic reference, preferably two, writing specifically about technical abilities in the course taught | https://omscs.gatech.edu/additional-app-guidelines |
 | Work peers, current or former classmates, family, religious leaders and friends are listed under DO NOT | https://omscs.gatech.edu/additional-app-guidelines |
 
+## Not required, but strengthening an application
+
+[data/plus.json](./data/plus.json) holds them row by row.
+The required items are in the section "Application requirements" above and in the section of doctoral requirements.
+No row guarantees admission.
+
+### Master's degree (OMSCS)
+
+The rows of this subsection are what the official OMSCS pages name as strengthening an application.
+The pages were opened and read on 2026-11-21.
+Every row carries the page's English sentences word for word.
+12 things that strengthen an application are recorded.
+The column of related items names items of data/assets.json.
+The column "Now" uses only facts already in this record.
+
+| Row | What strengthens an application | Related items | Now |
+| --- | --- | --- | --- |
+| document-cs | Documenting and substantiating computer science knowledge, and explaining why one is capable of rigorous, graduate-level coursework | github, supplemental-answers | Public repositories with their machine checks (item github); in an application they would go in the Professional Development area. The pages read do not say how public code is treated |
+| succinct | Answering every question succinctly and to the point | supplemental-answers | The answers to the supplemental questions are not written yet |
+| upper-level | Choosing 2 to 4 upper-level (junior, senior or graduate) computer science courses and showing the ability to earn a B or better; the page names referring to CS2013 as the best way to strengthen an application and recommends this as its next step | upper-level-courses | None yet. The plan at the owner's university has 25 courses, but whether they are upper-level is not checked |
+| gt-certificates | For those who cannot yet demonstrate the competencies, completing the verified certificate tracks of three Georgia Tech professional certificate programmes, with every embedded assessment and exam, is recommended; completing them does not guarantee admission | gt-moocs | Taking Computing in Python I first was decided on 2026-11-19. Whether it is taken as a verified certificate is not in the record |
+| other-credentials | Other objectively documented credentials: MOOCs with verified certificates and bootcamps may be considered, but they are rarely as rigorous and well documented as for-credit classes | cs50x, cs50ai | edX certificates of CS50x and CS50AI. Whether they are verified certificates is not checked. The pages also say not to list non-graded, non-academic-credit MOOC-type coursework |
+| languages | Familiarity with several programming languages | none | Assignments in C, Python, SQL and the web were submitted in CS50x (item cs50x). The public repositories hold checks written in Python and JavaScript |
+| math-moocs | Georgia Tech's public mathematics MOOCs may help with preparation, where linear algebra, probability and statistics have not been studied or need brushing up | math | Georgia Tech's mathematics MOOCs are not taken yet (item math). The plan at the owner's university has courses in linear algebra, probability and statistics |
+| technical-letters | Letters that speak to technical computer science skills rather than personal characteristics, with the recommender stating their own credentials in computer science | none | Only the state of the recommendation slots is recorded. Nothing about a recommender is written here |
+| work-reference | For a work reference, a supervisor with direct knowledge of technical work; a high-level executive who does not understand its details cannot write a good letter | none | Only the state of the recommendation slots is recorded. Nothing about a recommender is written here |
+| compelling-recommenders | Recommenders who know the applicant well and can comment with authority on scholarly characteristics; generally, current and former teachers and supervisors are more compelling than former classmates or co-workers | none | Only the state of the recommendation slots is recorded. Nothing about a recommender is written here |
+| explain-gpa | Explaining a poor undergraduate or graduate GPA; failing to explain one is listed among the most common problems | none | This record does not hold grades (rule 4) |
+| awards | Awards, recognitions, fellowships and scholarships, for which the application has a place | none | This record has no item of awards or the like |
+
+The source URL and the page's sentences of each row are in data/plus.json.
+
+### Doctorate (Applied Ontology)
+
+The pages of www.buffalo.edu could not be opened on 2026-11-21 either.
+The search was therefore made in the summaries of search results only.
+No sentence of the University at Buffalo on what strengthens an application was found.
+The row below was found, which concerns the time after admission.
+Its summary was not compared with the page's own sentences.
+
+| Row | What was found | Status | Source |
+| --- | --- | --- | --- |
+| prior-learning | Prior learning credit is available for qualifying academic, industry, government or commercial experience | from search results of the official pages | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+
 ## Recommended courses
 
 [data/courses.json](./data/courses.json) lists the courses recommended by the page Preparing Yourself for OMSCS.
@@ -342,6 +386,7 @@ The amount of the owner's savings is not written.
 [data/progress.json](./data/progress.json) grows in date order and holds the decision of 2026-11-19, the record of 2026-11-20 on the recommendation slots, and the course plan and the doctoral aim decided on the same day.
 On the same day the owner reported that the university where the owner is enrolled does not take requests for letters of recommendation.
 This was received from the owner and not confirmed on a page.
+On 2026-11-21, what strengthens an application without being required was recorded.
 A row marked as done with a date after the day the check runs fails the check.
 
 ## Not recorded
