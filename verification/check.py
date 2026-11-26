@@ -46,6 +46,18 @@ EVIDENCE = {
     "https://courses.edx.org/certificates/a746620b6d7d45b583cb41b125e5f807",
     "https://github.com/cpsbvbng26-dotcom",
 }
+# The pages opened and read on 2026-11-26. The FAQ and the page of deadlines had been read on 2026-11-20 too and were opened
+# again; the other three were opened for the first time. A row read on 2026-11-26 is confirmed only on one of these.
+READ_ON_2 = "2026-11-26"
+PAGES_READ_2 = {
+    "https://omscs.gatech.edu/degree-requirements",
+    "https://omscs.gatech.edu/prospective-student-faqs",
+    "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+    "https://omscs.gatech.edu/priority-decisions",
+    "https://grad.gatech.edu/admissions/international/ready-to-apply",
+}
+MONTHS = {1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July", 8: "August",
+          9: "September", 10: "October", 11: "November", 12: "December"}
 ALLOWED_URLS = PAGES_READ | EVIDENCE | {EDX}
 URL = re.compile(r"https?://[^\s\"'<>)|]+")
 # Keys and words that would carry a personal academic record. None of them may appear in progress.json.
@@ -73,6 +85,8 @@ def requirements(F):
         bad.append("the four statuses")
     if set(R.get("pages_read", {})) != PAGES_READ:
         bad.append("the pages read are not the seven pages opened on 2026-11-20")
+    if set(R.get("pages_read_2026_11_26", {})) != PAGES_READ_2:
+        bad.append("the pages read on 2026-11-26 are not the five pages opened that day")
     ids = [r.get("id") for r in R["rows"]]
     if len(ids) != len(set(ids)):
         bad.append("an id twice")
@@ -88,22 +102,39 @@ def requirements(F):
         if not is_date(r.get("read_on", "")) or r.get("read_on", "") > today():
             bad.append(k + ": the date read")
         seen = r.get("seen_on_2026_11_19")
-        # null only for a row added on 2026-11-20 from a page that was read; every older row keeps its answer.
-        if not isinstance(seen, bool) and not (seen is None and r.get("status") == "confirmed" and r.get("read_on") == READ_ON):
+        # null only for a row added on 2026-11-20 or 2026-11-26 from a page that was read; every older row keeps its answer.
+        if not isinstance(seen, bool) and not (seen is None and r.get("status") == "confirmed"
+                                               and r.get("read_on") in (READ_ON, READ_ON_2)):
             bad.append(k + ": seen_on_2026_11_19")
         # A row is confirmed only on a page that was opened and read, on the day it was read, with the page's sentences.
         if r.get("status") == "confirmed":
-            if r.get("source") not in PAGES_READ:
+            if r.get("source") not in PAGES_READ | PAGES_READ_2:
                 bad.append(k + ": confirmed, but the source is not a page that was read")
-            if r.get("read_on") != READ_ON:
+            if not ((r.get("read_on") == READ_ON and r.get("source") in PAGES_READ)
+                    or (r.get("read_on") == READ_ON_2 and r.get("source") in PAGES_READ_2)):
                 bad.append(k + ": confirmed, but not on the day the pages were read")
+            if r.get("read_on") == READ_ON_2 and READ_ON_2 not in r.get("how", ""):
+                bad.append(k + ": read on 2026-11-26, but the way it was read does not say so")
             q = r.get("quotes")
             if not isinstance(q, list) or not q or not all(isinstance(x, str) and len(x.strip()) >= 15 for x in q):
                 bad.append(k + ": confirmed, but no sentence of the page in quotes")
             if "頁" not in r.get("how", ""):
                 bad.append(k + ": confirmed, but the way it was read does not name the page")
-        elif r.get("source") in PAGES_READ:
+        elif r.get("source") in PAGES_READ | PAGES_READ_2:
             bad.append(k + ": the page was read, but the row is not confirmed")
+        # Every whole number among the figures is in the Japanese text; in the English text too, a month by its name.
+        fig = r.get("figures", {})
+        if not isinstance(fig, dict) or any(not isinstance(v, int) for v in fig.values()):
+            bad.append(k + ": figures that are not whole numbers")
+        else:
+            for key, v in fig.items():
+                if not re.search(r"(?<![\d.])%d(?![\d.])" % v, r.get("requirement", "")):
+                    bad.append(k + ": the figure %s is not in the Japanese text" % key)
+                if key == "month":
+                    if MONTHS.get(v, "?") not in r.get("requirement_en", ""):
+                        bad.append(k + ": the month is not in the English text")
+                elif not re.search(r"(?<![\d.])%d(?![\d.])" % v, r.get("requirement_en", "")):
+                    bad.append(k + ": the figure %s is not in the English text" % key)
         if r.get("status") == "search" and "検索" not in r.get("how", ""):
             bad.append(k + ": from search results, but the way it was read does not name the search")
         if r.get("status") == "unconfirmed" and r.get("seen_on_2026_11_19"):
@@ -681,6 +712,22 @@ UB_SEARCH = {
     "https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/"
     "spring-tuition-online-academic-programs.non-resident-online-full-time.html",
 }
+# The pages that the search results of 2026-11-26 (Parallel Search) named as the sources of their summaries. www.buffalo.edu
+# still answered automated requests with HTTP 403 that day, and catalogs.buffalo.edu could not be reached either.
+UB_SEARCH_2 = {
+    "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+    "https://www.buffalo.edu/grad/explore/admissions/requirements.html",
+    "https://www.buffalo.edu/grad/succeed/current-students/policy-library.html",
+    "https://www.buffalo.edu/grad/succeed/current-students/policy-library.html?q=phd%20overview",
+    "https://www.buffalo.edu/grad/succeed/current-students/policy-library.degree-requirements.html",
+    "https://buffalo.edu/grad/succeed/current-students/faq.html",
+    "https://www.buffalo.edu/registrar/calendars/future-academic-calendars/2027-28-academic-calendar.html",
+    "https://www.buffalo.edu/registrar/calendars/current-academic-calendar.html",
+    "https://catalogs.buffalo.edu/content.php?catoid=28&navoid=1408",
+    "https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/"
+    "spring-tuition-online-academic-programs.html",
+}
+UB_SEARCH = UB_SEARCH | UB_SEARCH_2
 DN = "https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/"
 PHD_URLS = UB_SEARCH | {DN}
 # The sentences of the Daily Nous article, word for word, as read on 2026-11-20 (the article writes Master’s with U+2019).
@@ -789,8 +836,18 @@ def phd_requirements(F):
         st, src = r.get("status"), r.get("source")
         if st not in R.get("statuses", {}):
             bad.append(k + ": the status " + str(st))
-        if r.get("read_on") != READ_ON or r.get("read_on", "") > today():
-            bad.append(k + ": the date read is not 2026-11-20")
+        if r.get("read_on") not in (READ_ON, READ_ON_2) or r.get("read_on", "") > today():
+            bad.append(k + ": the date read is not 2026-11-20 or 2026-11-26")
+        # A row read on 2026-11-26 says so, and a search-result row of that day names the tool of the search.
+        if r.get("read_on") == READ_ON_2 and (READ_ON_2 not in r.get("how", "") or
+                                              (st == "search" and "Parallel Search" not in r.get("how", ""))):
+            bad.append(k + ": read on 2026-11-26, but how it was read does not say so, or does not name the search")
+        if src in UB_SEARCH_2 and r.get("read_on") != READ_ON_2:
+            bad.append(k + ": a page named by the search of 2026-11-26, but read on another day")
+        # Every whole number among the figures is in the Japanese text.
+        for v in flat(r.get("figures", {})):
+            if isinstance(v, int) and not re.search(r"(?<![\d.])%d(?![\d.])" % v, r.get("requirement", "")):
+                bad.append(k + ": the figure %d is not in the Japanese text" % v)
         # No page of the university was opened, so no row is confirmed on the official page.
         if st == "confirmed":
             bad.append(k + ": confirmed on the official page, but no page of www.buffalo.edu was opened")
@@ -1244,6 +1301,9 @@ MBA_SEARCH = {
     "https://mba.athuman.com/admission",
     "https://mba.athuman.com/admission/application",
     "https://mba.athuman.com/admission/faq",
+    "https://mba.athuman.com/program",
+    "https://mba.athuman.com/program/schedule",
+    "https://mba.athuman.com/program/paper",
 }
 MBA_NAME = "ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム"
 MBA_NAME_EN = "University of Wales Trinity Saint David (UWTSD) MBA programme"
@@ -1500,6 +1560,391 @@ def _mba_status(val):
     return lambda F: sum(1 for r in (jload(F, MBA) or {}).get("rows", []) if r.get("status") == val)
 
 
+# ------------------------------------------------------------------ the overall plan: data/plan.json and its tables
+
+# The sequence the owner decided (bachelor's, OMSCS, the doctorate, the MBA), each step's entry conditions as rows of the data
+# files, their states as copies of the items' states, and the earliest date of each step. A date is written only where it
+# follows by arithmetic from the figures of a row; elsewhere the step says why no date follows. Every date and length below
+# is recomputed here from the rows. Claude put the plan together on 2026-11-26 at the owner's request.
+OVERALL = "data/plan.json"
+OVERALL_HEADS = ("## 計画の全体", "## The overall plan")
+OVERALL_NEXT = ("## 2026-11-19 に決めたこと", "## The decision of 2026-11-19")
+OVERALL_TABLES = (("| 順 | 段階 | 決めた日 | 前の段階とのつながり | 入る条件 | いまの状態 | 最も早い日 |",
+                   "| 段階 | 条件 | 根拠の行 | いまの状態 |", "| 段階 | 日付のある事実 | 日付 | 根拠の行 |",
+                   "| 段階 | 期間と負荷 | 値 | 根拠の行 |", "| 行 | 事実 | 状態 | 出典 |"),
+                  ("| Order | Step | Decided | Link to the earlier step | Entry conditions | Status now | Earliest date |",
+                   "| Step | Condition | Rows | Status now |", "| Step | Dated fact | Date | Rows |",
+                   "| Step | Length and load | Value | Rows |", "| Row | Fact | Status | Source |"))
+EGOV = {"https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=" + a for a in ("87", "89", "104")}
+# The sentences of the School Education Act as e-Gov gave them on 2026-11-26, and the owner's sentences in cpsbvbng26-dotcom
+# (README.md and docs/governance.md at main 6af8a6c, read on 2026-11-26), word for word.
+OVERALL_QUOTES = {
+    "confirmed": {
+        "大学の修業年限は、四年とする。",
+        "大学は、文部科学大臣の定めるところにより、当該大学の学生（第八十七条第二項に規定する課程に在学するものを除く。）で当該大学に三年"
+        "（同条第一項ただし書の規定により修業年限を四年を超えるものとする学部の学生にあつては、三年以上で文部科学大臣の定める期間）以上在学したもの"
+        "（これに準ずるものとして文部科学大臣の定める者を含む。）が、卒業の要件として当該大学の定める単位を優秀な成績で修得したと認める場合には、"
+        "同項の規定にかかわらず、その卒業を認めることができる。",
+        "大学（専門職大学及び第百八条第二項の大学（以下この条において「短期大学」という。）を除く。以下この項及び第七項において同じ。）は、"
+        "文部科学大臣の定めるところにより、大学を卒業した者に対し、学士の学位を授与するものとする。",
+    },
+    "owner-record": {
+        "学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります。",
+        "在籍の開始日も、ここには書きません。",
+        "運営に使う時間は、週に 20 時間までです。",
+    },
+}
+OVERALL_SHORT = ({"data/requirements.json": "OMSCS の要件", "data/phd-requirements.json": "博士の要件", "data/mba.json": "MBA",
+                  "data/assets.json": "持ち物", "data/phd-assets.json": "博士の持ち物", "facts": "事実", "progress": "進み具合"},
+                 {"data/requirements.json": "OMSCS requirements", "data/phd-requirements.json": "doctoral requirements",
+                  "data/mba.json": "MBA", "data/assets.json": "assets", "data/phd-assets.json": "doctoral assets",
+                  "facts": "facts", "progress": "progress"})
+OVERALL_UNDETERMINED = ("決まっていない。", "Not determined. ")
+OVERALL_TASK = re.compile(r"ください|下さい|やること|しましょう|すべきこと|してほしい|利用者の手作業|利用者が確かめ|\bTODO\b|"
+                          r"\bto-?do\b|needs the owner|\byou should\b", re.I)
+OVERALL_STATES = {"in-progress", "preparing", "not-started"}
+
+
+def overall_load(F):
+    return jload(F, OVERALL)
+
+
+def overall_index(F, D):
+    """Every row that a ref of the plan may name: file -> id -> row."""
+    out = {}
+    for f in ("data/requirements.json", PHD_REQ, MBA):
+        out[f] = {r.get("id"): r for r in (jload(F, f) or {}).get("rows", [])}
+    for k, v in ((jload(F, MBA) or {}).get("withheld", {})).items():
+        out[MBA]["withheld:" + k] = v
+    for f in ("data/assets.json", PHD_ASSETS):
+        out[f] = {a.get("id"): a for a in (jload(F, f) or {}).get("items", [])}
+    out["facts"] = {x.get("id"): x for x in D.get("facts", [])}
+    out["progress"] = {e.get("topic"): e for e in (jload(F, "data/progress.json") or {}).get("entries", []) if e.get("topic")}
+    return out
+
+
+def overall_state(F, sf, idx):
+    """The state a condition copies: an item's status, or, for the recommendation slots, partly once a candidate is chosen."""
+    if sf.get("slots"):
+        S = (jload(F, "data/assets.json") or {}).get("recommendation_slots", [])
+        n = sum(1 for s in S if s.get("status") == "chosen")
+        return "partly" if n else "not-yet"
+    return (idx.get(sf.get("file"), {}).get(sf.get("id")) or {}).get("status")
+
+
+def next_annual(as_of, month, day):
+    d = datetime.date.fromisoformat(as_of)
+    for y in (d.year, d.year + 1):
+        x = datetime.date(y, month, day)
+        if x > d:
+            return x.isoformat()
+    return None
+
+
+def min_semesters(courses, fall_spring, summer, with_summer):
+    best = None
+    for start in ("fall", "spring"):
+        order = ["fall", "spring", "summer"] if start == "fall" else ["spring", "summer", "fall"]
+        done, n, i = 0, 0, 0
+        while done < courses and n < 100:
+            term = order[i % 3]
+            i += 1
+            cap = summer if term == "summer" else fall_spring
+            if term == "summer" and not with_summer:
+                continue
+            done += cap
+            n += 1
+        best = n if best is None else min(best, n)
+    return best
+
+
+def overall_data(F):
+    D = overall_load(F)
+    if not D:
+        return [OVERALL + " cannot be read"]
+    bad = []
+    idx = overall_index(F, D)
+    as_of = D.get("as_of", "")
+    if not is_date(as_of) or as_of > today() or D.get("made_on") != as_of:
+        bad.append("the date of the plan")
+    if [e.get("date") for e in idx["progress"].values() if e is idx["progress"].get("plan")] != [D.get("made_on")]:
+        bad.append("no entry of data/progress.json with the topic plan, on the day the plan was made")
+    for key in ("fact_statuses", "step_states", "condition_states", "link_kinds"):
+        if not all(isinstance(v, list) and len(v) == 2 and all(v) for v in D.get(key, {}).values()) or not D.get(key):
+            bad.append("the labels of " + key + " in both languages")
+    if set(D.get("step_states", {})) != OVERALL_STATES:
+        bad.append("the three states of a step")
+    # The facts of the plan: the articles of the School Education Act opened on e-Gov, and the owner's own sentences.
+    for x in D.get("facts", []):
+        k = str(x.get("id"))
+        for field in ("text", "text_en", "source", "read_on", "status", "how"):
+            if not str(x.get(field, "")).strip():
+                bad.append(k + ": no " + field)
+        if x.get("read_on") != READ_ON_2 or x.get("status") not in D.get("fact_statuses", {}):
+            bad.append(k + ": the date read or the status")
+        q = x.get("quotes")
+        if not isinstance(q, list) or not q or not set(q) <= OVERALL_QUOTES.get(x.get("status"), set()):
+            bad.append(k + ": the quotes are not the sentences of the source, word for word")
+        if x.get("status") == "confirmed" and x.get("source") not in EGOV:
+            bad.append(k + ": confirmed, but not an article opened on e-Gov")
+        if x.get("status") == "owner-record" and (not re.search(r"cpsbvbng26-dotcom.*[0-9a-f]{7}", str(x.get("source")))
+                                                  or not re.search(r"cpsbvbng26-dotcom.*[0-9a-f]{7}", str(x.get("source_en")))):
+            bad.append(k + ": the owner's record without the repository and the commit read, in both languages")
+    steps = D.get("steps", [])
+    if [s.get("order") for s in steps] != list(range(1, len(steps) + 1)) or [s.get("id") for s in steps] != ["bachelors", "omscs", "phd", "mba"]:
+        bad.append("the steps are not the bachelor's degree, OMSCS, the doctorate and the MBA, in that order")
+    by = {s.get("id"): s for s in steps}
+    entries = (jload(F, "data/progress.json") or {}).get("entries", [])
+    for s in steps:
+        k = str(s.get("id"))
+        if not s.get("name") or not s.get("name_en"):
+            bad.append(k + ": the name in both languages")
+        # The decision: an entry of the progress log of that date and topic; only the first step predates the record.
+        dec = s.get("decision", {})
+        if s.get("order") == 1:
+            if dec.get("date") is not None or not dec.get("text") or not dec.get("text_en"):
+                bad.append(k + ": the first step is not marked as predating the record")
+        elif not any(e.get("date") == dec.get("date") and e.get("kind") == "decision" and e.get("topic") == dec.get("topic") for e in entries):
+            bad.append(k + ": the decision is not an entry of data/progress.json of that date and topic")
+        if s.get("state") not in OVERALL_STATES:
+            bad.append(k + ": the state " + str(s.get("state")))
+        if "state_from" in s and {"partly": "in-progress"}.get(overall_state(F, s["state_from"], idx)) != s.get("state"):
+            bad.append(k + ": the state is not the copy of the item it names")
+        if s.get("order", 0) > 1 and s.get("state") not in ("preparing", "not-started"):
+            bad.append(k + ": in progress, while the bachelor's degree it rests on is not held")
+        for a in s.get("after", []):
+            if a.get("step") not in by or by[a["step"]].get("order", 0) >= s.get("order", 0):
+                bad.append(k + ": a link to a step that is not earlier")
+            if a.get("kind") not in D.get("link_kinds", {}):
+                bad.append(k + ": the kind of link " + str(a.get("kind")))
+            for r in a.get("refs", []):
+                row = idx.get(r.get("file"), {}).get(r.get("id"))
+                if row is None:
+                    bad.append(k + ": a link resting on a row that does not exist " + str(r))
+                elif a.get("kind") == "requirement" and (r.get("file") not in ("data/requirements.json", PHD_REQ)
+                                                          or row.get("status") not in ("confirmed", "search")):
+                    bad.append(k + ": a requirement resting on no row a source gave")
+                elif a.get("kind") == "decided" and not ((r.get("file") == "facts" and row.get("status") == "owner-record")
+                                                         or r.get("file") == "progress"):
+                    bad.append(k + ": a decided order resting on neither the owner's record nor the progress log")
+        if s.get("order", 0) > 1 and not s.get("after"):
+            bad.append(k + ": no link to an earlier step")
+        conds = s.get("conditions", [])
+        if not conds:
+            bad.append(k + ": no entry condition")
+        for c in conds:
+            ck = str(c.get("id"))
+            if not c.get("text") or not c.get("text_en") or not c.get("refs"):
+                bad.append(ck + ": the text in both languages and the rows")
+            for r in c.get("refs", []):
+                if idx.get(r.get("file"), {}).get(r.get("id")) is None:
+                    bad.append(ck + ": a row that does not exist " + str(r))
+            if "state_from" in c:
+                if c.get("state") is not None or overall_state(F, c["state_from"], idx) not in ("met", "partly", "not-yet"):
+                    bad.append(ck + ": the state is not the copy of an item's state")
+            elif c.get("state") == "withheld":
+                if not all(str(r.get("id")).startswith("withheld:") for r in c.get("refs", [])):
+                    bad.append(ck + ": withheld, but resting on something not withheld")
+            elif c.get("state") != "not-recorded":
+                bad.append(ck + ": a state that is neither copied nor withheld nor not recorded")
+        E = s.get("earliest", {})
+        if E.get("date") is None:
+            if not E.get("why") or not E.get("why_en"):
+                bad.append(k + ": no date, and no reason why, in both languages")
+            for r in E.get("refs", []):
+                if idx.get(r.get("file"), {}).get(r.get("id")) is None:
+                    bad.append(k + ": the reason rests on a row that does not exist " + str(r))
+                elif "（" + str(r.get("id")) not in E.get("why", "") or "(" + str(r.get("id")) not in E.get("why_en", ""):
+                    bad.append(k + ": the reason does not name the row %s in both languages" % r.get("id"))
+        elif E.get("date") not in [x.get("date") for x in D.get("dated", []) if x.get("step") == k]:
+            bad.append(k + ": an earliest date that is not one of the dates derived for the step")
+    # The dates, recomputed from the figures of the rows.
+    dated = {x.get("id"): x for x in D.get("dated", [])}
+    for x in D.get("dated", []):
+        k = str(x.get("id"))
+        row = idx.get(x.get("row", {}).get("file"), {}).get(x.get("row", {}).get("id")) or {}
+        fig = row.get("figures", {})
+        if x.get("key"):
+            fig = fig.get(x["key"], {}) if isinstance(fig.get(x["key"]), dict) else {"value": fig.get(x["key"])}
+        try:
+            if x.get("rule") == "next-annual":
+                want = (next_annual(as_of, fig["month"], fig["day"]), None)
+            elif x.get("rule") == "add-weeks":
+                base = datetime.date.fromisoformat(dated[x["base"]]["date"])
+                want = ((base + datetime.timedelta(weeks=fig["weeks_min"])).isoformat(),
+                        (base + datetime.timedelta(weeks=fig["weeks_max"])).isoformat())
+            elif x.get("rule") == "row-date":
+                want = (fig["value"], None)
+                d = datetime.date.fromisoformat(want[0])
+                if "%d 月 %d 日" % (d.month, d.day) not in row.get("requirement", "") or \
+                        "%s %d" % (MONTHS[d.month], d.day) not in row.get("requirement_en", ""):
+                    bad.append(k + ": the date is not in the row's text")
+            else:
+                want = None
+                bad.append(k + ": the rule " + str(x.get("rule")))
+        except Exception as e:
+            want = None
+            bad.append(k + ": the date cannot be recomputed (" + str(e) + ")")
+        if want and (x.get("date"), x.get("date_to")) != want:
+            bad.append(k + ": the date is %s, the rows give %s" % ((x.get("date"), x.get("date_to")), want))
+        if x.get("step") not in by or not x.get("label") or not x.get("label_en"):
+            bad.append(k + ": the step and the label in both languages")
+        if row.get("status") not in ("confirmed", "search"):
+            bad.append(k + ": a date resting on no row a source gave")
+    # The lengths and loads, recomputed from the figures of the rows.
+    for x in D.get("durations", []):
+        k = str(x.get("id"))
+        rows = [idx.get(r.get("file"), {}).get(r.get("id")) or {} for r in (x.get("rows") or [x.get("row", {})])]
+        figs = [r.get("figures", {}) for r in rows]
+        try:
+            if x.get("rule") == "figure":
+                want = figs[0][x["key"]]
+            elif x.get("rule") == "product":
+                want = 1
+                for key in x["keys"]:
+                    want *= figs[0][key]
+            elif x.get("rule") == "min-semesters":
+                want = min_semesters(figs[0]["courses"], figs[1]["fall_spring"], figs[1]["summer"], x["summer"])
+            elif x.get("rule") == "per-week":
+                q = Decimal(figs[0]["min_hours"]) / (Decimal(figs[1]["standard_years"]) * Decimal(x["weeks_per_year"]))
+                want = str(q.quantize(Decimal("0.1"), rounding="ROUND_HALF_UP"))
+            else:
+                want = None
+                bad.append(k + ": the rule " + str(x.get("rule")))
+        except Exception as e:
+            want = None
+            bad.append(k + ": the value cannot be recomputed (" + str(e) + ")")
+        if want is not None and x.get("value") != want:
+            bad.append(k + ": the value is %s, the rows give %s" % (x.get("value"), want))
+        if x.get("rule") in ("product", "per-week") and ("Claude" not in x.get("label", "") or "Claude" not in x.get("label_en", "")):
+            bad.append(k + ": a computation not marked as Claude's")
+        if x.get("step") not in by or not x.get("label") or not x.get("label_en") or len(x.get("unit", [])) != 2:
+            bad.append(k + ": the step, the label and the unit in both languages")
+        if any(r.get("status") not in ("confirmed", "search") for r in rows):
+            bad.append(k + ": a length resting on no row a source gave")
+    return bad
+
+
+def overall_cell_refs(refs, lang):
+    return "・".join("%s %s" % (OVERALL_SHORT[lang].get(r["file"], r["file"]), r["id"]) for r in refs) if lang == 0 else \
+        ", ".join("%s %s" % (OVERALL_SHORT[lang].get(r["file"], r["file"]), r["id"]) for r in refs)
+
+
+def overall_lines(F, lang):
+    """The five tables of the overall plan, as each README must show them, made from data/plan.json."""
+    D = overall_load(F)
+    idx = overall_index(F, D)
+    sfx = "" if lang == 0 else "_en"
+    sep = "、" if lang == 0 else "; "
+    by = {s["id"]: s for s in D["steps"]}
+    name = lambda i: by[i]["name" + sfx]
+    out = [[], [], [], [], []]
+    for s in D["steps"]:
+        dec = s["decision"]["date"] or s["decision"]["text" + sfx]
+        after = sep.join("%s（%s: %s）" % (name(a["step"]), D["link_kinds"][a["kind"]][lang], overall_cell_refs(a["refs"], lang))
+                         if lang == 0 else "%s (%s: %s)" % (name(a["step"]), D["link_kinds"][a["kind"]][lang],
+                                                             overall_cell_refs(a["refs"], lang)) for a in s["after"]) \
+            or ("なし" if lang == 0 else "none")
+        conds = ("、" if lang == 0 else ", ").join(c["id"] for c in s["conditions"])
+        E = s["earliest"]
+        early = E["date"] if E["date"] else OVERALL_UNDETERMINED[lang] + E["why" + sfx] + ("。" if lang == 0 else ".")
+        out[0].append("| %d | %s | %s | %s | %s | %s | %s |" % (s["order"], s["name" + sfx], dec, after, conds,
+                                                              D["step_states"][s["state"]][lang], early))
+        for c in s["conditions"]:
+            st = overall_state(F, c["state_from"], idx) if "state_from" in c else c["state"]
+            out[1].append("| %s | %s（%s） | %s | %s |" % (s["name" + sfx], c["text" + sfx], c["id"], overall_cell_refs(c["refs"], lang),
+                                                         D["condition_states"][st][lang]) if lang == 0 else
+                          "| %s | %s (%s) | %s | %s |" % (s["name" + sfx], c["text" + sfx], c["id"], overall_cell_refs(c["refs"], lang),
+                                                         D["condition_states"][st][lang]))
+    for x in D["dated"]:
+        d = x["date"] + ("〜" + x["date_to"] if lang == 0 and x.get("date_to") else " to " + x["date_to"] if x.get("date_to") else "")
+        out[2].append("| %s | %s | %s | %s |" % (name(x["step"]), x["label" + sfx], d, overall_cell_refs([x["row"]], lang)))
+    for x in D["durations"]:
+        out[3].append("| %s | %s | %s %s | %s |" % (name(x["step"]), x["label" + sfx], x["value"], x["unit"][lang],
+                                                    overall_cell_refs(x.get("rows") or [x["row"]], lang)))
+    for x in D["facts"]:
+        src = x.get("source_en", x["source"]) if lang == 1 else x["source"]
+        out[4].append("| %s | %s | %s | %s |" % (x["id"], x["text" + sfx], D["fact_statuses"][x["status"]][lang], src))
+    return out
+
+
+def overall_readme(F):
+    bad = []
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        t = F.get(f, "")
+        sec = section(t, OVERALL_HEADS[lang])
+        if not sec:
+            bad.append(f + ": no section " + OVERALL_HEADS[lang])
+            continue
+        if t.find("\n" + OVERALL_HEADS[lang] + "\n") > t.find("\n" + OVERALL_NEXT[lang] + "\n"):
+            bad.append(f + ": the overall plan is not near the top, before the decision of 2026-11-19")
+        try:
+            tables = overall_lines(F, lang)
+        except Exception as e:
+            bad.append(f + ": the tables of the overall plan cannot be made (" + str(e) + ")")
+            continue
+        want = []
+        for h, rows in zip(OVERALL_TABLES[lang], tables):
+            want += [h] + rows
+        if table_lines(sec) != want:
+            bad.append(f + ": the tables of the overall plan differ from " + OVERALL)
+    secs = [section(F.get(f, ""), h) for f, h in (("README.md", OVERALL_HEADS[0]), ("README.en.md", OVERALL_HEADS[1]))]
+    N = jload(F, "verification/numbers.json") or {"counts": []}
+    names = sorted({c["count"] for c in N["counts"] if c["count"].startswith("overall_")})
+    if not names:
+        bad.append("no count of the overall plan in verification/numbers.json")
+    for n in names:
+        res = [c["re"] for c in N["counts"] if c["count"] == n]
+        for s, f in zip(secs, ("README.md", "README.en.md")):
+            if not any(re.search(x, line) for x in res for line in rules.bare(s).split("\n")):
+                bad.append(f + ": the count %s of the overall plan is not given" % n)
+    return bad
+
+
+def overall_words(F):
+    """The plan assigns no task, carries no amount of the owner's money, nothing of the withheld MBA requirement, no fee of the
+    MBA, no contact, and no URL but the articles opened on e-Gov."""
+    D = overall_load(F) or {}
+    bad = []
+    entry = [e for e in (jload(F, "data/progress.json") or {}).get("entries", []) if e.get("topic") == "plan"]
+    texts = [(OVERALL, s) for s in strings(D)] + [("data/progress.json", s) for s in strings(entry)]
+    for f, h in (("README.md", OVERALL_HEADS[0]), ("README.en.md", OVERALL_HEADS[1])):
+        texts += [(f, s) for s in section(F.get(f, ""), h).split("\n")]
+    for f, s in texts:
+        m = OVERALL_TASK.search(s)
+        if m:
+            bad.append(f + ": a task assigned「" + m.group(0) + "」")
+        if YEN.search(rules.norm(s)):
+            bad.append(f + ": an amount in yen")
+        for x in re.split(r"[。|]|\.\s|\.$", s):
+            if SAVINGS.search(x) and FIGURE.search(x):
+                bad.append(f + ": a figure beside a word for savings「" + x.strip()[:30] + "」")
+        if rules.EMAIL.search(s) or PHONE.search(s) or PERSON.search(rules.norm(s)):
+            bad.append(f + ": an e-mail address, a telephone number, or a person's name or title")
+        for u in URL.findall(s):
+            if u not in EGOV:
+                bad.append(f + ": a URL that is not an article opened on e-Gov " + u)
+        m = next((w for w in MBA_REQUIREMENT_HIDDEN if w.casefold() in s.casefold()), None)
+        if m:
+            bad.append(f + ": a word of the withheld MBA requirement「" + m + "」")
+    mba = [s for s in strings([x for x in D.get("steps", []) if x.get("id") == "mba"] +
+                              [x for x in D.get("dated", []) + D.get("durations", []) if x.get("step") == "mba"])]
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        mba += [x for x in table_lines(section(F.get(f, ""), OVERALL_HEADS[lang])) if x.startswith("| MBA") or x.startswith("| 4 |")]
+    for s in mba:
+        m = MBA_MONEY.search(s) or MBA_CONTACT.search(rules.norm(s)) or MBA_REQUIREMENT_WORDS.search(s)
+        if m:
+            bad.append("the MBA step: money, an address, a person or the withheld requirement「" + m.group(0) + "」")
+    for k in keys(D):
+        if SAVINGS_KEYS.search(k) or CONTACT_KEYS.search(k):
+            bad.append(OVERALL + ": a field for the owner's money or a contact (" + k + ")")
+    return bad
+
+
+def _overall_count(fn):
+    return lambda F: fn(overall_load(F) or {"steps": []})
+
+
 COUNTERS = {
     "requirements": lambda F: len((jload(F, "data/requirements.json") or {"rows": []})["rows"]),
     "courses": lambda F: len((jload(F, "data/courses.json") or {"courses": []})["courses"]),
@@ -1526,6 +1971,11 @@ COUNTERS.update({
     "mba_rows": lambda F: len((jload(F, MBA) or {}).get("rows", [])),
     "mba_search": _mba_status("search"),
     "mba_confirmed": _mba_status("confirmed"),
+    "pages_read_2": lambda F: len((jload(F, "data/requirements.json") or {}).get("pages_read_2026_11_26", {})),
+    "overall_steps": _overall_count(lambda D: len(D.get("steps", []))),
+    "overall_conditions": _overall_count(lambda D: sum(len(s.get("conditions", [])) for s in D.get("steps", []))),
+    "overall_undetermined": _overall_count(lambda D: sum(1 for s in D.get("steps", []) if (s.get("earliest") or {}).get("date") is None)),
+    "overall_dated": _overall_count(lambda D: len(D.get("dated", []))),
 })
 for _k in ("rate", "fee_small", "fee_large", "hours", "tuition", "semesters_1", "total_1", "semesters_2", "total_2"):
     COUNTERS["tuition_" + _k] = (lambda k: lambda F: (tuition_rates(F) or {}).get(k))(_k)
@@ -1586,6 +2036,9 @@ CHECKS = [
     ("MBA: the programme is named as its pages spell it", mba_names),
     ("MBA: both READMEs show the plan and the facts as the data has them, and the opening lines name the plan", mba_readme),
     ("MBA: Japanese and English say the same, and every MBA count is given in both sections", mba_parity),
+    ("The overall plan: the decided order, each condition on rows that exist with the items' states, every date and length recomputed from the rows, a reason wherever no date follows", overall_data),
+    ("The overall plan: both READMEs show its tables as the data has them, near the top, with every count of the plan", overall_readme),
+    ("The overall plan: no task assigned, no amount of the owner's money, nothing withheld of the MBA, no contact, no URL but e-Gov's", overall_words),
 ]
 
 FUTURE = (datetime.date.today() + datetime.timedelta(days=400)).isoformat()
@@ -1789,8 +2242,8 @@ BREAKS = [
     (C[10], "an instruction to the reader", add("README.md", "\n要件は公式の頁で確かめてください。\n")),
     (C[10], "bold", sub("README.md", "決めたことと、したことだけを書きます。", "**決めたことと、したことだけを書きます。**")),
     (C[10], "you in English", add("README.en.md", "\nYou can read the data.\n")),
-    (C[11], "a count that differs from the data", sub("README.md", "要件の行は 24 行です。", "要件の行は 23 行です。")),
-    (C[11], "a count of confirmed rows that differs from the data", sub("README.en.md", "Of them, 24 are confirmed", "Of them, 23 are confirmed")),
+    (C[11], "a count that differs from the data", sub("README.md", "要件の行は 38 行です。", "要件の行は 37 行です。")),
+    (C[11], "a count of confirmed rows that differs from the data", sub("README.en.md", "Of them, 38 are confirmed", "Of them, 37 are confirmed")),
     (C[11], "a count of assets that differs from the data", sub("README.md", "項目は 11 件です。", "項目は 12 件です。")),
     (C[11], "a count of pages read that differs from the data", sub("README.md", "開いて読んだ頁は 7 つです。", "開いて読んだ頁は 6 つです。")),
     (C[11], "a number not in the ledger", add("README.md", "\n準備には 2 年かけます。\n")),
@@ -1932,7 +2385,7 @@ PHD_BREAKS = [
     ("phd_assets", "a related paper that is not on the list",
      _asset("ontology-competence", lambda a: a["related"].__setitem__(0, {"kind": "paper", "title": "An Ontology of Everything"}))),
     ("phd_assets", "a requirement not found, resting on a row that has a source",
-     _asset("statement", lambda a: _set(a, "requirement_rows", ["competence"]))),
+     _asset("statement", lambda a: a.update(requirement="not-found", requirement_rows=["competence"]))),
     ("phd_assets", "a grade in a doctoral asset", _asset("bachelors", lambda a: _set(a, "grade", "A"))),
     ("phd_assets", "the master's degree no longer names OMSCS", _asset("masters", lambda a: _set(a, "what", "修士号。持っていない"))),
     ("phd_assets", "an item dropped", lambda G: _phd(G, PHD_ASSETS, lambda D: D["items"].pop())),
@@ -1995,7 +2448,7 @@ PHD_BREAKS = [
     ("Every number in prose is in the ledger of numbers, and every count matches the data",
      "a doctoral count of not-yet items that differs from the data", sub("README.md", "まだ無いものは 6 件です。", "まだ無いものは 5 件です。")),
     ("Every number in prose is in the ledger of numbers, and every count matches the data",
-     "a doctoral count in English that differs from the data", sub("README.en.md", "The doctoral table of requirements has 27 rows.", "The doctoral table of requirements has 26 rows.")),
+     "a doctoral count in English that differs from the data", sub("README.en.md", "The doctoral table of requirements has 44 rows.", "The doctoral table of requirements has 43 rows.")),
     ("Every number in prose is in the ledger of numbers, and every count matches the data",
      "a doctoral asset's status changed, so the count no longer matches", _asset("english-test", lambda a: _set(a, "status", "partly"))),
     ("The recommendation slots hold only their number and state, and nothing about a person",
@@ -2052,7 +2505,7 @@ def _mba_plan(fn):
 NUMS = "Every number in prose is in the ledger of numbers, and every count matches the data"
 BREAKS += [
     (_BYFN["mba_facts"], "an MBA row marked as confirmed on the official page", _mba_row("language", lambda r: _set(r, "status", "confirmed"))),
-    (_BYFN["mba_facts"], "an MBA row from a page the search did not name", _mba_row("intakes", lambda r: _set(r, "source", "https://mba.athuman.com/program"))),
+    (_BYFN["mba_facts"], "an MBA row from a page the search did not name", _mba_row("intakes", lambda r: _set(r, "source", "https://mba.athuman.com/program/curriculum"))),
     (_BYFN["mba_facts"], "an MBA row with quotes, as if the page had been read", _mba_row("degree", lambda r: _set(r, "quotes", ["授与学位 MBA / Master of Business Administration"]))),
     (_BYFN["mba_facts"], "an MBA row read on another day", _mba_row("max-enrolment", lambda r: _set(r, "read_on", "2026-11-25"))),
     (_BYFN["mba_facts"], "a page of mba.athuman.com given as read", _mba(lambda D: D["pages_read"].__setitem__("https://mba.athuman.com/", "x"))),
@@ -2104,10 +2557,108 @@ BREAKS += [
     (_BYFN["mba_parity"], "README.en.md drops the count of MBA rows confirmed on an opened page",
      sub("README.en.md", "Of the MBA rows, 0 were confirmed on an opened official page.\n", "")),
     (_BYFN["mba_parity"], "an English text of an MBA row emptied", _mba_row("awarded-by", lambda r: _set(r, "fact_en", ""))),
-    (NUMS, "a count of MBA rows that differs from the data", sub("README.md", "MBA の事実の表は 11 行です。", "MBA の事実の表は 12 行です。")),
+    (NUMS, "a count of MBA rows that differs from the data", sub("README.md", "MBA の事実の表は 19 行です。", "MBA の事実の表は 20 行です。")),
     (NUMS, "an MBA row dropped from the data, so the English count no longer matches", _mba(lambda D: D["rows"].pop())),
     (_BYFN["words_not_written"] if "words_not_written" in _BYFN else C[5], "the dropped self-title written in the MBA plan",
      _mba_plan(lambda e: e["items"].__setitem__(1, "MBA は、" + rules.dec("54us56uL56CU56m26ICF") + "として研究を続けながら取ります。"))),
+]
+
+
+
+def _overall(fn):
+    def m(G):
+        D = json.loads(G[OVERALL])
+        fn(D)
+        G[OVERALL] = json.dumps(D, ensure_ascii=False, indent=2)
+    return m
+
+
+def _ostep(i, fn):
+    return _overall(lambda D: fn(next(s for s in D["steps"] if s["id"] == i)))
+
+
+def _ocond(i, fn):
+    return _overall(lambda D: fn(next(c for s in D["steps"] for c in s["conditions"] if c["id"] == i)))
+
+
+def _odated(i, fn):
+    return _overall(lambda D: fn(next(x for x in D["dated"] if x["id"] == i)))
+
+
+def _odur(i, fn):
+    return _overall(lambda D: fn(next(x for x in D["durations"] if x["id"] == i)))
+
+
+def _ofact(i, fn):
+    return _overall(lambda D: fn(next(x for x in D["facts"] if x["id"] == i)))
+
+
+def _req(i, fn):
+    def m(G):
+        R = json.loads(G["data/requirements.json"])
+        fn(next(r for r in R["rows"] if r["id"] == i))
+        G["data/requirements.json"] = json.dumps(R, ensure_ascii=False)
+    return m
+
+
+OD, OR, OW = _BYFN["overall_data"], _BYFN["overall_readme"], _BYFN["overall_words"]
+BREAKS += [
+    (C[0], "a row read on 2026-11-26 from a page read only on 2026-11-20", _req("graduation-gpa", lambda r: _set(r, "source", "https://omscs.gatech.edu/admission-criteria"))),
+    (C[0], "a row of a page opened on 2026-11-26 dated 2026-11-20", _req("in-progress-degree", lambda r: _set(r, "read_on", "2026-11-20"))),
+    (C[0], "a page opened on 2026-11-26 dropped from the record of that day",
+     lambda G: G.__setitem__("data/requirements.json", G["data/requirements.json"].replace('"https://omscs.gatech.edu/priority-decisions": "', '"https://omscs.gatech.edu/priority": "', 1))),
+    (C[0], "a figure changed in the data but not in the text", _req("credit-hours", lambda r: r["figures"].__setitem__("courses", 11))),
+    (C[0], "the month of a deadline not in the English text", _req("deadline-fall", lambda r: _set(r, "requirement_en", "The application deadline for Fall matriculation is May 1"))),
+    (C[0], "a row of 2026-11-26 whose way of reading does not say the day", _req("workload", lambda r: _set(r, "how", "FAQ の頁による。"))),
+    (_BYFN["phd_requirements"], "a search row of 2026-11-26 that does not name the search tool",
+     _req_row("time-limit", lambda r: _set(r, "how", r["how"].replace("Parallel Search", "検索の道具")))),
+    (_BYFN["phd_requirements"], "a page named by the search of 2026-11-26, dated 2026-11-20", _req_row("resume", lambda r: _set(r, "read_on", "2026-11-20"))),
+    (_BYFN["phd_requirements"], "a figure of a doctoral row not in its text", _req_row("time-limit", lambda r: r["figures"].__setitem__("max_years", 8))),
+    (NUMS, "the count of pages opened on 2026-11-26 changed in README.md",
+     sub("README.md", "新しく開いた頁は、合わせて 5 つです。", "新しく開いた頁は、合わせて 6 つです。")),
+    (OD, "a next deadline that is not the next March 1 after the date of the plan", _odated("omscs-next-fall", lambda x: _set(x, "date", "2026-03-01"))),
+    (OD, "a window of decisions that is not 10 to 12 weeks after the deadline", _odated("omscs-next-spring-decisions", lambda x: _set(x, "date_to", "2027-11-14"))),
+    (OD, "a doctoral deadline changed in the row, so the date no longer follows",
+     _req_row("deadlines-2027", lambda r: r["figures"]["spring"].__setitem__("day", 6))),
+    (OD, "a first day of classes that is not the row's", _odated("ub-fall-2027-classes", lambda x: _set(x, "date", "2027-08-30"))),
+    (OD, "the fewest semesters of OMSCS changed", _odur("omscs-min-semesters", lambda x: _set(x, "value", 5))),
+    (OD, "Claude's hours per week of the MBA miscomputed", _odur("mba-hours-per-week", lambda x: _set(x, "value", "21.1"))),
+    (OD, "a computation no longer marked as Claude's", _odur("omscs-hours-one", lambda x: _set(x, "label", x["label"].replace("Claude の計算", "目安")))),
+    (OD, "a length that is not the row's figure", _odur("phd-limit", lambda x: _set(x, "value", 10))),
+    (OD, "a condition's state that is not the item's", _ocond("omscs-english", lambda c: _set(c, "state", "met"))),
+    (OD, "the item a condition copies changed, so the table's state no longer holds",
+     lambda G: _phd(G, PHD_ASSETS, lambda D: next(a for a in D["items"] if a["id"] == "statement").__setitem__("status", "maybe"))),
+    (OD, "a condition resting on a row that does not exist", _ocond("phd-letters", lambda c: c["refs"].append({"file": PHD_REQ, "id": "letters-three"}))),
+    (OD, "the withheld MBA condition resting on a row that is written", _ocond("mba-experience", lambda c: _set(c, "refs", [{"file": MBA, "id": "intakes"}]))),
+    (OD, "an earliest date without a reason", _ostep("phd", lambda s: s["earliest"].__setitem__("why_en", ""))),
+    (OD, "an earliest date that no row gives", _ostep("mba", lambda s: s["earliest"].__setitem__("date", "2033-04-01"))),
+    (OD, "a reason that no longer names the row it rests on", _ostep("omscs", lambda s: s["earliest"].__setitem__("why", s["earliest"]["why"].replace("（in-progress-degree）", "")))),
+    (OD, "the doctorate dated on a day with no decision", _ostep("phd", lambda s: s["decision"].__setitem__("date", "2026-11-21"))),
+    (OD, "the steps out of order", _overall(lambda D: D["steps"].reverse())),
+    (OD, "the MBA marked as begun while the bachelor's degree is not held", _ostep("mba", lambda s: _set(s, "state", "in-progress"))),
+    (OD, "a decided order resting on a requirement row", _ostep("phd", lambda s: _set(s["after"][1], "refs", [{"file": "data/requirements.json", "id": "degree"}]))),
+    (OD, "a sentence of the School Education Act changed", _ofact("school-act-87", lambda x: _set(x, "quotes", ["大学の修業年限は、三年とする。"]))),
+    (OD, "the owner's record without the commit read", _ofact("order-declaration", lambda x: _set(x, "source_en", "README.md of cpsbvbng26-dotcom"))),
+    (OD, "the plan's entry of the progress log dropped",
+     lambda G: G.__setitem__("data/progress.json", G["data/progress.json"].replace('"topic": "plan"', '"topic": "other"', 1))),
+    (OR, "README.md changes the earliest date of a step", sub("README.md", "| 2027-08-15 | OMSCS の要件 deadline-spring |", "| 2027-08-16 | OMSCS の要件 deadline-spring |")),
+    (OR, "README.en.md changes the state of a condition",
+     sub("README.en.md", "| Master's degree (Georgia Tech's OMSCS) | A résumé (omscs-resume) | OMSCS requirements resume | not yet |",
+         "| Master's degree (Georgia Tech's OMSCS) | A résumé (omscs-resume) | OMSCS requirements resume | has it |")),
+    (OR, "README.md drops a row of the facts of the plan",
+     lambda G: G.__setitem__("README.md", "\n".join(x for x in G["README.md"].split("\n") if not x.startswith("| school-act-89 | ")))),
+    (OR, "README.en.md moves the overall plan below the decision of 2026-11-19",
+     lambda G: G.__setitem__("README.en.md", G["README.en.md"].replace("## The overall plan\n", "## Overall plan (moved)\n", 1) + "\n## The overall plan\n\nx.\n")),
+    (OR, "README.en.md drops the count of undetermined steps", sub("README.en.md", "The earliest date is not determined for 4 steps.\n", "")),
+    (NUMS, "the count of entry conditions differs from the data", sub("README.md", "入る条件は 16 件です。", "入る条件は 15 件です。")),
+    (OW, "a task for the owner in the plan", _ostep("omscs", lambda s: s["earliest"].__setitem__("why", s["earliest"]["why"] + "。TOEFL を受けてください"))),
+    (OW, "a task in English in README.en.md", sub("README.en.md", "It is not a list of tasks to come.\n", "It is not a list of tasks to come.\nTODO: book the TOEFL.\n")),
+    (OW, "a figure beside savings in the plan", _ocond("phd-tuition", lambda c: _set(c, "text", "学費の分の貯え（40000 ドル）"))),
+    (OW, "a word of the withheld MBA requirement in the plan", _ocond("mba-experience", lambda c: _set(c, "text", MBA_REQUIREMENT_HIDDEN[0] + "の要件"))),
+    (OW, "years of experience in the MBA step", _ostep("mba", lambda s: s["earliest"].__setitem__("why_en", s["earliest"]["why_en"] + " It asks for 5 years or more."))),
+    (OW, "a fee in the MBA step", _odur("mba-standard", lambda x: _set(x, "label", "標準の修了の年限（受講料は別）"))),
+    (OW, "a URL in the plan that is not e-Gov's", _ofact("school-act-104", lambda x: _set(x, "how", x["how"] + " https://example.org/law"))),
+    (OW, "a person's title in the plan", _ostep("phd", lambda s: s["conditions"][2].__setitem__("text", "推薦状 2 通（Professor X）"))),
 ]
 
 
