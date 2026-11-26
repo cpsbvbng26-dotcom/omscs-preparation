@@ -3,7 +3,8 @@
     "進み具合の記録です。日付の順に足します。決めたこと（decision）と、したこと（started・finished・other）だけを書きます。これからの作業の一覧は置きません。",
     "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。",
     "topic が doctorate の行は、2026-11-20 に決めた博士課程の目標です。推薦の枠の検査は、この行を見ません。かわりに博士課程の検査が、この行に推薦の枠のことも、人のことも、額も書かれていないことを見ます。",
-    "topic が mba の行は、2026-11-26 に決めた MBA の計画です。MBA の検査が、この行に数も、出願の実務の要件の中身も、人の名も書かれていないことを見ます。"
+    "topic が mba の行は、2026-11-26 に決めた MBA の計画です。MBA の検査が、この行に数も、出願の実務の要件の中身も、人の名も書かれていないことを見ます。",
+    "topic が plan の行は、2026-11-26 に計画の全体（data/plan.json）を置いた記録です。計画の検査が、この行が data/plan.json の made_on の日にあることを見ます。"
   ],
   "entries": [
     {
@@ -107,6 +108,25 @@
         "What that requirement says is not written in this record."
       ],
       "source": "運営者が 2026-11-26 に決めた。プログラムの名は、頁の綴りで書いた。プログラムの事実は data/mba.json にある。出願の実務の要件の中身、プログラムの担当の人の名、学費の額は書かない。"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "other",
+      "done": true,
+      "topic": "plan",
+      "items": [
+        "計画の全体を data/plan.json に置き、両方の README の冒頭の近くに表にしました。",
+        "OMSCS の公式の頁を開いて読み、修了の要件、科目の数の上限、結果の出る時期などの行を data/requirements.json に足しました。",
+        "University at Buffalo と MBA のプログラムの頁は開けませんでした。検索の結果の要約で行を足し、確かめていなかった行のうち見つかったものを直しました。",
+        "段階ごとの最も早い日は、出典の日付と数からの計算だけで出しました。出せないものは、決まっていないと理由を書きました。"
+      ],
+      "items_en": [
+        "The overall plan was put in data/plan.json and shown as tables near the top of both READMEs.",
+        "The official OMSCS pages were opened and read, and rows on the degree requirements, the limit on courses and when decisions are released were added to data/requirements.json.",
+        "The pages of the University at Buffalo and of the MBA programme could not be opened. Rows were added from the summaries of search results, and rows not confirmed before were corrected where a summary was found.",
+        "The earliest date of each step was derived only by arithmetic from the dates and numbers of the sources. Where none follows, it is marked as not determined, with the reason."
+      ],
+      "source": "利用者が 2026-11-26 に、大学院の記録と計画を緻密にすることを求めた。計画の表の形と、最も早い日の出し方は、Claude が同じ日に決めた。"
     }
   ]
 }

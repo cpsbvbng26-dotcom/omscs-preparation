@@ -4,7 +4,9 @@
     "状態は statuses の四つのどれかです。omscs.gatech.edu は、2026-11-19 にはこの作業の環境から届きませんでした（WebFetch が名前を引けなかった）。2026-11-20 に、網の設定が omscs.gatech.edu と grad.gatech.edu を通すようになり、pages_read の頁を開いて読みました。Bursar の頁（bursar.gatech.edu）も、同じ日に開いて読みました。",
     "confirmed の行の source は pages_read のどれかで、quotes にはその頁の英語の文を一字一句そのまま置きます。how は、どの頁のどの文によるかを書きます。",
     "「公式の頁の検索結果から」は、検索の結果に出た要約か抜粋で読んだという意味です。頁そのものは開いていません。",
-    "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。null の行は、2026-11-20 に頁を読んで足した行です。"
+    "seen_on_2026_11_19 は、2026-11-19 の検索（WebSearch）の要約にその事実が出たかどうかです。false の行は、それより前の検索の抜粋だけによります。null の行は、2026-11-20 か 2026-11-26 に頁を読んで足した行です。",
+    "pages_read_2026_11_26 は、2026-11-26 に開いて読んだ頁です。read_on が 2026-11-26 の confirmed の行は、このどれかを出典にします。Prospective Student FAQs と Deadlines, Decisions, Requirements, and Guidelines の二つは、2026-11-20 にも読んだ頁を、同じ日に開き直したものです。",
+    "figures は、行の文にある数です。data/plan.json の日付と期間は、verification/check.py がこの figures から計算し直します。"
   ],
   "statuses": {
     "confirmed": [
@@ -271,7 +273,11 @@
       "quotes": [
         "Application deadline for Fall matriculation: March 1"
       ],
-      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。結果は締め切りのおよそ 10 から 12 週あとに出る、ともある。夏の入学は無い。2026-11-19 には、検索の要約から（search）の行だった。"
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。結果は締め切りのおよそ 10 から 12 週あとに出る、ともある。夏の入学は無い。2026-11-19 には、検索の要約から（search）の行だった。",
+      "figures": {
+        "month": 3,
+        "day": 1
+      }
     },
     {
       "id": "deadline-spring",
@@ -284,7 +290,11 @@
       "quotes": [
         "Application deadline for Spring matriculation: August 15"
       ],
-      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。2026-11-19 には、検索の要約から（search）の行だった。"
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落による。2026-11-19 には、検索の要約から（search）の行だった。",
+      "figures": {
+        "month": 8,
+        "day": 15
+      }
     },
     {
       "id": "after-deadline",
@@ -365,6 +375,228 @@
         "Upload into the Professional Development area of your application any supporting documents (except transcripts, which should be uploaded into the Academic History area)."
       ],
       "how": "Additional Application Guidelines の頁の Do's の三つ目の文による。2026-11-20 に足した行。"
+    },
+    {
+      "id": "credit-hours",
+      "requirement": "修了には 30 単位時間（10 科目）が要る。30 単位時間に数えるのは C 以上の科目だけ。CS か CSE 以外の科目番号の科目は 6 単位時間まで",
+      "requirement_en": "30 credit hours (10 courses) are required. Only a course with a C or above counts toward them. At most 6 credit hours may have a subject code other than CS or CSE",
+      "source": "https://omscs.gatech.edu/degree-requirements",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "The OMSCS degree requires students to complete 30 total credit hours (10 courses).",
+        "A grade of C or above is required for a course to count toward this 30 credit-hour requirement.",
+        "A maximum of 6 credit hours may be taken with a subject code other than CS or CSE."
+      ],
+      "how": "Degree Requirements の頁の二つ目の項目による。2026-11-26 に足した行。",
+      "figures": {
+        "credit_hours": 30,
+        "courses": 10,
+        "other_subject_max": 6
+      }
+    },
+    {
+      "id": "specialization",
+      "requirement": "専門（specialization）を一つ修める。専門は 15 から 18 単位時間で、その科目には B 以上が要る。残りの 12 から 15 単位時間は自由な選択の科目",
+      "requirement_en": "One specialization is completed. A specialization takes 15 to 18 credit hours, each of its courses with a B or above. The remaining 12 to 15 hours are free electives",
+      "source": "https://omscs.gatech.edu/degree-requirements",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "The OMSCS degree requires students to complete the requirements of one specialization.",
+        "Specializations each require 15 to 18 credit hours, and a grade of B or above is required for all courses fulfilling specialization requirements."
+      ],
+      "how": "Degree Requirements の頁の一つ目の項目による。専門の一覧は Specializations の頁にあり、この記録には写していない。2026-11-26 に足した行。"
+    },
+    {
+      "id": "graduation-gpa",
+      "requirement": "修了には累積 GPA 3.0 が要る",
+      "requirement_en": "A cumulative GPA of 3.0 is required to graduate",
+      "source": "https://omscs.gatech.edu/degree-requirements",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "A cumulative GPA of 3.0 is required to graduate."
+      ],
+      "how": "Degree Requirements の頁の三つ目の項目による。要件の文であって、運営者の記録ではない。2026-11-26 に足した行。"
+    },
+    {
+      "id": "course-load",
+      "requirement": "既定では、成績の付く科目を、秋と春の学期は 2 つまで、夏の学期は 1 つまで取れる",
+      "requirement_en": "By default, at most 2 letter-grade courses may be taken in a Fall or Spring semester, and 1 in a Summer semester",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "By default, the maximum number of letter grade courses a student may take during a Fall or Spring semester is two, and the maximum number of letter grade courses a student may take during a Summer semester is one."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「How many courses can students take at a time?」への答えによる。同じ答えは、進み具合によって 1 科目を足す申し込みが許されることがある、とも書く。2026-11-26 に足した行。",
+      "figures": {
+        "fall_spring": 2,
+        "summer": 1
+      }
+    },
+    {
+      "id": "typical-time",
+      "requirement": "修了までの典型の期間は約 3 年。得た単位は、得た学期から 6 年のあいだ有効",
+      "requirement_en": "The typical time to complete the program is about 3 years. Credits earned are good for 6 years from the semester in which they are earned",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "The typical time for students to complete the OMSCS program is about three years, though we will allow for longer enrollments for those students who need greater flexibility.",
+        "Credits earned are good for 6 years from the semester in which they are earned."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「How long does it take to complete and receive a degree?」への答えによる。2026-11-26 に足した行。",
+      "figures": {
+        "typical_years": 3,
+        "credit_valid_years": 6
+      }
+    },
+    {
+      "id": "workload",
+      "requirement": "作業の目安は、1 単位時間あたり週に 3 時間で、講義の動画を見る時間は別。3 単位時間の科目 2 つで週に約 18 時間",
+      "requirement_en": "A general rule is 3 hours of work per week per credit hour, besides the course videos. Two courses of 3 credit hours each come to roughly 18 hours per week",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "A general rule is three hours per week of work per credit hour, in addition to viewing the course videos.",
+        "Therefore someone taking two courses at three credit hours each can expect to spend roughly 18 hours per week on coursework."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「How much time can students expect to spend on reading, course assignments, etc.?」への答えによる。2026-11-26 に足した行。",
+      "figures": {
+        "hours_per_credit_hour": 3,
+        "credit_hours_per_course": 3,
+        "two_courses_hours": 18
+      }
+    },
+    {
+      "id": "first-semester",
+      "requirement": "フルタイムで働きながら学ぶ学位の学生には、最初の学期は 1 科目までを勧めている",
+      "requirement_en": "Degree-seeking students working full-time are recommended to take no more than one course in their first semester",
+      "source": "https://omscs.gatech.edu/prospective-student-faqs",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "We recommend that OMSCS degree-seeking students working full-time while taking courses enroll in no more than one course in their first semester."
+      ],
+      "how": "Prospective Student FAQs の頁の問い「How many courses can students take at a time?」への答えの最後の文による。勧めであって要件ではない。2026-11-26 に足した行。"
+    },
+    {
+      "id": "no-summer-admission",
+      "requirement": "出願は一年じゅう受け付け、入学は秋と春だけ。夏の入学は無い",
+      "requirement_en": "Applications are accepted year-round for Fall and Spring matriculation. There are no Summer admissions",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "The OMSCS program accepts applications year-round for both Fall and Spring matriculations (there are no Summer admissions)."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落の最初の文による。2026-11-26 に足した行。"
+    },
+    {
+      "id": "decision-release",
+      "requirement": "結果は、締め切りのおよそ 10 から 12 週あとに出る",
+      "requirement_en": "Decisions are released approximately 10 to 12 weeks after the application deadline",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "All decisions will be released approximately 10-12 weeks after the application deadline."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Decisions の段落による。2026-11-20 には deadline-fall の行の確かめ方に書いただけだった。2026-11-26 に行に分けた。",
+      "figures": {
+        "weeks_min": 10,
+        "weeks_max": 12
+      }
+    },
+    {
+      "id": "registrar-calendar",
+      "requirement": "OMSCS の暦は、Georgia Tech の Registrar の暦と同じ",
+      "requirement_en": "The OMSCS calendar is synchronous with the Georgia Tech registrar calendar",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "The OMSCS calendar is synchronous with the Georgia Tech registrar calendar."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Deadlines の段落の最後の文による。Registrar の頁（registrar.gatech.edu）は、2026-11-26 にこの作業の環境から開けなかった。そのため、学期の始まる日はこの記録に無い。2026-11-26 に足した行。"
+    },
+    {
+      "id": "conferral-date",
+      "requirement": "学位を得ていれば、成績証明書に授与の日が要る。無ければ、出願は却下か無期限の保留になる",
+      "requirement_en": "If the degree has been earned, the transcript must show the date of conferral; otherwise the application is rejected or put on indefinite hold",
+      "source": "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Degrees earned; if you have earned the degree, your transcript must show the date of conferral.",
+        "If it does not, your application will be rejected or put on indefinite hold."
+      ],
+      "how": "Deadlines, Decisions, Requirements, and Guidelines の頁の Application Requirements の Academic history の項目による。2026-11-26 に足した行。"
+    },
+    {
+      "id": "in-progress-degree",
+      "requirement": "学位が在学中（まだ授与されていない）でも、Priority Decision に加われる",
+      "requirement_en": "A degree still in progress (not yet conferred) may take part in Priority Decision",
+      "source": "https://omscs.gatech.edu/priority-decisions",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "If your degree is in progress (i.e., the degree has not yet been conferred), you may still participate."
+      ],
+      "how": "Priority Decisions の頁の How do I participate? の項目による。学士号の授与より前に出願できることを示す文である。入学（matriculation）の前に学位が要ることは、degree の行にある。2026-11-26 に足した行。"
+    },
+    {
+      "id": "priority-release",
+      "requirement": "Priority Decision の結果は、秋の入学ではふつう 1 月の中ごろから後半に、春の入学では 7 月の後半から 8 月の初めに出始める",
+      "requirement_en": "Priority Decisions usually start being released in mid- to late January for Fall matriculation, and in late July to early August for Spring matriculation",
+      "source": "https://omscs.gatech.edu/priority-decisions",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "Priority Decisions for the Fall semester matriculation will usually start being released in mid- to late January.",
+        "Priority Decisions for the Spring semester matriculation will usually start being released in late July to early August time frame."
+      ],
+      "how": "Priority Decisions の頁の When will I receive the Priority Decision? への答えによる。出す時期は保証されない、とも書く。2026-11-26 に足した行。"
+    },
+    {
+      "id": "application-fee",
+      "requirement": "留学生の出願料は、2023-08-01 から 1 件 105 ドル。払わない出願は処理されない",
+      "requirement_en": "As of 2023-08-01, the application fee for international applicants is 105 dollars per application. An application without payment is not processed",
+      "source": "https://grad.gatech.edu/admissions/international/ready-to-apply",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "seen_on_2026_11_19": null,
+      "quotes": [
+        "As of August 1, 2023, the fee for international applicants is $105 per application.",
+        "Applications submitted without payment will not be processed."
+      ],
+      "how": "Georgia Tech の大学院の International Applicants の Ready to Apply の頁の Step 6 による。OMSCS の頁ではない。学費の見積もりには入れていない。2026-11-26 に足した行。",
+      "figures": {
+        "fee_dollars": 105
+      }
     }
-  ]
+  ],
+  "pages_read_2026_11_26": {
+    "https://omscs.gatech.edu/degree-requirements": "Degree Requirements。2026-11-26 に開いて全文を読んだ。",
+    "https://omscs.gatech.edu/prospective-student-faqs": "Prospective Student FAQs。2026-11-20 にも読んだ頁。2026-11-26 に開き直して全文を読んだ。",
+    "https://omscs.gatech.edu/deadlines-decisions-requirements-and-guidelines": "Deadlines, Decisions, Requirements, and Guidelines。2026-11-20 にも読んだ頁。2026-11-26 に開き直して全文を読んだ。",
+    "https://omscs.gatech.edu/priority-decisions": "Priority Decisions。2026-11-26 に開いて全文を読んだ。",
+    "https://grad.gatech.edu/admissions/international/ready-to-apply": "Georgia Tech の大学院の International Applicants の Ready to Apply。OMSCS の頁ではない。2026-11-26 に開いて全文を読んだ。"
+  }
 }
