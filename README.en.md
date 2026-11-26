@@ -9,6 +9,105 @@ From 2026-11-26 it also records the plan for an MBA, to be taken after the docto
 The repository keeps the name of the first aim, OMSCS.
 It records what was decided and what was done.
 It holds no list of tasks to come.
+From 2026-11-26 the overall plan, from the bachelor's degree to the MBA, is gathered in the next section.
+
+## The overall plan
+
+[data/plan.json](./data/plan.json) holds the overall plan.
+Claude put it together on 2026-11-26 from what was decided and from the sources read.
+It is not a list of tasks to come.
+The order of the steps is what the owner decided.
+The OMSCS master's degree follows the bachelor's degree, the University at Buffalo's doctorate comes next, and the MBA follows the doctorate.
+The order from OMSCS to the doctorate is an order the owner decided.
+The doctoral sources read do not list a master's degree as a requirement.
+The overall plan has 4 steps.
+There are 16 entry conditions.
+The state of a condition is a copy of the state of an item in the tables of what the owner has.
+The earliest date is derived only by arithmetic from the dates and numbers of the sources.
+The earliest date is not determined for 4 steps.
+The reason is given in the table, step by step.
+There are 8 dates that follow by arithmetic, in the table of dated facts.
+The cap of 20 hours a week in the governance rules (governance-cap) is a cap on the time spent operating the research repositories.
+It is not written as a cap on study time.
+
+### Steps
+
+| Order | Step | Decided | Link to the earlier step | Entry conditions | Status now | Earliest date |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Bachelor's degree | Enrolled since before this record | none | graduation | in progress (enrolled) | Not determined. Neither the date the enrolment began nor an expected graduation date is in this record, and the owner's README has decided not to write the start date (start-date-not-written). The standard length is 4 years (school-act-87), and early graduation is provided for (school-act-89). Without a start date, no date follows. |
+| 2 | Master's degree (Georgia Tech's OMSCS) | 2026-11-19 | Bachelor's degree (requirement: OMSCS requirements degree, OMSCS requirements in-progress-degree) | omscs-degree, omscs-english, omscs-resume, omscs-answers, omscs-recommenders, omscs-preparation, omscs-tuition | before applying (preparing) | Not determined. A bachelor's degree is required before matriculation (degree). The date it is conferred is not determined, so no matriculation date follows. An application can be made while the degree is in progress (in-progress-degree). |
+| 3 | Doctorate (University at Buffalo, Applied Ontology) | 2026-11-20 | Bachelor's degree (requirement: doctoral requirements undergraduate-degree, doctoral requirements international-equivalence); Master's degree (Georgia Tech's OMSCS) (decided order: facts order-declaration) | phd-degree, phd-competence, phd-letters, phd-statement, phd-english, phd-tuition | not yet (before entry) | Not determined. The decision is to enter once the tuition has been saved (the doctoral decision). When that happens is not in the record, and no amount is written. In the decided order it follows the OMSCS master's degree (order-declaration), whose date is not determined either. |
+| 4 | MBA (the UWTSD MBA programme) | 2026-11-26 | Doctorate (University at Buffalo, Applied Ontology) (decided order: progress mba) | mba-experience, mba-policy | not yet (before entry) | Not determined. The decision is to take it after the doctorate (the MBA plan). The date the doctorate is conferred is not determined, so no date follows. Entry is in April or October (intakes). |
+
+### Entry conditions
+
+| Step | Condition | Rows | Status now |
+| --- | --- | --- | --- |
+| Bachelor's degree | The graduation requirements of the owner's university (not named) (graduation) | facts school-act-87, facts school-act-104 | in progress |
+| Master's degree (Georgia Tech's OMSCS) | A bachelor's degree before matriculation (omscs-degree) | OMSCS requirements degree, OMSCS requirements conferral-date | in progress |
+| Master's degree (Georgia Tech's OMSCS) | TOEFL or IELTS scores (omscs-english) | OMSCS requirements english-test, OMSCS requirements english-test-due, OMSCS requirements english-faq-toefl | not yet |
+| Master's degree (Georgia Tech's OMSCS) | A résumé (omscs-resume) | OMSCS requirements resume | not yet |
+| Master's degree (Georgia Tech's OMSCS) | Answers to the supplemental questions (omscs-answers) | OMSCS requirements supplemental-questions | not yet |
+| Master's degree (Georgia Tech's OMSCS) | Three recommenders (omscs-recommenders) | OMSCS requirements recommenders, OMSCS requirements academic-references | in progress |
+| Master's degree (Georgia Tech's OMSCS) | The recommended preparation, by the time of application (omscs-preparation) | OMSCS requirements preparation-by-application, OMSCS requirements after-deadline | not yet |
+| Master's degree (Georgia Tech's OMSCS) | Tuition (the owner's report) (omscs-tuition) | assets tuition | has it |
+| Doctorate (University at Buffalo, Applied Ontology) | A bachelor's degree (recognized as equivalent to a U.S. bachelor's) (phd-degree) | doctoral requirements undergraduate-degree, doctoral requirements bachelor-equivalent, doctoral requirements international-equivalence | in progress |
+| Doctorate (University at Buffalo, Applied Ontology) | Competence in applied ontology, and a writing sample (phd-competence) | doctoral requirements competence, doctoral requirements writing-sample | not yet |
+| Doctorate (University at Buffalo, Applied Ontology) | Two letters of recommendation (phd-letters) | doctoral requirements recommendations | not yet |
+| Doctorate (University at Buffalo, Applied Ontology) | A statement of purpose (phd-statement) | doctoral requirements statement | not yet |
+| Doctorate (University at Buffalo, Applied Ontology) | English test scores (phd-english) | doctoral requirements english-test | not yet |
+| Doctorate (University at Buffalo, Applied Ontology) | Tuition saved (phd-tuition) | doctoral requirements online-program-list, doctoral requirements rate-winter-2027 | not yet |
+| MBA (the UWTSD MBA programme) | The work-experience requirement for admission (what it says is not written) (mba-experience) | MBA withheld:work-experience | not written (withheld by the owner) |
+| MBA (the UWTSD MBA programme) | The academic ability and Japanese of the admission policy (mba-policy) | MBA admission-policy, MBA language | not in the record |
+
+### Dated facts
+
+The dates were computed from the numbers of the rows.
+Each deadline is the nearest one after 2026-11-26.
+
+| Step | Dated fact | Date | Rows |
+| --- | --- | --- | --- |
+| Master's degree (Georgia Tech's OMSCS) | The earliest deadline for Fall matriculation after 2026-11-26 | 2027-03-01 | OMSCS requirements deadline-fall |
+| Master's degree (Georgia Tech's OMSCS) | When those decisions are released (10 to 12 weeks after the deadline) | 2027-05-10 to 2027-05-24 | OMSCS requirements decision-release |
+| Master's degree (Georgia Tech's OMSCS) | The earliest deadline for Spring matriculation after 2026-11-26 | 2027-08-15 | OMSCS requirements deadline-spring |
+| Master's degree (Georgia Tech's OMSCS) | When those decisions are released (10 to 12 weeks after the deadline) | 2027-10-24 to 2027-11-07 | OMSCS requirements decision-release |
+| Doctorate (University at Buffalo, Applied Ontology) | The earliest deadline for spring enrollment after 2026-11-26 | 2027-01-05 | doctoral requirements deadlines-2027 |
+| Doctorate (University at Buffalo, Applied Ontology) | The first day of classes of that semester (Spring 2027) | 2027-01-20 | doctoral requirements calendar-spring-2027 |
+| Doctorate (University at Buffalo, Applied Ontology) | The earliest deadline for fall enrollment after 2026-11-26 | 2027-08-01 | doctoral requirements deadlines-2027 |
+| Doctorate (University at Buffalo, Applied Ontology) | The first day of classes of that semester (Fall 2027) | 2027-08-23 | doctoral requirements calendar-2027-28 |
+
+### Length and load
+
+| Step | Length and load | Value | Rows |
+| --- | --- | --- | --- |
+| Master's degree (Georgia Tech's OMSCS) | The fewest semesters for 10 courses at the default limits (two in Fall and Spring, one in Summer), Summers included | 6 semesters | OMSCS requirements credit-hours, OMSCS requirements course-load |
+| Master's degree (Georgia Tech's OMSCS) | The same, taking nothing in Summer | 5 semesters | OMSCS requirements credit-hours, OMSCS requirements course-load |
+| Master's degree (Georgia Tech's OMSCS) | The typical time to complete | 3 years | OMSCS requirements typical-time |
+| Master's degree (Georgia Tech's OMSCS) | How long earned credits are good (from the semester earned) | 6 years | OMSCS requirements typical-time |
+| Master's degree (Georgia Tech's OMSCS) | Weekly work for one course of 3 credit hours (3 hours × 3 credit hours; Claude's computation) | 9 hours | OMSCS requirements workload |
+| Master's degree (Georgia Tech's OMSCS) | Weekly work for two courses of 3 credit hours | 18 hours | OMSCS requirements workload |
+| Doctorate (University at Buffalo, Applied Ontology) | Credit hours required | 72 credit hours | doctoral requirements credit-hours |
+| Doctorate (University at Buffalo, Applied Ontology) | The typical length, full-time | 5 years | doctoral requirements typical-length |
+| Doctorate (University at Buffalo, Applied Ontology) | The limit from formal matriculation to completion | 7 years | doctoral requirements time-limit |
+| MBA (the UWTSD MBA programme) | The standard length | 2 years | MBA standard-length |
+| MBA (the UWTSD MBA programme) | The longest period of enrolment | 6 years | MBA max-enrolment |
+| MBA (the UWTSD MBA programme) | The guide to study until completion (lectures and study together, at the minimum) | 2200 hours | MBA study-hours |
+| MBA (the UWTSD MBA programme) | Those hours spread over the standard 2 years, per week (a year taken as 52 weeks; Claude's computation) | 21.2 hours | MBA study-hours, MBA standard-length |
+
+### Sources of the facts of the plan
+
+The articles of the School Education Act were opened and read through the e-Gov law search API on 2026-11-26.
+The owner's record was read in cpsbvbng26-dotcom at main commit 6af8a6c.
+Every row carries the sentences of its source, word for word.
+
+| Row | Fact | Status | Source |
+| --- | --- | --- | --- |
+| school-act-87 | Article 87 of the School Education Act sets the standard length of a university course at 4 years | confirmed on the official page | https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=87 |
+| school-act-89 | Article 89 of the School Education Act lets a university allow a student who has been enrolled for 3 years or more, and whom it finds to have earned the credits for graduation with excellent results, to graduate | confirmed on the official page | https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=89 |
+| school-act-104 | Article 104 of the School Education Act has a university confer the degree of bachelor (gakushi) on its graduates | confirmed on the official page | https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=104 |
+| order-declaration | The owner's README places the OMSCS master's degree on the way to the doctoral aim | from the owner's record | README.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c) |
+| start-date-not-written | The owner's README has decided not to write the date the undergraduate enrolment began | from the owner's record | README.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c) |
+| governance-cap | The cap of 20 hours a week in the governance rules is a cap on the time spent operating the research repositories, and is not written as a cap on study time | from the owner's record | docs/governance.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c) |
 
 ## The decision of 2026-11-19
 
@@ -37,9 +136,12 @@ The status is one of the following.
 omscs.gatech.edu could not be reached from the environment of this record on 2026-11-19.
 On 2026-11-20 the network setting let omscs.gatech.edu and grad.gatech.edu through, and 7 pages were opened and read that day.
 One of them is the Bursar's page of tuition and fee rates (bursar.gatech.edu), the source of the tuition item.
+On 2026-11-26, 5 pages were opened again or for the first time.
+The rows added that day are on the degree requirements, the limit on courses, when decisions are released, the application fee and more.
+The Registrar's pages could not be opened from the environment of this record that day either.
 Each row confirmed on the official page carries the page's own English sentences, word for word.
-There are 24 rows.
-Of them, 24 are confirmed on the official page.
+There are 38 rows.
+Of them, 38 are confirmed on the official page.
 The lower bound on years of education in the earlier degree row is on none of the pages read, so that part was dropped.
 
 | Row | Requirement | Status |
@@ -68,6 +170,20 @@ The lower bound on years of education in the earlier degree row is on none of th
 | no-mooc-listing | Non-graded, non-academic-credit MOOC-type coursework is not listed in the application | confirmed on the official page |
 | no-pre-undergrad | No background before undergraduate study, such as secondary or high school, is listed | confirmed on the official page |
 | professional-development | Supporting documents are uploaded to the Professional Development area of the application, and transcripts to the Academic History area | confirmed on the official page |
+| credit-hours | 30 credit hours (10 courses) are required. Only a course with a C or above counts toward them. At most 6 credit hours may have a subject code other than CS or CSE | confirmed on the official page |
+| specialization | One specialization is completed. A specialization takes 15 to 18 credit hours, each of its courses with a B or above. The remaining 12 to 15 hours are free electives | confirmed on the official page |
+| graduation-gpa | A cumulative GPA of 3.0 is required to graduate | confirmed on the official page |
+| course-load | By default, at most 2 letter-grade courses may be taken in a Fall or Spring semester, and 1 in a Summer semester | confirmed on the official page |
+| typical-time | The typical time to complete the program is about 3 years. Credits earned are good for 6 years from the semester in which they are earned | confirmed on the official page |
+| workload | A general rule is 3 hours of work per week per credit hour, besides the course videos. Two courses of 3 credit hours each come to roughly 18 hours per week | confirmed on the official page |
+| first-semester | Degree-seeking students working full-time are recommended to take no more than one course in their first semester | confirmed on the official page |
+| no-summer-admission | Applications are accepted year-round for Fall and Spring matriculation. There are no Summer admissions | confirmed on the official page |
+| decision-release | Decisions are released approximately 10 to 12 weeks after the application deadline | confirmed on the official page |
+| registrar-calendar | The OMSCS calendar is synchronous with the Georgia Tech registrar calendar | confirmed on the official page |
+| conferral-date | If the degree has been earned, the transcript must show the date of conferral; otherwise the application is rejected or put on indefinite hold | confirmed on the official page |
+| in-progress-degree | A degree still in progress (not yet conferred) may take part in Priority Decision | confirmed on the official page |
+| priority-release | Priority Decisions usually start being released in mid- to late January for Fall matriculation, and in late July to early August for Spring matriculation | confirmed on the official page |
+| application-fee | As of 2023-08-01, the application fee for international applicants is 105 dollars per application. An application without payment is not processed | confirmed on the official page |
 
 The source URL, how each row was read and the page's sentences are in `data/requirements.json`.
 
@@ -271,6 +387,9 @@ No amount is written, in any currency.
 The pages of www.buffalo.edu could not be opened from the environment of this record.
 Akamai answered every automated request with "Access Denied" (HTTP 403).
 Nothing was done to get around the refusal.
+On 2026-11-26 the pages of www.buffalo.edu could not be opened either.
+That day, rows were added from the summaries of search results of a search tool (Parallel Search).
+Rows not confirmed on 2026-11-20 whose facts were found in a summary had their status corrected that day.
 The facts from the University at Buffalo's pages were therefore read only in search-result summaries.
 Those rows have the status "from search results of the official page".
 Each source URL is the page that the search result named as the source of its summary.
@@ -283,14 +402,16 @@ The statuses mean the same as in the table of the section on application require
 ### Doctoral requirements
 
 [data/phd-requirements.json](./data/phd-requirements.json) holds one row per requirement or fact, each with its source URL, the date it was read, a status and how it was read.
-The doctoral table of requirements has 27 rows.
-Of them, 16 rows come from search results of the official pages.
+The doctoral table of requirements has 44 rows.
+Of them, 39 rows come from search results of the official pages.
 3 rows come from a third-party page.
-8 rows are not confirmed, because no source was found.
+2 rows are not confirmed, because no source was found.
 0 rows were confirmed on an opened official page.
 The University at Buffalo's description of itself as the world's only university offering graduate-level degrees in applied ontology is the university's own claim.
 No independent confirmation was found.
 The row of deadlines may be out of date, because another University at Buffalo page said that applications "will open soon".
+In the search of 2026-11-26, the department's application page gave the same deadlines (the row deadlines-2027).
+That day's summary of the department's page called the degree fully online and did not mention a hybrid option (the row format-2026-11-26).
 The name, e-mail address and telephone number of the contact on the page are not copied.
 
 | Row | Requirement | Status | Source |
@@ -315,13 +436,30 @@ The name, e-mail address and telephone number of the contact on the page are not
 | dn-online-fall | Daily Nous reports that it will be a fully online, asynchronous program, enrolling students from the fall of the article's year | from a third-party page | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
 | dn-masters | Daily Nous reports that the department introduced an online master's degree in applied ontology the year before the article | from a third-party page | https://dailynous.com/2026/05/13/new-doctoral-program-in-applied-ontology/ |
 | programme-tuition | A tuition rate specific to this program | not confirmed | none |
-| dissertation | The dissertation requirements | not confirmed | none |
-| english-test | The English-test requirement for this PhD | not confirmed | none |
-| recommendations | The requirement for letters of recommendation for this PhD | not confirmed | none |
-| statement | The requirement for a statement for this PhD | not confirmed | none |
-| transcripts | The transcript requirement for this PhD | not confirmed | none |
-| master-transfer | Whether credit from a master's degree transfers | not confirmed | none |
+| dissertation | The minimum requirements for a PhD are continuous registration each fall and spring, the minimum credits (typically 72) with a 3.0 GPA, at least half of them in UB courses, RCR training, a comprehensive or qualifying exam or a prospectus, application to candidacy, and a dissertation defended orally | from search results of the official page | https://www.buffalo.edu/grad/succeed/current-students/policy-library.html?q=phd%20overview |
+| english-test | The University at Buffalo's graduate minimum English scores include TOEFL iBT 79 (4 on the new 1 to 6 scale) and IELTS 6.5. Scores must be dated within two years of review by International Admissions. No minimum specific to this program was found | from search results of the official page | https://www.buffalo.edu/grad/explore/admissions/requirements.html |
+| recommendations | For the MS and PhD in Applied Ontology, two letters of recommendation are submitted, from faculty members who can speak to academic abilities and potential for graduate study. Applicants out of school for an extended period may submit professional references from supervisors or colleagues | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| statement | For the Applied Ontology programs, the statement of purpose is 500 words or fewer, on academic background, research or professional experience and career goals | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| transcripts | Scanned copies of all undergraduate and graduate transcripts are uploaded. Unofficial transcripts are acceptable for review. English translations are required when applicable | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| master-transfer | Under the Graduate School's rule, up to 50 percent of a PhD program's minimum credits may be non-UB transfer credits (up to 36 for a 72-credit PhD), from graduate courses with a full B or better. Programs may set stricter limits. Whether this program accepts OMSCS credit was not found | from search results of the official page | https://www.buffalo.edu/grad/succeed/current-students/policy-library.degree-requirements.html |
 | funding | Whether funding is available | not confirmed | none |
+| deadlines-2027 | The department's application page gives the deadlines for the MS and PhD in Applied Ontology as January 5 for spring enrollment and August 1 for fall enrollment | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| writing-sample | An academic writing sample of 2500 to 3000 words is submitted. For the MS and PhD in Applied Ontology, competence in some area of applied ontology is shown in addition | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| resume | A resume or CV is submitted, with research experience when applicable | from search results of the official page | https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html |
+| bachelor-equivalent | A bachelor's degree or the equivalent from an accredited or government recognized college or university is expected. Most such degrees are four or more years in length, and only some three-year degrees are recognized | from search results of the official page | https://www.buffalo.edu/grad/explore/admissions/requirements.html |
+| international-equivalence | Applicants with international credentials must hold a university degree recognized as equivalent to a U.S. bachelor's degree before beginning graduate study | from search results of the official page | https://www.buffalo.edu/grad/succeed/current-students/policy-library.html |
+| gpa-expected | A B grade (GPA of 3.0) or higher from the bachelor's courses is expected. Grades from non-U.S. universities are evaluated by the Office of International Admissions | from search results of the official page | https://www.buffalo.edu/grad/explore/admissions/requirements.html |
+| time-limit | A doctoral degree must be completed within seven years from initial formal matriculation in the program. Extensions are petitioned | from search results of the official page | https://www.buffalo.edu/grad/succeed/current-students/policy-library.degree-requirements.html |
+| typical-length | The department's page gives the typical length as approximately 5 years for full-time students, varying with enrollment | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| research-progression | The department's page lists a qualifying paper early on, a proposal submitted and defended before the dissertation, and the dissertation | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| prior-learning-limit | Students with significant experience in ontology engineering may receive prior learning credit through written examinations and oral interviews, up to 36 combined credits | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| format-2026-11-26 | The summary of the department's page says the degree is fully online, full-time or part-time. The hybrid option of the format row of 2026-11-20 is not in that day's summary of the department's page. The Graduate School's program page still mentions a hybrid option | from search results of the official page | https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html |
+| full-time-credits | Twelve credits is full time for a graduate student; nine for a graduate student with a TA, GA or RA appointment | from search results of the official page | https://buffalo.edu/grad/succeed/current-students/faq.html |
+| conferral-dates | Degrees are conferred on February 1, June 1 and August 31. Fall registration is required for the February 1 conferral, and spring registration for June 1 or August 31 | from search results of the official page | https://catalogs.buffalo.edu/content.php?catoid=28&navoid=1408 |
+| calendar-2027-28 | In the Registrar's 2027-28 calendar, classes of the Fall 2027 semester begin on August 23 and those of the Spring 2028 semester on January 19. Dates may change | from search results of the official page | https://www.buffalo.edu/registrar/calendars/future-academic-calendars/2027-28-academic-calendar.html |
+| calendar-spring-2027 | In the Registrar's calendar, classes of the Spring 2027 semester begin on January 20 | from search results of the official page | https://www.buffalo.edu/registrar/calendars/current-academic-calendar.html |
+| online-program-list | Applied Ontology Online PhD is on the list of online academic programs of the tuition pages, whose students are eligible for the Non-Resident Online rate and the Comprehensive Fee waiver | from search results of the official page | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.html |
+| rate-winter-2027 | Winter 2027, non-resident, online academic programs, Graduate (includes Certificates): tuition 565.00 dollars and fees 76.16 dollars, 641.16 dollars per credit hour in all | from search results of the official page | https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/winter-tuition-and-fees-for-online-academic-programs.non-resident-online.html |
 
 ### What the owner has, and what can be used, for the doctorate (Applied Ontology)
 
@@ -331,18 +469,18 @@ The requirement column tells whether a source read lists the item as a requireme
 The rows column names the rows of the table of requirements that the item rests on.
 The doctoral table of assets has 7 items.
 The doctoral count is: held 0, in progress 1, not yet 6.
-Of the doctoral items, 3 are stated as requirements in the sources read.
+Of the doctoral items, 6 are stated as requirements in the sources read.
 No item is marked as held without evidence.
 
 | Item | What | Status | Requirement | How the sources treat it | Rows |
 | --- | --- | --- | --- | --- | --- |
-| bachelors | A bachelor's degree, in progress and not yet earned. The university is not named | in progress | stated as a requirement in a source read | PhD applicants require an undergraduate degree (from search results) | undergraduate-degree |
-| ontology-competence | Competence in some area of applied ontology. Nothing that shows it is held yet. Related facts are listed separately, and they are not claimed to meet the requirement | not yet | stated as a requirement in a source read | PhD applicants must show competence in some area of applied ontology (from search results). What level suffices is not in the sources read | competence |
-| tuition | Tuition, to be paid from the owner's savings. The program is pursued once the tuition has been saved. No amount is written | not yet | stated as a requirement in a source read | No tuition rate specific to this program was found in any source. Claude's estimate is in this item's estimate | rate-winter-2026, rate-spring-2027, comprehensive-fee-waiver |
-| masters | A master's degree. Not held. The OMSCS master's degree is a separate, earlier aim of this record | not yet | not stated as a requirement in the sources read | The sources read say only that PhD applicants require an undergraduate degree, and do not list a master's degree as a requirement. Whether master's credit transfers was not found | undergraduate-degree, master-transfer |
-| english-test | An English test, not yet taken | not yet | requirement not found (not confirmed) | The English-test requirement for this PhD was not found | english-test |
-| recommendations | Letters of recommendation. None yet for this PhD | not yet | requirement not found (not confirmed) | The requirement for letters of recommendation for this PhD was not found | recommendations |
-| statement | A statement. Not yet written for this PhD | not yet | requirement not found (not confirmed) | The requirement for a statement for this PhD was not found | statement |
+| bachelors | A bachelor's degree, in progress and not yet earned. The university is not named | in progress | stated as a requirement in a source read | PhD applicants require an undergraduate degree. With international credentials, a degree recognized as equivalent to a U.S. bachelor's degree is held before graduate study begins. Most such degrees are four or more years in length (all from search results) | undergraduate-degree, bachelor-equivalent, international-equivalence |
+| ontology-competence | Competence in some area of applied ontology. Nothing that shows it is held yet. Related facts are listed separately, and they are not claimed to meet the requirement | not yet | stated as a requirement in a source read | PhD applicants must show competence in some area of applied ontology. The department's application page asks for it in addition to an academic writing sample (both from search results). What level suffices is not in the sources read | competence, writing-sample |
+| tuition | Tuition, to be paid from the owner's savings. The program is pursued once the tuition has been saved. No amount is written | not yet | stated as a requirement in a source read | No tuition rate specific to this program was found in any source. The program is on the list of online academic programs of the tuition pages. Claude's estimate is in this item's estimate | rate-winter-2026, rate-spring-2027, comprehensive-fee-waiver, online-program-list, rate-winter-2027 |
+| masters | A master's degree. Not held. The OMSCS master's degree is a separate, earlier aim of this record | not yet | not stated as a requirement in the sources read | The sources read say only that PhD applicants require an undergraduate degree, and do not list a master's degree as a requirement. The Graduate School's rule lets up to 50 percent of the minimum credits be transfer credits. Whether this program accepts OMSCS credit was not found | undergraduate-degree, master-transfer |
+| english-test | An English test, not yet taken | not yet | stated as a requirement in a source read | The University at Buffalo's graduate minimum English scores (TOEFL iBT 79, IELTS 6.5 and others) are required (from search results). No minimum specific to this program was found | english-test |
+| recommendations | Letters of recommendation. None yet for this PhD | not yet | stated as a requirement in a source read | For the MS and PhD in Applied Ontology, two letters of recommendation are submitted (from search results) | recommendations |
+| statement | A statement. Not yet written for this PhD | not yet | stated as a requirement in a source read | For the Applied Ontology programs, the statement of purpose is 500 words or fewer (from search results) | statement |
 
 ### Facts related to competence in applied ontology
 
@@ -371,6 +509,7 @@ The graduate rate per credit hour for online academic programs and the full-time
 The number of semesters is Claude's assumption and is in no source.
 The sources read do not give the credit hours of a full-time semester either.
 The Comprehensive Fee waiver is not subtracted.
+In the search of 2026-11-26, the title of the page of the Winter rates had moved to the next winter session, with the same amounts (the row rate-winter-2027).
 The application fee, books and tests are left out.
 No exchange rate was read from a source, so nothing is converted to yen.
 The tuition is to be paid from the owner's savings.
@@ -411,12 +550,14 @@ Those rows have the status "from search results of the official page".
 Each source URL is the page that the search result named as the source of its summary.
 The summaries were not compared with the text of the pages.
 The statuses mean the same as in the table of the section on application requirements.
+Later on 2026-11-26, more rows were added with a search tool (Parallel Search).
+They are on study time, the schedule, the breakdown of credits, the dissertation, how applications are taken, selection and the admission policy.
 
 ### Facts of the MBA programme
 
 [data/mba.json](./data/mba.json) holds one row per fact, each with its source URL, the date it was read, a status and how it was read.
-The table of MBA facts has 11 rows.
-Of the MBA rows, 11 come from search results of the official pages.
+The table of MBA facts has 19 rows.
+Of the MBA rows, 19 come from search results of the official pages.
 Of the MBA rows, 0 were confirmed on an opened official page.
 
 | Row | Fact | Status | Source |
@@ -432,6 +573,14 @@ Of the MBA rows, 0 were confirmed on an opened official page.
 | max-enrolment | The maximum period of enrolment is 6 years | from search results of the official page | https://mba.athuman.com/admission/faq |
 | completion | Completion requires 4 core modules and 2 optional modules, a master's dissertation, and 180 credits in all | from search results of the official page | https://mba.athuman.com/admission/faq |
 | intakes | Intakes are in April and October | from search results of the official page | https://mba.athuman.com/admission |
+| study-hours | The guide to study until completion, lecture hours and average study hours together, is a minimum of 2200 hours | from search results of the official page | https://mba.athuman.com/program/schedule |
+| phases | The modules are taken in the first 1 year and 6 months, and the dissertation is written in the remaining 6 months | from search results of the official page | https://mba.athuman.com/admission/faq |
+| rhythm | Lectures run for 3 weeks in a row, followed by 1 week off | from search results of the official page | https://mba.athuman.com/admission/faq |
+| credit-breakdown | Each module is 20 credits, 6 modules 120 credits, and the dissertation 60 credits | from search results of the official page | https://mba.athuman.com/admission/faq |
+| dissertation-scope | The dissertation is written in Japanese within 19500 characters, and the guide to the time needed to write it is 600 hours, as at the university in the UK | from search results of the official page | https://mba.athuman.com/program/paper |
+| application-window | Applications are accepted at any time. Documents are due, as a rule, in the month before the month of entry | from search results of the official page | https://mba.athuman.com/admission/faq |
+| selection | Documents are reviewed and an online interview is held in Japanese in Japan, and the university in the UK makes the final decision | from search results of the official page | https://mba.athuman.com/admission/faq |
+| admission-policy | The admission policy names academic ability at the level of a university graduate, and Japanese good enough not to hinder study | from search results of the official page | https://mba.athuman.com/admission |
 
 ### Not recorded for the MBA
 
@@ -449,6 +598,7 @@ On the same day the owner reported that the university where the owner is enroll
 This was received from the owner and not confirmed on a page.
 On 2026-11-21, what strengthens an application without being required was recorded.
 On 2026-11-26, the plan for an MBA after the doctorate was recorded.
+On the same day, the overall plan was put in data/plan.json.
 A row marked as done with a date after the day the check runs fails the check.
 
 ## Not recorded
@@ -475,6 +625,7 @@ Takuya Nemoto. ORCID iD [0009-0000-1406-0547](https://orcid.org/0009-0000-1406-0
 ```
 python3 verification/check.py
 python3 verification/check.py --break
+node .github/checked-intake/verify.js --test
 ```
 
 ## Use of a language model
