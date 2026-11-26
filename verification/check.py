@@ -1262,13 +1262,17 @@ MBA_WITHHELD = (("出願の実務の要件は、この記録に書きません�
                  "The staff member's name is not written.", "No amount of the fees is written."))
 MBA_INTRO = ("2026-11-26 からは、博士号を得たあとに、研究を続けながら同時に並行して取る MBA の計画も記録しています。",
              "From 2026-11-26 it also records the plan for an MBA, to be taken after the doctorate, in parallel, while research continues.")
-# What the work-experience requirement says, in the words a page would use for it: years of experience, management posts.
-MBA_REQUIREMENT_WORDS = re.compile(r"実務経験|管理職|マネジメント経験|年以上|経験年数|\byears? of\b|\d+\s*years? or more|at least \d+|"
-                                   r"manageri|management experience|professional experience|work experience of", re.I)
+# The words a page would use for the withheld requirement. Kept in base64, like MBA_VARIANT, so that this file does not
+# state what the requirement says (2026-11-26).
+MBA_REQUIREMENT_HIDDEN = [rules.dec(x) for x in ("5a6f5YuZ57WM6aiT", "566h55CG6IG3", "44Oe44ON44K444Oh44Oz44OI57WM6aiT",
+                                                  "57WM6aiT5bm05pWw", "bWFuYWdlcmk=", "bWFuYWdlbWVudCBleHBlcmllbmNl",
+                                                  "cHJvZmVzc2lvbmFsIGV4cGVyaWVuY2U=", "d29yayBleHBlcmllbmNlIG9m")]
+MBA_REQUIREMENT_WORDS = re.compile("|".join([re.escape(w) for w in MBA_REQUIREMENT_HIDDEN] +
+                                            [r"年以上", r"\byears? of\b", r"\d+\s*years? or more", r"at least \d+"]), re.I)
 # Fees, grants and money in any form; the record of the MBA carries no amount.
 MBA_MONEY = re.compile(r"円|yen|\bJPY\b|¥|\$|dollar|ドル|給付|選考料|受講料|入学料|入学金|tuition|grant", re.I)
 # The office's address and telephone number, and people's names or posts (the pages name instructors and alumni).
-MBA_CONTACT = re.compile(r"〒|丁目|銀座|ビル|\b0\d{1,4}-\d{1,4}-\d{3,4}\b|tel\b|さん|講師|教授|担当者|カウンセラー|"
+MBA_CONTACT = re.compile(r"〒|丁目|" + rules.dec("6YqA5bqn") + r"|ビル|\b0\d{1,4}-\d{1,4}-\d{3,4}\b|tel\b|さん|講師|教授|担当者|カウンセラー|"
                          r"counsel|\bmr\.|\bms\.|\bmrs\.|\bprof", re.I)
 # The spelling of the programme's name in the owner's own sentence, which the record does not use: the pages spell it
 # トリニティセントデイビッド. Kept in base64 so that this file does not carry it.
@@ -2060,19 +2064,19 @@ BREAKS += [
      _mba(lambda D: D["programme"].__setitem__("name", D["programme"]["name"].replace("セントデイビッド", "セント・デイヴィッド")))),
     (_BYFN["mba_facts"], "how a row was read no longer says the page could not be opened", _mba_row("run-by", lambda r: _set(r, "how", "検索の結果の要約で読んだ。"))),
     (_BYFN["mba_withheld"], "the work-experience requirement written in an MBA row",
-     _mba_row("degree", lambda r: _set(r, "fact", r["fact"] + "。出願には学士号と 3 年以上の" + "実務経験" + "が要る"))),
+     _mba_row("degree", lambda r: _set(r, "fact", r["fact"] + "。出願には 99 年以上の" + MBA_REQUIREMENT_HIDDEN[0] + "が要る"))),
     (_BYFN["mba_withheld"], "years of experience written in English in the MBA section",
-     sub("README.en.md", "The owner decided to withhold what it says.\n", "The owner decided to withhold what it says.\nIt asks for 6 years of work.\n")),
-    (_BYFN["mba_withheld"], "management experience written in the MBA plan",
-     _mba_plan(lambda e: e["items"].__setitem__(3, "実務の要件の中身は、" + "管理職" + "の経験です。"))),
-    (_BYFN["mba_withheld"], "a fee written in the MBA section", sub("README.md", "学費の額は書きません。\n", "学費の額は書きません。\n選考料は 36,000" + "円です。\n")),
-    (_BYFN["mba_withheld"], "the training grant written in the MBA data", _mba_row("language", lambda r: r["search_words"].append("最大128万" + "円給付"))),
+     sub("README.en.md", "The owner decided to withhold what it says.\n", "The owner decided to withhold what it says.\nIt asks for 99 years of work.\n")),
+    (_BYFN["mba_withheld"], "a second hidden requirement word written in the MBA plan",
+     _mba_plan(lambda e: e["items"].__setitem__(3, "実務の要件の中身は、" + MBA_REQUIREMENT_HIDDEN[1] + "です。"))),
+    (_BYFN["mba_withheld"], "a fee written in the MBA section", sub("README.md", "学費の額は書きません。\n", "学費の額は書きません。\n選考料は 99,999" + "円です。\n")),
+    (_BYFN["mba_withheld"], "the training grant written in the MBA data", _mba_row("language", lambda r: r["search_words"].append("最大999万" + "円給付"))),
     (_BYFN["mba_withheld"], "the MBA section no longer says the requirement is withheld", sub("README.md", "その中身は、運営者が伏せると決めました。\n", "")),
     (_BYFN["mba_withheld"], "the withheld requirement loses why it is withheld",
      _mba(lambda D: D["withheld"]["work-experience"].__setitem__("why", "書かない。"))),
-    (_BYFN["mba_contact"], "the office's telephone number in the MBA data", _mba_row("run-by", lambda r: r["search_words"].append("TEL 0120-94-8928"))),
+    (_BYFN["mba_contact"], "the office's telephone number in the MBA data", _mba_row("run-by", lambda r: r["search_words"].append("TEL 0120-00-0000"))),
     (_BYFN["mba_contact"], "the office's address in README.en.md",
-     sub("README.en.md", "The staff member's name is not written.\n", "The staff member's name is not written.\nThe office is in Ginza, 6-13-16 " + "銀座" + ".\n")),
+     sub("README.en.md", "The staff member's name is not written.\n", "The staff member's name is not written.\nThe office is on the 9th floor of the Example ビル, 1丁目.\n")),
     (_BYFN["mba_contact"], "a staff member named in the MBA plan",
      _mba_plan(lambda e: e["items"].__setitem__(2, "出願の実務の要件については、運営者がプログラムの担当の山田" + "さんとすでに話をしてあります。"))),
     (_BYFN["mba_contact"], "a field for a contact in the MBA data", _mba(lambda D: D.__setitem__("contact", "x"))),
