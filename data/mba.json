@@ -5,7 +5,8 @@
     "mba.athuman.com の頁は、2026-11-26 にこの作業の環境から開けませんでした。この環境の網の設定が、その接続を通しませんでした。回り込みはしていません。事実は検索の結果の要約で読んだものだけで、状態は search です。source は、検索の結果がその要約の出典として示した頁です。",
     "search の行は quotes を持ちません。search_words は、検索の結果の要約に出ていた語句で、頁の文としては確かめていません。",
     "figures は、行の文にある数です。検査は、文の数と figures が一致することを見ます。",
-    "withheld は、運営者が書かないと決めたものと、書かないものです。出願の実務の要件の中身は、運営者が伏せると決めました。運営者がプログラムの担当とすでに話をしてあることだけを書きます。担当の人の名は書きません。学費の額と、事務局の所在地と電話番号も書きません。"
+    "withheld は、運営者が書かないと決めたものと、書かないものです。出願の実務の要件の中身は、運営者が伏せると決めました。運営者がプログラムの担当とすでに話をしてあることだけを書きます。担当の人の名は書きません。学費の額と、事務局の所在地と電話番号も書きません。",
+    "2026-11-26 の後半に、検索の道具（Parallel Search）で、学習の時間・日程・単位の内訳・修士論文・出願の受け付け・選考・入学者受け入れ方針の行を足しました。どれも状態は search です。出願の実務の要件と額は、そこでも書いていません。"
   ],
   "programme": {
     "name": "ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム",
@@ -212,6 +213,126 @@
           10
         ]
       }
+    },
+    {
+      "id": "study-hours",
+      "fact": "講義の時間と平均の学習の時間を合わせた、修了までの学習の目安は、最低 2200 時間",
+      "fact_en": "The guide to study until completion, lecture hours and average study hours together, is a minimum of 2200 hours",
+      "source": "https://mba.athuman.com/program/schedule",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "講義時間と平均学習時間を合わせた修了までの学習の目安は最低2,200時間"
+      ],
+      "figures": {
+        "min_hours": 2200
+      }
+    },
+    {
+      "id": "phases",
+      "fact": "最初の 1 年 6 か月で科目を履修し、残りの 6 か月で修士論文を書く",
+      "fact_en": "The modules are taken in the first 1 year and 6 months, and the dissertation is written in the remaining 6 months",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "最初の1年6か月で科目を履修し、残りの6か月で修士論文を執筆します"
+      ],
+      "figures": {
+        "module_years": 1,
+        "module_months": 6,
+        "dissertation_months": 6
+      }
+    },
+    {
+      "id": "rhythm",
+      "fact": "講義は 3 週続けて開いたあと、1 週休む",
+      "fact_en": "Lectures run for 3 weeks in a row, followed by 1 week off",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "3週連続で開講した後に1週間休講する"
+      ],
+      "figures": {
+        "weeks_on": 3,
+        "weeks_off": 1
+      }
+    },
+    {
+      "id": "credit-breakdown",
+      "fact": "講義の科目は各 20 単位で、6 科目で 120 単位。修士論文は 60 単位",
+      "fact_en": "Each module is 20 credits, 6 modules 120 credits, and the dissertation 60 credits",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "講義科目6科目（1科目20単位×6科目＝120単位）と修士論文（60単位）"
+      ],
+      "figures": {
+        "module_credits": 20,
+        "modules": 6,
+        "module_total": 120,
+        "dissertation_credits": 60
+      }
+    },
+    {
+      "id": "dissertation-scope",
+      "fact": "修士論文は日本語で 19500 字以内。執筆に要する時間の目安は、英国の本校と同じ 600 時間",
+      "fact_en": "The dissertation is written in Japanese within 19500 characters, and the guide to the time needed to write it is 600 hours, as at the university in the UK",
+      "source": "https://mba.athuman.com/program/paper",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "日本語で19,500文字以内で執筆し",
+        "英国本校と同様の600時間を目安としています"
+      ],
+      "figures": {
+        "max_characters": 19500,
+        "writing_hours": 600
+      }
+    },
+    {
+      "id": "application-window",
+      "fact": "出願は随時受け付ける。書類の提出の締め切りは、原則として入学の月の前の月",
+      "fact_en": "Applications are accepted at any time. Documents are due, as a rule, in the month before the month of entry",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "出願は随時受け付け、書類提出の締切は原則として入学月の前月です"
+      ]
+    },
+    {
+      "id": "selection",
+      "fact": "国内で書類の審査と日本語のオンラインの面接を行い、英国の本校が最終の合否を決める",
+      "fact_en": "Documents are reviewed and an online interview is held in Japanese in Japan, and the university in the UK makes the final decision",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "国内での書類審査と日本語のオンライン面接の後、英国本校が最終的な合否を判定します"
+      ]
+    },
+    {
+      "id": "admission-policy",
+      "fact": "入学者受け入れ方針は、大学卒業レベルの学力と、学習に困難をきたさない日本語の運用能力を挙げる",
+      "fact_en": "The admission policy names academic ability at the level of a university graduate, and Japanese good enough not to hinder study",
+      "source": "https://mba.athuman.com/admission",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "大学卒業レベルの学力を有している。",
+        "学習に困難をきたさない日本語運用能力を有している。"
+      ]
     }
   ]
 }

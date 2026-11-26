@@ -4,7 +4,8 @@
     "requirement は、読んだ出典がその項目を要件に挙げているか（stated）、挙げていないか（not-stated）、要件が見つからないか（not-found）です。requirement_rows は、その根拠の data/phd-requirements.json の行です。",
     "evidence は null です。証拠の無い「持っている」は置きません。成績・点・GPA など、個人の学業の記録は書きません。",
     "学費は、運営者の貯えからまかないます。運営者の持つ額は、どの通貨でも書きません。estimate は、Claude が検索の結果の要約で読んだ額から計算した見積もりです。verification/check.py が計算し直します。",
-    "related は、応用オントロジーの力の項目に関わる事実です。論文の題は cpsbvbng26-dotcom の README.md の論文の表から、科目の名は data/course-plan.json から写しました。それが要件を満たすとはしません。"
+    "related は、応用オントロジーの力の項目に関わる事実です。論文の題は cpsbvbng26-dotcom の README.md の論文の表から、科目の名は data/course-plan.json から写しました。それが要件を満たすとはしません。",
+    "2026-11-26 に、英語の試験・推薦状・志望の文書の要件が検索の結果の要約で見つかり、その三つの項目を not-found から stated に直しました。項目の状態（まだ無い）は変えていません。"
   ],
   "statuses": {
     "met": [
@@ -42,11 +43,13 @@
       "status": "partly",
       "requirement": "stated",
       "requirement_rows": [
-        "undergraduate-degree"
+        "undergraduate-degree",
+        "bachelor-equivalent",
+        "international-equivalence"
       ],
       "evidence": null,
-      "note": "博士課程の出願者には、学部の学位が要る（検索の結果の要約による）",
-      "note_en": "PhD applicants require an undergraduate degree (from search results)"
+      "note": "博士課程の出願者には、学部の学位が要る。国外の学歴なら、米国の学士号と同等と認められる学位を、大学院の学修を始める前に持つ。多くは 4 年以上の課程（どれも検索の結果の要約による）",
+      "note_en": "PhD applicants require an undergraduate degree. With international credentials, a degree recognized as equivalent to a U.S. bachelor's degree is held before graduate study begins. Most such degrees are four or more years in length (all from search results)"
     },
     {
       "id": "ontology-competence",
@@ -55,11 +58,12 @@
       "status": "not-yet",
       "requirement": "stated",
       "requirement_rows": [
-        "competence"
+        "competence",
+        "writing-sample"
       ],
       "evidence": null,
-      "note": "博士課程の出願者は、応用オントロジーのどこかの領域での力を示す必要がある（検索の結果の要約による）。どの水準で足りるかは、読んだ出典に無い",
-      "note_en": "PhD applicants must show competence in some area of applied ontology (from search results). What level suffices is not in the sources read",
+      "note": "博士課程の出願者は、応用オントロジーのどこかの領域での力を示す必要がある。学科の出願の頁は、学術の文章の見本に加えてそれを示すと書く（どちらも検索の結果の要約による）。どの水準で足りるかは、読んだ出典に無い",
+      "note_en": "PhD applicants must show competence in some area of applied ontology. The department's application page asks for it in addition to an academic writing sample (both from search results). What level suffices is not in the sources read",
       "related_kinds": {
         "paper": [
           "公開した哲学の論文（査読前）",
@@ -110,11 +114,13 @@
       "requirement_rows": [
         "rate-winter-2026",
         "rate-spring-2027",
-        "comprehensive-fee-waiver"
+        "comprehensive-fee-waiver",
+        "online-program-list",
+        "rate-winter-2027"
       ],
       "evidence": null,
-      "note": "この課程だけの学費の額は、どの出典にも見つかっていない。Claude の見積もりは、この項目の estimate にある",
-      "note_en": "No tuition rate specific to this program was found in any source. Claude's estimate is in this item's estimate",
+      "note": "この課程だけの学費の額は、どの出典にも見つかっていない。この課程は、学費の頁のオンラインの課程の一覧にある。Claude の見積もりは、この項目の estimate にある",
+      "note_en": "No tuition rate specific to this program was found in any source. The program is on the list of online academic programs of the tuition pages. Claude's estimate is in this item's estimate",
       "estimate": {
         "by": "Claude",
         "currency": "USD",
@@ -167,47 +173,47 @@
         "master-transfer"
       ],
       "evidence": null,
-      "note": "読んだ出典は、博士課程の出願に学部の学位が要るとだけ書き、修士号を要件に挙げていない。修士の単位を移せるかどうかは見つかっていない",
-      "note_en": "The sources read say only that PhD applicants require an undergraduate degree, and do not list a master's degree as a requirement. Whether master's credit transfers was not found"
+      "note": "読んだ出典は、博士課程の出願に学部の学位が要るとだけ書き、修士号を要件に挙げていない。Graduate School の決まりは、他の大学の単位を最低の単位の 50% まで移せるとする。この課程が OMSCS の単位を受けるかは見つかっていない",
+      "note_en": "The sources read say only that PhD applicants require an undergraduate degree, and do not list a master's degree as a requirement. The Graduate School's rule lets up to 50 percent of the minimum credits be transfer credits. Whether this program accepts OMSCS credit was not found"
     },
     {
       "id": "english-test",
       "what": "英語の試験。まだ受けていない",
       "what_en": "An English test, not yet taken",
       "status": "not-yet",
-      "requirement": "not-found",
+      "requirement": "stated",
       "requirement_rows": [
         "english-test"
       ],
       "evidence": null,
-      "note": "この博士課程の英語の試験の要件は、見つかっていない",
-      "note_en": "The English-test requirement for this PhD was not found"
+      "note": "University at Buffalo の大学院の英語の最低点（TOEFL iBT 79、IELTS 6.5 など）が要る（検索の結果の要約による）。この課程だけの点は見つかっていない",
+      "note_en": "The University at Buffalo's graduate minimum English scores (TOEFL iBT 79, IELTS 6.5 and others) are required (from search results). No minimum specific to this program was found"
     },
     {
       "id": "recommendations",
       "what": "推薦状。この博士課程のためのものは、まだ無い",
       "what_en": "Letters of recommendation. None yet for this PhD",
       "status": "not-yet",
-      "requirement": "not-found",
+      "requirement": "stated",
       "requirement_rows": [
         "recommendations"
       ],
       "evidence": null,
-      "note": "この博士課程の推薦状の要件は、見つかっていない",
-      "note_en": "The requirement for letters of recommendation for this PhD was not found"
+      "note": "応用オントロジーの MS と PhD では、推薦状を 2 通出す（検索の結果の要約による）",
+      "note_en": "For the MS and PhD in Applied Ontology, two letters of recommendation are submitted (from search results)"
     },
     {
       "id": "statement",
       "what": "志望の文書（statement）。この博士課程のためのものは、まだ書いていない",
       "what_en": "A statement. Not yet written for this PhD",
       "status": "not-yet",
-      "requirement": "not-found",
+      "requirement": "stated",
       "requirement_rows": [
         "statement"
       ],
       "evidence": null,
-      "note": "この博士課程の志望の文書の要件は、見つかっていない",
-      "note_en": "The requirement for a statement for this PhD was not found"
+      "note": "応用オントロジーの課程では、志望の文書は 500 語以内（検索の結果の要約による）",
+      "note_en": "For the Applied Ontology programs, the statement of purpose is 500 words or fewer (from search results)"
     }
   ]
 }

@@ -5,7 +5,9 @@
     "search の行は quotes を持ちません。頁の文と突き合わせていないためです。search_words は、検索の結果の要約に出ていた英語の語句で、頁の文としては確かめていません。",
     "開いて読んだのは、第三者の頁の Daily Nous の記事だけです（pages_read）。その行の状態は third-party で、quotes には記事の本文の文を一字一句そのまま置きます（Master’s の綴りの引用符も記事のとおりです）。",
     "unconfirmed の行は、読んだ頁にも検索の結果にも無かった事柄で、source は null です。",
-    "問い合わせ先の人の名・メールアドレス・電話番号は写しません。"
+    "問い合わせ先の人の名・メールアドレス・電話番号は写しません。",
+    "read_on が 2026-11-26 の search の行は、2026-11-26 に検索の道具（Parallel Search）の検索の結果の要約で読んだ行です。その日も www.buffalo.edu は開けませんでした（HTTP 403）。2026-11-20 に unconfirmed だった行のうち、要約が見つかったものは、その日に search に直し、how に前の状態を書きました。",
+    "figures は、行の文にある数です。data/plan.json の日付は、verification/check.py がこの figures から計算し直します。"
   ],
   "programme": {
     "university": "University at Buffalo",
@@ -250,72 +252,384 @@
       "requirement": "この課程だけの学費の額",
       "requirement_en": "A tuition rate specific to this program",
       "source": null,
-      "read_on": "2026-11-20",
+      "read_on": "2026-11-26",
       "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "how": "2026-11-20 に読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。2026-11-26 の検索（Parallel Search）の結果の要約にも、この課程だけのものは無かった。"
     },
     {
       "id": "dissertation",
-      "requirement": "博士論文の要件",
-      "requirement_en": "The dissertation requirements",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "博士の学位の最低の要件は、各秋と春の学期の登録を続けること、最低の単位（多くは 72）と GPA 3.0、その半分以上を UB の科目で得ること、研究倫理（RCR）の研修、総合試験か研究計画などの審査、候補者の申請、博士論文を書いて口頭で審査を受けること",
+      "requirement_en": "The minimum requirements for a PhD are continuous registration each fall and spring, the minimum credits (typically 72) with a 3.0 GPA, at least half of them in UB courses, RCR training, a comprehensive or qualifying exam or a prospectus, application to candidacy, and a dissertation defended orally",
+      "source": "https://www.buffalo.edu/grad/succeed/current-students/policy-library.html?q=phd%20overview",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。Graduate School の一般の要件で、この課程だけの要件ではない。",
+      "search_words": [
+        "Maintain continuous registration each fall and spring semester until all requirements for the PhD degree have been completed.",
+        "Complete and orally defend an acceptable doctoral dissertation"
+      ]
     },
     {
       "id": "english-test",
-      "requirement": "この博士課程の英語の試験の要件",
-      "requirement_en": "The English-test requirement for this PhD",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "University at Buffalo の大学院の英語の最低点は、TOEFL iBT で 79（新しい 1 から 6 の尺度で 4）、IELTS で 6.5 など。点は、国際入学の部署が審査する時点から 2 年以内のもの。この課程だけの点は見つかっていない",
+      "requirement_en": "The University at Buffalo's graduate minimum English scores include TOEFL iBT 79 (4 on the new 1 to 6 scale) and IELTS 6.5. Scores must be dated within two years of review by International Admissions. No minimum specific to this program was found",
+      "source": "https://www.buffalo.edu/grad/explore/admissions/requirements.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。",
+      "search_words": [
+        "TOEFL IBT | 79",
+        "TOEFL IBT (New 1-6 Scale) | 4",
+        "IELTS and IELTS Indicator or IELTS One Skill Retake | 6.5",
+        "Scores must be dated within two years of the time the application is reviewed by International Admissions."
+      ],
+      "figures": {
+        "toefl_ibt": 79,
+        "toefl_new_scale": 4,
+        "ielts": "6.5",
+        "valid_years": 2
+      }
     },
     {
       "id": "recommendations",
-      "requirement": "この博士課程の推薦状の要件",
-      "requirement_en": "The requirement for letters of recommendation for this PhD",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "応用オントロジーの MS と PhD では、推薦状を 2 通出す。学業の力と大学院の学修の見込みを語れる教員に頼む。長く学校を離れている出願者は、上司か同僚の職業上の推薦でもよい",
+      "requirement_en": "For the MS and PhD in Applied Ontology, two letters of recommendation are submitted, from faculty members who can speak to academic abilities and potential for graduate study. Applicants out of school for an extended period may submit professional references from supervisors or colleagues",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。",
+      "search_words": [
+        "Submit two letters of recommendation from faculty members who can speak to your academic abilities and potential for graduate study."
+      ]
     },
     {
       "id": "statement",
-      "requirement": "この博士課程の志望の文書（statement）の要件",
-      "requirement_en": "The requirement for a statement for this PhD",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "応用オントロジーの課程では、志望の文書（statement of purpose）は 500 語以内で、学業の経歴、研究か職業の経験、将来の目標を書く",
+      "requirement_en": "For the Applied Ontology programs, the statement of purpose is 500 words or fewer, on academic background, research or professional experience and career goals",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。",
+      "search_words": [
+        "In 500 words or fewer, describe your academic background, research or professional experience and career goals."
+      ],
+      "figures": {
+        "max_words": 500
+      }
     },
     {
       "id": "transcripts",
-      "requirement": "この博士課程の成績証明書の要件",
-      "requirement_en": "The transcript requirement for this PhD",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "学部と大学院のすべての成績証明書の写し（スキャン）を上げる。審査には非公式のものでよい。必要なら英語の訳が要る",
+      "requirement_en": "Scanned copies of all undergraduate and graduate transcripts are uploaded. Unofficial transcripts are acceptable for review. English translations are required when applicable",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。",
+      "search_words": [
+        "Upload scanned copies of all undergraduate and graduate transcripts.",
+        "Unofficial transcripts are acceptable for review.",
+        "English translations are required when applicable."
+      ]
     },
     {
       "id": "master-transfer",
-      "requirement": "修士課程の単位を移せるかどうか",
-      "requirement_en": "Whether credit from a master's degree transfers",
-      "source": null,
-      "read_on": "2026-11-20",
-      "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "requirement": "Graduate School の決まりでは、博士課程の最低の単位の 50% までを、他の大学の単位で移せる（72 単位の課程なら 36 単位まで）。B 以上の大学院の科目に限る。課程はもっと厳しく決められる。この課程が OMSCS の単位を受けるかは見つかっていない",
+      "requirement_en": "Under the Graduate School's rule, up to 50 percent of a PhD program's minimum credits may be non-UB transfer credits (up to 36 for a 72-credit PhD), from graduate courses with a full B or better. Programs may set stricter limits. Whether this program accepts OMSCS credit was not found",
+      "source": "https://www.buffalo.edu/grad/succeed/current-students/policy-library.degree-requirements.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 には、この事柄は読んだどの出典にも無く、確かめていない（unconfirmed）の行だった。",
+      "search_words": [
+        "No more than 50% of the total minimum required credits for a PhD program may be comprised of non-UB transfer credits for that specific degree program.",
+        "students pursuing a 72-credit UB PhD degree may transfer up to 36 credits"
+      ],
+      "figures": {
+        "percent": 50,
+        "credits": 72,
+        "max_transfer": 36
+      }
     },
     {
       "id": "funding",
       "requirement": "奨学金や助成などの資金があるかどうか",
       "requirement_en": "Whether funding is available",
       "source": null,
-      "read_on": "2026-11-20",
+      "read_on": "2026-11-26",
       "status": "unconfirmed",
-      "how": "読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。"
+      "how": "2026-11-20 に読んだ Daily Nous の頁にも、University at Buffalo の頁の検索の結果にも、この事柄は無かった。2026-11-26 の検索（Parallel Search）の結果の要約にも、この課程だけのものは無かった。学科の出願の頁の要約は、大学院生に資金の選択肢があり、学位の段階で違うとだけ書いていた。"
+    },
+    {
+      "id": "deadlines-2027",
+      "requirement": "学科の出願の頁は、応用オントロジーの MS と PhD の締め切りを、春の入学が 1 月 5 日、秋の入学が 8 月 1 日と挙げている",
+      "requirement_en": "The department's application page gives the deadlines for the MS and PhD in Applied Ontology as January 5 for spring enrollment and August 1 for fall enrollment",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 2026-11-20 の deadlines の行と同じ日付である。",
+      "search_words": [
+        "January 5: MS and PhD in Applied Ontology programs, spring enrollment",
+        "August 1: MS and PhD in Applied Ontology programs, fall enrollment"
+      ],
+      "figures": {
+        "spring": {
+          "month": 1,
+          "day": 5
+        },
+        "fall": {
+          "month": 8,
+          "day": 1
+        }
+      }
+    },
+    {
+      "id": "writing-sample",
+      "requirement": "学術の文章の見本を出す（2500 から 3000 語）。応用オントロジーの MS と PhD では、それに加えて、応用オントロジーのどこかの領域での力を示す",
+      "requirement_en": "An academic writing sample of 2500 to 3000 words is submitted. For the MS and PhD in Applied Ontology, competence in some area of applied ontology is shown in addition",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Submit a 2,500 to 3,000 word sample demonstrating your ability to analyze sources and develop clear arguments.",
+        "For the MS and PhD in Applied Ontology, be able to additionally demonstrate competence in some area of applied ontology."
+      ],
+      "figures": {
+        "min_words": 2500,
+        "max_words": 3000
+      }
+    },
+    {
+      "id": "resume",
+      "requirement": "履歴書か CV を出す。研究の経験があれば入れる",
+      "requirement_en": "A resume or CV is submitted, with research experience when applicable",
+      "source": "https://www.buffalo.edu/cas/philosophy/apply.for-graduates.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Include research experience when applicable."
+      ]
+    },
+    {
+      "id": "bachelor-equivalent",
+      "requirement": "認定か政府の承認のある大学の学士号か、その同等が要る。多くは 4 年以上の課程で、3 年の学位は一部だけ認める",
+      "requirement_en": "A bachelor's degree or the equivalent from an accredited or government recognized college or university is expected. Most such degrees are four or more years in length, and only some three-year degrees are recognized",
+      "source": "https://www.buffalo.edu/grad/explore/admissions/requirements.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "A bachelor's degree, or the equivalent, from an accredited/government recognized college or university.",
+        "Most such degrees will be four or more years in length; UB recognizes some three-year degrees, but not all."
+      ],
+      "figures": {
+        "usual_years": 4,
+        "some_years": 3
+      }
+    },
+    {
+      "id": "international-equivalence",
+      "requirement": "国外の学歴の出願者は、大学院の学修を始める前に、米国の学士号と同等と認められる学位を持つ",
+      "requirement_en": "Applicants with international credentials must hold a university degree recognized as equivalent to a U.S. bachelor's degree before beginning graduate study",
+      "source": "https://www.buffalo.edu/grad/succeed/current-students/policy-library.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Applicants presenting international educational credentials must possess a university degree that is recognized as equivalent to a U.S. bachelor's degree prior to beginning graduate study."
+      ]
+    },
+    {
+      "id": "gpa-expected",
+      "requirement": "学士の科目で B（GPA 3.0）以上が期待される。国外の大学の成績は国際入学の部署が評価する",
+      "requirement_en": "A B grade (GPA of 3.0) or higher from the bachelor's courses is expected. Grades from non-U.S. universities are evaluated by the Office of International Admissions",
+      "source": "https://www.buffalo.edu/grad/explore/admissions/requirements.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 要件の文であって、運営者の記録ではない。",
+      "search_words": [
+        "A B-grade (GPA of 3.0) or higher from your bachelor's degree (or equivalent) courses."
+      ]
+    },
+    {
+      "id": "time-limit",
+      "requirement": "博士の学位は、その課程に正式に入学してから 7 年のうちに終える。延長は申し立てによる",
+      "requirement_en": "A doctoral degree must be completed within seven years from initial formal matriculation in the program. Extensions are petitioned",
+      "source": "https://www.buffalo.edu/grad/succeed/current-students/policy-library.degree-requirements.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Doctoral degrees must be completed within seven years from the student's initial formal matriculation in that doctoral program."
+      ],
+      "figures": {
+        "max_years": 7
+      }
+    },
+    {
+      "id": "typical-length",
+      "requirement": "学科の頁は、典型の長さを、全日制で約 5 年と書く。在籍の仕方で変わる",
+      "requirement_en": "The department's page gives the typical length as approximately 5 years for full-time students, varying with enrollment",
+      "source": "https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Typical program length: Approximately 5 years for full-time students, but varies based on enrollment"
+      ],
+      "figures": {
+        "typical_years": 5
+      }
+    },
+    {
+      "id": "research-progression",
+      "requirement": "学科の頁は、早い段階の qualifying paper、博士論文の前の研究計画の提出と審査（proposal and defense）、博士論文を挙げる",
+      "requirement_en": "The department's page lists a qualifying paper early on, a proposal submitted and defended before the dissertation, and the dissertation",
+      "source": "https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Before formally beginning the dissertation, you submit and defend a proposal outlining your research questions, methods and dissertation plan"
+      ]
+    },
+    {
+      "id": "prior-learning-limit",
+      "requirement": "オントロジー工学の経験のある学生は、筆記の試験と口頭の面接で prior learning credit を受けられる。合わせて 36 単位まで",
+      "requirement_en": "Students with significant experience in ontology engineering may receive prior learning credit through written examinations and oral interviews, up to 36 combined credits",
+      "source": "https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Up to 36 combined credits may be awarded through this process."
+      ],
+      "figures": {
+        "max_credits": 36
+      }
+    },
+    {
+      "id": "format-2026-11-26",
+      "requirement": "学科の頁の要約は、全部オンラインの学位で、全日制か定時制かを選べると書く。2026-11-20 の format の行にあったハイブリッドの形は、この日の学科の頁の要約には無い。Graduate School の課程の頁の要約には、ハイブリッドの形がある",
+      "requirement_en": "The summary of the department's page says the degree is fully online, full-time or part-time. The hybrid option of the format row of 2026-11-20 is not in that day's summary of the department's page. The Graduate School's program page still mentions a hybrid option",
+      "source": "https://www.buffalo.edu/cas/philosophy/graduate/phd-ontology.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 Graduate School の課程の頁（applied-ontology-phd.html）の 2026-11-26 の要約は、Available fully online or through a hybrid option と書いていた。",
+      "search_words": [
+        "A fully online degree with flexible full-time or part-time options",
+        "Format: Online"
+      ]
+    },
+    {
+      "id": "full-time-credits",
+      "requirement": "大学院生は 12 単位で全日制。TA・GA・RA の任用のある大学院生は 9 単位で全日制",
+      "requirement_en": "Twelve credits is full time for a graduate student; nine for a graduate student with a TA, GA or RA appointment",
+      "source": "https://buffalo.edu/grad/succeed/current-students/faq.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Twelve credits is considered full time; for graduate students with a TA, GA or RA appointment, nine credits is considered full time."
+      ],
+      "figures": {
+        "full_time": 12,
+        "appointed": 9
+      }
+    },
+    {
+      "id": "conferral-dates",
+      "requirement": "学位の授与の日は、2 月 1 日、6 月 1 日、8 月 31 日。2 月 1 日の授与には秋学期の登録が、6 月 1 日か 8 月 31 日の授与には春学期の登録が要る",
+      "requirement_en": "Degrees are conferred on February 1, June 1 and August 31. Fall registration is required for the February 1 conferral, and spring registration for June 1 or August 31",
+      "source": "https://catalogs.buffalo.edu/content.php?catoid=28&navoid=1408",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 catalogs.buffalo.edu も、この作業の環境から開けなかった。",
+      "search_words": [
+        "Fall term registration is required if a student intends to finish degree requirements in time for the Feb. 1 degree conferral.",
+        "Spring term registration is required if a student intends to finish degree requirements in time for the June 1 or Aug. 31 degree conferral."
+      ],
+      "figures": {
+        "dates": [
+          [
+            2,
+            1
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            8,
+            31
+          ]
+        ]
+      }
+    },
+    {
+      "id": "calendar-2027-28",
+      "requirement": "Registrar の 2027-28 の暦では、2027 年の秋学期の授業は 8 月 23 日に、2028 年の春学期の授業は 1 月 19 日に始まる。暦は変わることがある",
+      "requirement_en": "In the Registrar's 2027-28 calendar, classes of the Fall 2027 semester begin on August 23 and those of the Spring 2028 semester on January 19. Dates may change",
+      "source": "https://www.buffalo.edu/registrar/calendars/future-academic-calendars/2027-28-academic-calendar.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Aug. 23 |Monday |First day of classes",
+        "Jan. 19 |Wednesday |First day of classes",
+        "The University at Buffalo academic calendar is set by the Faculty Senate and University President, and dates may change at their discretion."
+      ],
+      "figures": {
+        "fall_2027": "2027-08-23",
+        "spring_2028": "2028-01-19"
+      }
+    },
+    {
+      "id": "calendar-spring-2027",
+      "requirement": "Registrar の暦では、2027 年の春学期の授業は 1 月 20 日に始まる",
+      "requirement_en": "In the Registrar's calendar, classes of the Spring 2027 semester begin on January 20",
+      "source": "https://www.buffalo.edu/registrar/calendars/current-academic-calendar.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "Jan. 20 | Wednesday | First day of classes"
+      ],
+      "figures": {
+        "spring_2027": "2027-01-20"
+      }
+    },
+    {
+      "id": "online-program-list",
+      "requirement": "学費の頁のオンラインの課程の一覧に Applied Ontology Online PhD があり、Non-Resident Online の額と Comprehensive Fee の免除の対象になる",
+      "requirement_en": "Applied Ontology Online PhD is on the list of online academic programs of the tuition pages, whose students are eligible for the Non-Resident Online rate and the Comprehensive Fee waiver",
+      "source": "https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/spring-tuition-online-academic-programs.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "College of Arts and Sciences | Philosophy | Arts & Sciences Doctoral | Applied Ontology Online PhD",
+        "Students enrolled in these academic programs are eligible for Non-Resident Online Tuition rates and are eligible for the Comprehensive Fee Waiver."
+      ]
+    },
+    {
+      "id": "rate-winter-2027",
+      "requirement": "Winter 2027、州外の学生、オンラインの課程の Graduate (includes Certificates) の額は、1 単位時間あたり授業料 565.00 ドルと費用 76.16 ドルで、合わせて 641.16 ドル",
+      "requirement_en": "Winter 2027, non-resident, online academic programs, Graduate (includes Certificates): tuition 565.00 dollars and fees 76.16 dollars, 641.16 dollars per credit hour in all",
+      "source": "https://www.buffalo.edu/studentaccounts/tuition-and-fees/tuition-for-online-academic-programs/winter-tuition-and-fees-for-online-academic-programs.non-resident-online.html",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "2026-11-26 に、検索の道具（Parallel Search）の検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。www.buffalo.edu の頁は、2026-11-26 にもこの作業の環境から開けなかった（自動の要求に HTTP 403 が返った）。そのため、頁の文とは突き合わせていない。 rate-winter-2026 の行と同じ URL である。2026-11-26 の要約では、頁の題が Winter 2027 になっていた。額は rate-winter-2026 の行と同じ。",
+      "search_words": [
+        "Graduate (includes Certificates) | $565.00 | $76.16 | $641.16",
+        "Winter 2027 Non-Resident Online Per Credit Hour"
+      ],
+      "amounts": {
+        "per": "credit-hour",
+        "tuition": "565.00",
+        "fees": "76.16",
+        "total": "641.16"
+      }
     }
   ]
 }

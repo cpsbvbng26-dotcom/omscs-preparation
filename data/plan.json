@@ -1,0 +1,941 @@
+{
+  "_": [
+    "計画の全体です。2026-11-26 に Claude が、決めたことと読んだ出典から組みました。これからの作業の一覧ではありません。段階の順と、段階ごとの入る条件、いまの状態、最も早い日を置きます。",
+    "段階の順は、運営者が決めたことによります（data/progress.json の決めたこと、cpsbvbng26-dotcom の README.md の文）。条件の行（refs）は、data/requirements.json・data/phd-requirements.json・data/mba.json の行か、この頁の facts の行です。条件の状態（state）は、data/assets.json と data/phd-assets.json の項目の状態の写しで、verification/check.py が突き合わせます。",
+    "最も早い日（earliest）は、出典の日付と数からの計算だけで出します。出せないものは date を null にし、why に理由を書きます。dated と durations の値は、verification/check.py が行の figures から計算し直します。",
+    "額は書きません。運営者の貯えの額も書きません。MBA の出願の実務の要件の中身も書きません。"
+  ],
+  "as_of": "2026-11-26",
+  "made_on": "2026-11-26",
+  "fact_statuses": {
+    "confirmed": [
+      "公式の頁で確かめた",
+      "confirmed on the official page"
+    ],
+    "owner-record": [
+      "運営者の記録から",
+      "from the owner's record"
+    ]
+  },
+  "step_states": {
+    "in-progress": [
+      "途中（在学中）",
+      "in progress (enrolled)"
+    ],
+    "preparing": [
+      "出願の前（準備の途中）",
+      "before applying (preparing)"
+    ],
+    "not-started": [
+      "まだ（入る前）",
+      "not yet (before entry)"
+    ]
+  },
+  "condition_states": {
+    "met": [
+      "持っている",
+      "has it"
+    ],
+    "partly": [
+      "途中",
+      "in progress"
+    ],
+    "not-yet": [
+      "まだ無い",
+      "not yet"
+    ],
+    "withheld": [
+      "書かない（運営者が伏せた）",
+      "not written (withheld by the owner)"
+    ],
+    "not-recorded": [
+      "記録に無い",
+      "not in the record"
+    ]
+  },
+  "link_kinds": {
+    "requirement": [
+      "要件",
+      "requirement"
+    ],
+    "decided": [
+      "決めた順",
+      "decided order"
+    ]
+  },
+  "facts": [
+    {
+      "id": "school-act-87",
+      "text": "学校教育法第 87 条は、大学の修業年限を 4 年とする",
+      "text_en": "Article 87 of the School Education Act sets the standard length of a university course at 4 years",
+      "source": "https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=87",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "quotes": [
+        "大学の修業年限は、四年とする。"
+      ],
+      "how": "e-Gov 法令検索の API で、学校教育法（法令番号 322AC0000000026）の第八十七条を 2026-11-26 に開いて読んだ。"
+    },
+    {
+      "id": "school-act-89",
+      "text": "学校教育法第 89 条は、3 年以上在学し、卒業の要件の単位を優秀な成績で修得したと大学が認める学生の卒業を、大学が認めうるとする",
+      "text_en": "Article 89 of the School Education Act lets a university allow a student who has been enrolled for 3 years or more, and whom it finds to have earned the credits for graduation with excellent results, to graduate",
+      "source": "https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=89",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "quotes": [
+        "大学は、文部科学大臣の定めるところにより、当該大学の学生（第八十七条第二項に規定する課程に在学するものを除く。）で当該大学に三年（同条第一項ただし書の規定により修業年限を四年を超えるものとする学部の学生にあつては、三年以上で文部科学大臣の定める期間）以上在学したもの（これに準ずるものとして文部科学大臣の定める者を含む。）が、卒業の要件として当該大学の定める単位を優秀な成績で修得したと認める場合には、同項の規定にかかわらず、その卒業を認めることができる。"
+      ],
+      "how": "e-Gov 法令検索の API で、学校教育法の第八十九条を 2026-11-26 に開いて読んだ。"
+    },
+    {
+      "id": "school-act-104",
+      "text": "学校教育法第 104 条は、大学が、大学を卒業した者に学士の学位を授与するとする",
+      "text_en": "Article 104 of the School Education Act has a university confer the degree of bachelor (gakushi) on its graduates",
+      "source": "https://laws.e-gov.go.jp/api/1/articles;lawId=322AC0000000026;article=104",
+      "read_on": "2026-11-26",
+      "status": "confirmed",
+      "quotes": [
+        "大学（専門職大学及び第百八条第二項の大学（以下この条において「短期大学」という。）を除く。以下この項及び第七項において同じ。）は、文部科学大臣の定めるところにより、大学を卒業した者に対し、学士の学位を授与するものとする。"
+      ],
+      "how": "e-Gov 法令検索の API で、学校教育法の第百四条を 2026-11-26 に開いて読んだ。"
+    },
+    {
+      "id": "order-declaration",
+      "text": "運営者の README は、OMSCS の修士号を、博士号の目標に向かう途上に置いている",
+      "text_en": "The owner's README places the OMSCS master's degree on the way to the doctoral aim",
+      "source": "cpsbvbng26-dotcom の README.md（2026-11-26 に、main のコミット 6af8a6c で読んだ）",
+      "source_en": "README.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c)",
+      "read_on": "2026-11-26",
+      "status": "owner-record",
+      "quotes": [
+        "学会と賞、そして Georgia Tech の OMSCS での修士号は、その一つ目に向かう途上にあります。"
+      ],
+      "how": "cpsbvbng26-dotcom の README.md の「先の見通し」の段落の文。一つ目は、University at Buffalo の博士課程に進んで博士号を取得することを指す。"
+    },
+    {
+      "id": "start-date-not-written",
+      "text": "運営者の README は、学部の在籍の開始日を書かないと決めている",
+      "text_en": "The owner's README has decided not to write the date the undergraduate enrolment began",
+      "source": "cpsbvbng26-dotcom の README.md（2026-11-26 に、main のコミット 6af8a6c で読んだ）",
+      "source_en": "README.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c)",
+      "read_on": "2026-11-26",
+      "status": "owner-record",
+      "quotes": [
+        "在籍の開始日も、ここには書きません。"
+      ],
+      "how": "cpsbvbng26-dotcom の README.md の、修了証の段落の文。"
+    },
+    {
+      "id": "governance-cap",
+      "text": "運営の決まりの週 20 時間の上限は、研究の系列の運営に使う時間の上限で、学業の時間の上限としては書かれていない",
+      "text_en": "The cap of 20 hours a week in the governance rules is a cap on the time spent operating the research repositories, and is not written as a cap on study time",
+      "source": "cpsbvbng26-dotcom の docs/governance.md（2026-11-26 に、main のコミット 6af8a6c で読んだ）",
+      "source_en": "docs/governance.md of cpsbvbng26-dotcom (read on 2026-11-26, main at commit 6af8a6c)",
+      "read_on": "2026-11-26",
+      "status": "owner-record",
+      "quotes": [
+        "運営に使う時間は、週に 20 時間までです。"
+      ],
+      "how": "cpsbvbng26-dotcom の docs/governance.md の「時間の上限」の節の文。同じ節は、新しい作業を頁・機能・検査・文書を新しく足すことと定めている。"
+    }
+  ],
+  "steps": [
+    {
+      "id": "bachelors",
+      "order": 1,
+      "name": "学士号",
+      "name_en": "Bachelor's degree",
+      "decision": {
+        "date": null,
+        "text": "この記録の前から在学中",
+        "text_en": "Enrolled since before this record"
+      },
+      "after": [],
+      "state": "in-progress",
+      "state_from": {
+        "file": "data/assets.json",
+        "id": "bachelors"
+      },
+      "conditions": [
+        {
+          "id": "graduation",
+          "text": "在籍する大学の卒業の要件（大学の名は書かない）",
+          "text_en": "The graduation requirements of the owner's university (not named)",
+          "refs": [
+            {
+              "file": "facts",
+              "id": "school-act-87"
+            },
+            {
+              "file": "facts",
+              "id": "school-act-104"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "bachelors"
+          }
+        }
+      ],
+      "earliest": {
+        "date": null,
+        "why": "学部の在籍の開始日も卒業の見込みの日も、この記録に無い。運営者の README は在籍の開始日を書かないと決めている（start-date-not-written）。修業年限は 4 年が定めで（school-act-87）、早期の卒業の定めもある（school-act-89）。開始日が無いので、日は出ない",
+        "why_en": "Neither the date the enrolment began nor an expected graduation date is in this record, and the owner's README has decided not to write the start date (start-date-not-written). The standard length is 4 years (school-act-87), and early graduation is provided for (school-act-89). Without a start date, no date follows",
+        "refs": [
+          {
+            "file": "facts",
+            "id": "start-date-not-written"
+          },
+          {
+            "file": "facts",
+            "id": "school-act-87"
+          },
+          {
+            "file": "facts",
+            "id": "school-act-89"
+          }
+        ]
+      }
+    },
+    {
+      "id": "omscs",
+      "order": 2,
+      "name": "修士号（Georgia Tech の OMSCS）",
+      "name_en": "Master's degree (Georgia Tech's OMSCS)",
+      "decision": {
+        "date": "2026-11-19",
+        "topic": null
+      },
+      "state": "preparing",
+      "after": [
+        {
+          "step": "bachelors",
+          "kind": "requirement",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "degree"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "in-progress-degree"
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "id": "omscs-degree",
+          "text": "入学の前に学士号",
+          "text_en": "A bachelor's degree before matriculation",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "degree"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "conferral-date"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "bachelors"
+          }
+        },
+        {
+          "id": "omscs-english",
+          "text": "TOEFL か IELTS の点",
+          "text_en": "TOEFL or IELTS scores",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "english-test"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "english-test-due"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "english-faq-toefl"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "english-test"
+          }
+        },
+        {
+          "id": "omscs-resume",
+          "text": "履歴書",
+          "text_en": "A résumé",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "resume"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "resume"
+          }
+        },
+        {
+          "id": "omscs-answers",
+          "text": "補足の質問への答え",
+          "text_en": "Answers to the supplemental questions",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "supplemental-questions"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "supplemental-answers"
+          }
+        },
+        {
+          "id": "omscs-recommenders",
+          "text": "推薦者 3 人",
+          "text_en": "Three recommenders",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "recommenders"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "academic-references"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "slots": true
+          }
+        },
+        {
+          "id": "omscs-preparation",
+          "text": "勧められた準備を出願までに",
+          "text_en": "The recommended preparation, by the time of application",
+          "refs": [
+            {
+              "file": "data/requirements.json",
+              "id": "preparation-by-application"
+            },
+            {
+              "file": "data/requirements.json",
+              "id": "after-deadline"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "upper-level-courses"
+          }
+        },
+        {
+          "id": "omscs-tuition",
+          "text": "学費（運営者の申告）",
+          "text_en": "Tuition (the owner's report)",
+          "refs": [
+            {
+              "file": "data/assets.json",
+              "id": "tuition"
+            }
+          ],
+          "state_from": {
+            "file": "data/assets.json",
+            "id": "tuition"
+          }
+        }
+      ],
+      "earliest": {
+        "date": null,
+        "why": "入学の前に学士号が要る（degree）。学士号の授与の日が決まっていないので、入学の日は出ない。在学中の学位でも出願はできる（in-progress-degree）",
+        "why_en": "A bachelor's degree is required before matriculation (degree). The date it is conferred is not determined, so no matriculation date follows. An application can be made while the degree is in progress (in-progress-degree)",
+        "refs": [
+          {
+            "file": "data/requirements.json",
+            "id": "degree"
+          },
+          {
+            "file": "data/requirements.json",
+            "id": "in-progress-degree"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phd",
+      "order": 3,
+      "name": "博士号（University at Buffalo、応用オントロジー）",
+      "name_en": "Doctorate (University at Buffalo, Applied Ontology)",
+      "decision": {
+        "date": "2026-11-20",
+        "topic": "doctorate"
+      },
+      "state": "not-started",
+      "after": [
+        {
+          "step": "bachelors",
+          "kind": "requirement",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "undergraduate-degree"
+            },
+            {
+              "file": "data/phd-requirements.json",
+              "id": "international-equivalence"
+            }
+          ]
+        },
+        {
+          "step": "omscs",
+          "kind": "decided",
+          "refs": [
+            {
+              "file": "facts",
+              "id": "order-declaration"
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "id": "phd-degree",
+          "text": "学士号（米国の学士号と同等と認められるもの）",
+          "text_en": "A bachelor's degree (recognized as equivalent to a U.S. bachelor's)",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "undergraduate-degree"
+            },
+            {
+              "file": "data/phd-requirements.json",
+              "id": "bachelor-equivalent"
+            },
+            {
+              "file": "data/phd-requirements.json",
+              "id": "international-equivalence"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "bachelors"
+          }
+        },
+        {
+          "id": "phd-competence",
+          "text": "応用オントロジーの力と文章の見本",
+          "text_en": "Competence in applied ontology, and a writing sample",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "competence"
+            },
+            {
+              "file": "data/phd-requirements.json",
+              "id": "writing-sample"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "ontology-competence"
+          }
+        },
+        {
+          "id": "phd-letters",
+          "text": "推薦状 2 通",
+          "text_en": "Two letters of recommendation",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "recommendations"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "recommendations"
+          }
+        },
+        {
+          "id": "phd-statement",
+          "text": "志望の文書",
+          "text_en": "A statement of purpose",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "statement"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "statement"
+          }
+        },
+        {
+          "id": "phd-english",
+          "text": "英語の試験の点",
+          "text_en": "English test scores",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "english-test"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "english-test"
+          }
+        },
+        {
+          "id": "phd-tuition",
+          "text": "学費の分の貯え",
+          "text_en": "Tuition saved",
+          "refs": [
+            {
+              "file": "data/phd-requirements.json",
+              "id": "online-program-list"
+            },
+            {
+              "file": "data/phd-requirements.json",
+              "id": "rate-winter-2027"
+            }
+          ],
+          "state_from": {
+            "file": "data/phd-assets.json",
+            "id": "tuition"
+          }
+        }
+      ],
+      "earliest": {
+        "date": null,
+        "why": "学費の分が貯まってから進むと決めている（博士課程の決めたこと）。貯まる日は記録に無く、額も書かないと決めている。決めた順では OMSCS の修士号の後で（order-declaration）、その日も決まっていない",
+        "why_en": "The decision is to enter once the tuition has been saved (the doctoral decision). When that happens is not in the record, and no amount is written. In the decided order it follows the OMSCS master's degree (order-declaration), whose date is not determined either",
+        "refs": [
+          {
+            "file": "facts",
+            "id": "order-declaration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mba",
+      "order": 4,
+      "name": "MBA（UWTSD MBAプログラム）",
+      "name_en": "MBA (the UWTSD MBA programme)",
+      "decision": {
+        "date": "2026-11-26",
+        "topic": "mba"
+      },
+      "state": "not-started",
+      "after": [
+        {
+          "step": "phd",
+          "kind": "decided",
+          "refs": [
+            {
+              "file": "progress",
+              "id": "mba"
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "id": "mba-experience",
+          "text": "出願の実務の要件（中身は書かない）",
+          "text_en": "The work-experience requirement for admission (what it says is not written)",
+          "refs": [
+            {
+              "file": "data/mba.json",
+              "id": "withheld:work-experience"
+            }
+          ],
+          "state": "withheld"
+        },
+        {
+          "id": "mba-policy",
+          "text": "入学者受け入れ方針の学力と日本語",
+          "text_en": "The academic ability and Japanese of the admission policy",
+          "refs": [
+            {
+              "file": "data/mba.json",
+              "id": "admission-policy"
+            },
+            {
+              "file": "data/mba.json",
+              "id": "language"
+            }
+          ],
+          "state": "not-recorded"
+        }
+      ],
+      "earliest": {
+        "date": null,
+        "why": "博士号を得たあとに取ると決めている（MBA の計画）。博士号の授与の日が決まっていないので、日は出ない。入学は 4 月か 10 月（intakes）",
+        "why_en": "The decision is to take it after the doctorate (the MBA plan). The date the doctorate is conferred is not determined, so no date follows. Entry is in April or October (intakes)",
+        "refs": [
+          {
+            "file": "data/mba.json",
+            "id": "intakes"
+          }
+        ]
+      }
+    }
+  ],
+  "dated": [
+    {
+      "id": "omscs-next-fall",
+      "step": "omscs",
+      "label": "秋の入学の出願の締め切りのうち、2026-11-26 のあとで最も早いもの",
+      "label_en": "The earliest deadline for Fall matriculation after 2026-11-26",
+      "rule": "next-annual",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "deadline-fall"
+      },
+      "date": "2027-03-01"
+    },
+    {
+      "id": "omscs-next-fall-decisions",
+      "step": "omscs",
+      "label": "その結果の出る時期（締め切りの 10 から 12 週あと）",
+      "label_en": "When those decisions are released (10 to 12 weeks after the deadline)",
+      "rule": "add-weeks",
+      "base": "omscs-next-fall",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "decision-release"
+      },
+      "date": "2027-05-10",
+      "date_to": "2027-05-24"
+    },
+    {
+      "id": "omscs-next-spring",
+      "step": "omscs",
+      "label": "春の入学の出願の締め切りのうち、2026-11-26 のあとで最も早いもの",
+      "label_en": "The earliest deadline for Spring matriculation after 2026-11-26",
+      "rule": "next-annual",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "deadline-spring"
+      },
+      "date": "2027-08-15"
+    },
+    {
+      "id": "omscs-next-spring-decisions",
+      "step": "omscs",
+      "label": "その結果の出る時期（締め切りの 10 から 12 週あと）",
+      "label_en": "When those decisions are released (10 to 12 weeks after the deadline)",
+      "rule": "add-weeks",
+      "base": "omscs-next-spring",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "decision-release"
+      },
+      "date": "2027-10-24",
+      "date_to": "2027-11-07"
+    },
+    {
+      "id": "ub-next-spring",
+      "step": "phd",
+      "label": "春の入学の締め切りのうち、2026-11-26 のあとで最も早いもの",
+      "label_en": "The earliest deadline for spring enrollment after 2026-11-26",
+      "rule": "next-annual",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "deadlines-2027"
+      },
+      "key": "spring",
+      "date": "2027-01-05"
+    },
+    {
+      "id": "ub-spring-2027-classes",
+      "step": "phd",
+      "label": "その学期（Spring 2027）の授業の始まる日",
+      "label_en": "The first day of classes of that semester (Spring 2027)",
+      "rule": "row-date",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "calendar-spring-2027"
+      },
+      "key": "spring_2027",
+      "date": "2027-01-20"
+    },
+    {
+      "id": "ub-next-fall",
+      "step": "phd",
+      "label": "秋の入学の締め切りのうち、2026-11-26 のあとで最も早いもの",
+      "label_en": "The earliest deadline for fall enrollment after 2026-11-26",
+      "rule": "next-annual",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "deadlines-2027"
+      },
+      "key": "fall",
+      "date": "2027-08-01"
+    },
+    {
+      "id": "ub-fall-2027-classes",
+      "step": "phd",
+      "label": "その学期（Fall 2027）の授業の始まる日",
+      "label_en": "The first day of classes of that semester (Fall 2027)",
+      "rule": "row-date",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "calendar-2027-28"
+      },
+      "key": "fall_2027",
+      "date": "2027-08-23"
+    }
+  ],
+  "durations": [
+    {
+      "id": "omscs-min-semesters",
+      "step": "omscs",
+      "label": "10 科目を、既定の上限（秋と春に 2 つ、夏に 1 つ）で取ったときの最短の学期の数（夏を含む）",
+      "label_en": "The fewest semesters for 10 courses at the default limits (two in Fall and Spring, one in Summer), Summers included",
+      "rule": "min-semesters",
+      "rows": [
+        {
+          "file": "data/requirements.json",
+          "id": "credit-hours"
+        },
+        {
+          "file": "data/requirements.json",
+          "id": "course-load"
+        }
+      ],
+      "summer": true,
+      "value": 6,
+      "unit": [
+        "学期",
+        "semesters"
+      ]
+    },
+    {
+      "id": "omscs-min-semesters-no-summer",
+      "step": "omscs",
+      "label": "同じく、夏の学期に取らないとき",
+      "label_en": "The same, taking nothing in Summer",
+      "rule": "min-semesters",
+      "rows": [
+        {
+          "file": "data/requirements.json",
+          "id": "credit-hours"
+        },
+        {
+          "file": "data/requirements.json",
+          "id": "course-load"
+        }
+      ],
+      "summer": false,
+      "value": 5,
+      "unit": [
+        "学期",
+        "semesters"
+      ]
+    },
+    {
+      "id": "omscs-typical",
+      "step": "omscs",
+      "label": "修了までの典型の期間",
+      "label_en": "The typical time to complete",
+      "rule": "figure",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "typical-time"
+      },
+      "key": "typical_years",
+      "value": 3,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "omscs-credit-valid",
+      "step": "omscs",
+      "label": "得た単位が有効な期間（得た学期から）",
+      "label_en": "How long earned credits are good (from the semester earned)",
+      "rule": "figure",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "typical-time"
+      },
+      "key": "credit_valid_years",
+      "value": 6,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "omscs-hours-one",
+      "step": "omscs",
+      "label": "3 単位時間の科目 1 つの、週あたりの作業の目安（3 時間 × 3 単位時間。Claude の計算）",
+      "label_en": "Weekly work for one course of 3 credit hours (3 hours × 3 credit hours; Claude's computation)",
+      "rule": "product",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "workload"
+      },
+      "keys": [
+        "hours_per_credit_hour",
+        "credit_hours_per_course"
+      ],
+      "value": 9,
+      "unit": [
+        "時間",
+        "hours"
+      ]
+    },
+    {
+      "id": "omscs-hours-two",
+      "step": "omscs",
+      "label": "3 単位時間の科目 2 つの、週あたりの作業の目安",
+      "label_en": "Weekly work for two courses of 3 credit hours",
+      "rule": "figure",
+      "row": {
+        "file": "data/requirements.json",
+        "id": "workload"
+      },
+      "key": "two_courses_hours",
+      "value": 18,
+      "unit": [
+        "時間",
+        "hours"
+      ]
+    },
+    {
+      "id": "phd-credits",
+      "step": "phd",
+      "label": "修了に要る単位時間",
+      "label_en": "Credit hours required",
+      "rule": "figure",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "credit-hours"
+      },
+      "key": "credit_hours",
+      "value": 72,
+      "unit": [
+        "単位時間",
+        "credit hours"
+      ]
+    },
+    {
+      "id": "phd-typical",
+      "step": "phd",
+      "label": "全日制での典型の長さ",
+      "label_en": "The typical length, full-time",
+      "rule": "figure",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "typical-length"
+      },
+      "key": "typical_years",
+      "value": 5,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "phd-limit",
+      "step": "phd",
+      "label": "正式な入学から修了までの上限",
+      "label_en": "The limit from formal matriculation to completion",
+      "rule": "figure",
+      "row": {
+        "file": "data/phd-requirements.json",
+        "id": "time-limit"
+      },
+      "key": "max_years",
+      "value": 7,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "mba-standard",
+      "step": "mba",
+      "label": "標準の修了の年限",
+      "label_en": "The standard length",
+      "rule": "figure",
+      "row": {
+        "file": "data/mba.json",
+        "id": "standard-length"
+      },
+      "key": "standard_years",
+      "value": 2,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "mba-max",
+      "step": "mba",
+      "label": "在籍できる最長の期間",
+      "label_en": "The longest period of enrolment",
+      "rule": "figure",
+      "row": {
+        "file": "data/mba.json",
+        "id": "max-enrolment"
+      },
+      "key": "max_years",
+      "value": 6,
+      "unit": [
+        "年",
+        "years"
+      ]
+    },
+    {
+      "id": "mba-hours",
+      "step": "mba",
+      "label": "修了までの学習の目安（講義と学習を合わせた最低）",
+      "label_en": "The guide to study until completion (lectures and study together, at the minimum)",
+      "rule": "figure",
+      "row": {
+        "file": "data/mba.json",
+        "id": "study-hours"
+      },
+      "key": "min_hours",
+      "value": 2200,
+      "unit": [
+        "時間",
+        "hours"
+      ]
+    },
+    {
+      "id": "mba-hours-per-week",
+      "step": "mba",
+      "label": "その時間を標準の 2 年で割った週あたりの時間（1 年を 52 週とした。Claude の計算）",
+      "label_en": "Those hours spread over the standard 2 years, per week (a year taken as 52 weeks; Claude's computation)",
+      "rule": "per-week",
+      "rows": [
+        {
+          "file": "data/mba.json",
+          "id": "study-hours"
+        },
+        {
+          "file": "data/mba.json",
+          "id": "standard-length"
+        }
+      ],
+      "weeks_per_year": 52,
+      "value": "21.2",
+      "unit": [
+        "時間",
+        "hours"
+      ]
+    }
+  ]
+}
