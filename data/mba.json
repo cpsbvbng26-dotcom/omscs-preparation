@@ -1,0 +1,217 @@
+{
+  "_": [
+    "ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラムの事実を、行ごとに置きます。2026-11-26 に運営者が決めた MBA の計画（data/progress.json の topic が mba の行）の、プログラムの側の事実です。",
+    "各行は出典の URL、読んだ日、状態、どう確かめたかを持ちます。状態は data/requirements.json と同じ四つです。",
+    "mba.athuman.com の頁は、2026-11-26 にこの作業の環境から開けませんでした。この環境の網の設定が、その接続を通しませんでした。回り込みはしていません。事実は検索の結果の要約で読んだものだけで、状態は search です。source は、検索の結果がその要約の出典として示した頁です。",
+    "search の行は quotes を持ちません。search_words は、検索の結果の要約に出ていた語句で、頁の文としては確かめていません。",
+    "figures は、行の文にある数です。検査は、文の数と figures が一致することを見ます。",
+    "withheld は、運営者が書かないと決めたものと、書かないものです。出願の実務の要件の中身は、運営者が伏せると決めました。運営者がプログラムの担当とすでに話をしてあることだけを書きます。担当の人の名は書きません。学費の額と、事務局の所在地と電話番号も書きません。"
+  ],
+  "programme": {
+    "name": "ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム",
+    "name_en": "University of Wales Trinity Saint David (UWTSD) MBA programme",
+    "run_by": "ヒューマンアカデミービジネススクール（ヒューマンアカデミー株式会社）",
+    "run_by_en": "Human Academy Business School (Human Academy Co., Ltd.)",
+    "degree": "MBA (Master of Business Administration)",
+    "awarded_by": "University of Wales Trinity Saint David (UWTSD)"
+  },
+  "statuses": {
+    "confirmed": [
+      "公式の頁で確かめた",
+      "confirmed on the official page"
+    ],
+    "search": [
+      "公式の頁の検索結果から",
+      "from search results of the official page"
+    ],
+    "third-party": [
+      "第三者の頁から",
+      "from a third-party page"
+    ],
+    "unconfirmed": [
+      "確かめていない",
+      "not confirmed"
+    ]
+  },
+  "pages_read": {},
+  "not_opened": {
+    "host": "mba.athuman.com",
+    "note": "2026-11-26 に、この作業の環境の網の設定が、mba.athuman.com への接続を通さなかった。回り込みはしていない。",
+    "note_en": "On 2026-11-26 the network setting of this environment did not let a connection to mba.athuman.com through. Nothing was bypassed."
+  },
+  "withheld": {
+    "work-experience": {
+      "what": "出願の実務の要件",
+      "what_en": "The work-experience requirement for admission",
+      "why": "中身は、運営者が伏せると決めた。運営者は、この要件についてプログラムの担当とすでに話をしてある。担当の人の名は書かない。",
+      "why_en": "The owner decided to withhold what it says. The owner has already spoken with the programme's staff about it. The staff member's name is not written."
+    },
+    "fees": {
+      "what": "学費の額",
+      "what_en": "The amount of the fees",
+      "why": "MBA の記録には、額を書かない。",
+      "why_en": "No amount is written in the MBA record."
+    },
+    "office": {
+      "what": "事務局の所在地と電話番号",
+      "what_en": "The address and telephone number of the programme office",
+      "why": "頁に載っているが、写さない。",
+      "why_en": "They are on the pages, and are not copied."
+    }
+  },
+  "rows": [
+    {
+      "id": "programme-name",
+      "fact": "プログラムの名は、ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム",
+      "fact_en": "The programme's name is ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム, the University of Wales Trinity Saint David (UWTSD) MBA programme",
+      "source": "https://mba.athuman.com/admission/application",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "プログラム名 ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム"
+      ]
+    },
+    {
+      "id": "page-title",
+      "fact": "頁の題は「英国国立ウェールズ大学トリニティセントデイビッド　MBAプログラム」を含む",
+      "fact_en": "The page titles include 「英国国立ウェールズ大学トリニティセントデイビッド　MBAプログラム」",
+      "source": "https://mba.athuman.com/admission",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "入学案内｜英国国立ウェールズ大学トリニティセントデイビッド　MBAプログラム"
+      ]
+    },
+    {
+      "id": "run-by",
+      "fact": "ヒューマンアカデミー株式会社が、ヒューマンアカデミービジネススクール（HABS）として、日本の国内で開講し運営している",
+      "fact_en": "Human Academy Co., Ltd. offers and runs it in Japan as Human Academy Business School (HABS)",
+      "source": "https://mba.athuman.com/",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "ヒューマンアカデミー株式会社（HABS：ヒューマンアカデミービジネススクール）が日本国内にて開講・運営しているMBAプログラム"
+      ]
+    },
+    {
+      "id": "degree",
+      "fact": "授与される学位は、MBA（Master of Business Administration）",
+      "fact_en": "The degree awarded is the MBA (Master of Business Administration)",
+      "source": "https://mba.athuman.com/admission/application",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "授与学位 MBA / Master of Business Administration"
+      ]
+    },
+    {
+      "id": "awarded-by",
+      "fact": "MBA の学位は、UWTSD が授与する",
+      "fact_en": "The MBA degree is awarded by UWTSD",
+      "source": "https://mba.athuman.com/",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "UWTSDよりMBA（Master of Business Administration）の学位が授与される仕組みが成立しています"
+      ]
+    },
+    {
+      "id": "language",
+      "fact": "講義は、すべて日本語で行う",
+      "fact_en": "All lectures are given in Japanese",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "講義はすべて日本語で行われ"
+      ]
+    },
+    {
+      "id": "online-weekends",
+      "fact": "講義は、土曜日を中心とした週末に、オンラインで行う。平均で月に 3 日",
+      "fact_en": "Lectures are held online at weekends, mainly on Saturdays, on 3 days a month on average",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "講義は土曜日中心の週末にオンラインで行い、平均で月3日です"
+      ],
+      "figures": {
+        "days_per_month": 3
+      }
+    },
+    {
+      "id": "standard-length",
+      "fact": "標準の修了の年限は 2 年",
+      "fact_en": "The standard length of the programme is 2 years",
+      "source": "https://mba.athuman.com/admission",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "標準修了年限：2年"
+      ],
+      "figures": {
+        "standard_years": 2
+      }
+    },
+    {
+      "id": "max-enrolment",
+      "fact": "在籍できる期間は、最長で 6 年",
+      "fact_en": "The maximum period of enrolment is 6 years",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "最長在籍期間は6年です"
+      ],
+      "figures": {
+        "max_years": 6
+      }
+    },
+    {
+      "id": "completion",
+      "fact": "修了には、必修の 4 科目と選択の 2 科目を履修し、修士論文を書いて、合わせて 180 単位を得ることが要る",
+      "fact_en": "Completion requires 4 core modules and 2 optional modules, a master's dissertation, and 180 credits in all",
+      "source": "https://mba.athuman.com/admission/faq",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "必修4科目（戦略、ファイナンス、組織・HR、マーケティング）と選択2科目",
+        "180単位です"
+      ],
+      "figures": {
+        "core_modules": 4,
+        "optional_modules": 2,
+        "credits": 180
+      }
+    },
+    {
+      "id": "intakes",
+      "fact": "入学の時期は、4 月と 10 月",
+      "fact_en": "Intakes are in April and October",
+      "source": "https://mba.athuman.com/admission",
+      "read_on": "2026-11-26",
+      "status": "search",
+      "how": "検索の結果の要約で読んだ。出典の URL は、検索の結果がその要約の出典として示した頁である。mba.athuman.com の頁は、この作業の環境から開けなかった（この環境の網の設定が、その接続を通さなかった）。そのため、頁の文とは突き合わせていない。",
+      "search_words": [
+        "入学時期は4月と10月の二期制度を設けており"
+      ],
+      "figures": {
+        "intake_months": [
+          4,
+          10
+        ]
+      }
+    }
+  ]
+}
