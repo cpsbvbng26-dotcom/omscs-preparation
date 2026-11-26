@@ -2,7 +2,8 @@
   "_": [
     "進み具合の記録です。日付の順に足します。決めたこと（decision）と、したこと（started・finished・other）だけを書きます。これからの作業の一覧は置きません。",
     "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。",
-    "topic が doctorate の行は、2026-11-20 に決めた博士課程の目標です。推薦の枠の検査は、この行を見ません。かわりに博士課程の検査が、この行に推薦の枠のことも、人のことも、額も書かれていないことを見ます。"
+    "topic が doctorate の行は、2026-11-20 に決めた博士課程の目標です。推薦の枠の検査は、この行を見ません。かわりに博士課程の検査が、この行に推薦の枠のことも、人のことも、額も書かれていないことを見ます。",
+    "topic が mba の行は、2026-11-26 に決めた MBA の計画です。MBA の検査が、この行に数も、出願の実務の要件の中身も、人の名も書かれていないことを見ます。"
   ],
   "entries": [
     {
@@ -87,6 +88,25 @@
         "For the doctorate, the summaries of search results were searched, and no sentence of the University at Buffalo on what strengthens an application was found."
       ],
       "source": "利用者が 2026-11-21 に求め、Claude が同じ日に公式の頁を読んで記録した。"
+    },
+    {
+      "date": "2026-11-26",
+      "kind": "decision",
+      "done": true,
+      "topic": "mba",
+      "items": [
+        "博士号を得たあと、ヒューマンアカデミービジネススクールが運営するウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラムで、MBA を取ることを計画します。",
+        "MBA は、研究を続けながら、同時に並行して取ります。",
+        "出願の実務の要件については、運営者がプログラムの担当とすでに話をしてあります。",
+        "実務の要件の中身は、この記録に書きません。"
+      ],
+      "items_en": [
+        "After the doctorate, the plan is to take an MBA through the University of Wales Trinity Saint David (UWTSD) MBA programme run by Human Academy Business School.",
+        "The MBA is taken in parallel, while research continues.",
+        "The owner has already spoken with the programme's staff about the work-experience requirement for admission.",
+        "What that requirement says is not written in this record."
+      ],
+      "source": "運営者が 2026-11-26 に決めた。プログラムの名は、頁の綴りで書いた。プログラムの事実は data/mba.json にある。出願の実務の要件の中身、プログラムの担当の人の名、学費の額は書かない。"
     }
   ]
 }

@@ -5,6 +5,7 @@
 A dated record of the preparation for graduate study.
 It records the preparation for an application to Georgia Tech's OMSCS (Online Master of Science in Computer Science).
 From 2026-11-20 it also records the preparation for the University at Buffalo's PhD in Applied Ontology.
+From 2026-11-26 it also records the plan for an MBA, to be taken after the doctorate, in parallel, while research continues.
 The repository keeps the name of the first aim, OMSCS.
 It records what was decided and what was done.
 It holds no list of tasks to come.
@@ -262,7 +263,7 @@ The OMSCS master's degree of the sections above is a separate, earlier aim.
 - No amount is written in this record.
 
 This was decided by the owner on 2026-11-20.
-The original text of the decision is the last entry of [data/progress.json](./data/progress.json).
+The original text of the decision is the entry of [data/progress.json](./data/progress.json) whose `topic` is `doctorate`.
 No amount is written, in any currency.
 
 ### Sources read, and sources that could not be opened
@@ -381,12 +382,73 @@ The amount of the owner's savings is not written.
 | The tuition per credit hour alone for 72 credit hours | 72 × 565.00 | 40680.00 dollars |
 | The full-time rate per semester for 6 semesters (the number of semesters is Claude's assumption) | 6 × 7788.92 | 46733.52 dollars |
 
+## MBA plan (University of Wales Trinity Saint David, Human Academy Business School)
+
+This section is the record of the MBA plan.
+The programme aimed at is the University of Wales Trinity Saint David (UWTSD) MBA programme.
+Human Academy Co., Ltd. runs it in Japan as Human Academy Business School (HABS).
+The degree is awarded by the University of Wales Trinity Saint David (UWTSD).
+The plan is to take it after the doctorate, in parallel, while research continues.
+
+### The MBA plan decided on 2026-11-26
+
+- After the doctorate, the plan is to take an MBA through the University of Wales Trinity Saint David (UWTSD) MBA programme run by Human Academy Business School.
+- The MBA is taken in parallel, while research continues.
+- The owner has already spoken with the programme's staff about the work-experience requirement for admission.
+- What that requirement says is not written in this record.
+
+This was decided by the owner on 2026-11-26.
+The original text of the decision is the entry of [data/progress.json](./data/progress.json) whose `topic` is `mba`.
+The Japanese name of the programme follows the spelling on its pages.
+
+### Sources of the MBA record
+
+The pages of mba.athuman.com could not be opened from the environment of this record.
+The network setting of this environment did not let the connection through.
+Nothing was done to get around the setting.
+The facts from the programme's pages were therefore read only in search-result summaries.
+Those rows have the status "from search results of the official page".
+Each source URL is the page that the search result named as the source of its summary.
+The summaries were not compared with the text of the pages.
+The statuses mean the same as in the table of the section on application requirements.
+
+### Facts of the MBA programme
+
+[data/mba.json](./data/mba.json) holds one row per fact, each with its source URL, the date it was read, a status and how it was read.
+The table of MBA facts has 11 rows.
+Of the MBA rows, 11 come from search results of the official pages.
+Of the MBA rows, 0 were confirmed on an opened official page.
+
+| Row | Fact | Status | Source |
+| --- | --- | --- | --- |
+| programme-name | The programme's name is ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム, the University of Wales Trinity Saint David (UWTSD) MBA programme | from search results of the official page | https://mba.athuman.com/admission/application |
+| page-title | The page titles include 「英国国立ウェールズ大学トリニティセントデイビッド　MBAプログラム」 | from search results of the official page | https://mba.athuman.com/admission |
+| run-by | Human Academy Co., Ltd. offers and runs it in Japan as Human Academy Business School (HABS) | from search results of the official page | https://mba.athuman.com/ |
+| degree | The degree awarded is the MBA (Master of Business Administration) | from search results of the official page | https://mba.athuman.com/admission/application |
+| awarded-by | The MBA degree is awarded by UWTSD | from search results of the official page | https://mba.athuman.com/ |
+| language | All lectures are given in Japanese | from search results of the official page | https://mba.athuman.com/admission/faq |
+| online-weekends | Lectures are held online at weekends, mainly on Saturdays, on 3 days a month on average | from search results of the official page | https://mba.athuman.com/admission/faq |
+| standard-length | The standard length of the programme is 2 years | from search results of the official page | https://mba.athuman.com/admission |
+| max-enrolment | The maximum period of enrolment is 6 years | from search results of the official page | https://mba.athuman.com/admission/faq |
+| completion | Completion requires 4 core modules and 2 optional modules, a master's dissertation, and 180 credits in all | from search results of the official page | https://mba.athuman.com/admission/faq |
+| intakes | Intakes are in April and October | from search results of the official page | https://mba.athuman.com/admission |
+
+### Not recorded for the MBA
+
+The work-experience requirement for admission is not written in this record.
+The owner decided to withhold what it says.
+Only the fact that the owner has already spoken with the programme's staff about it is written.
+The staff member's name is not written.
+No amount of the fees is written.
+The address and telephone number of the programme office on the pages are not copied.
+
 ## Progress log
 
 [data/progress.json](./data/progress.json) grows in date order and holds the decision of 2026-11-19, the record of 2026-11-20 on the recommendation slots, and the course plan and the doctoral aim decided on the same day.
 On the same day the owner reported that the university where the owner is enrolled does not take requests for letters of recommendation.
 This was received from the owner and not confirmed on a page.
 On 2026-11-21, what strengthens an application without being required was recorded.
+On 2026-11-26, the plan for an MBA after the doctorate was recorded.
 A row marked as done with a date after the day the check runs fails the check.
 
 ## Not recorded
@@ -395,6 +457,8 @@ No grades, scores, GPA or other personal academic records, and no affiliation.
 No name of the university where the owner is enrolled, no address of its syllabus, and no names of the instructors of its courses.
 No amount of the owner's savings, in any currency.
 No name, e-mail address or telephone number of the contact on the doctoral program's page.
+Nothing of what the MBA's work-experience requirement for admission says, and no amount of its fees.
+No name of the MBA programme's staff member.
 Nothing about the people to be asked for recommendations, not even their names.
 The GPA in the rows of requirements is part of the text of a requirement, not a record of the operator.
 
