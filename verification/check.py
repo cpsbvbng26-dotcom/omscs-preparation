@@ -7,7 +7,7 @@
 The checks of this repository's subject come first: the rows of requirements, the courses, the
 progress log, the assets and the recommendation slots, the agreement of README with the data, the course plan at the owner's
 university (and the words it must not carry), the tuition item with its estimate, and the doctoral record (University at
-Buffalo, PhD in Applied Ontology). The checks shared with the other two
+Buffalo, PhD in Applied Ontology), and the MBA plan (the UWTSD MBA programme run by Human Academy). The checks shared with the other two
 new repositories (copies of the canonical files, words not written, e-mail addresses, workflows,
 CLAUDE.md, the writing rules, the ledger of numbers) are in verification/rules.py.
 """
@@ -1231,6 +1231,271 @@ def plus_readme(F):
     return bad
 
 
+# ------------------------------------------------------------------ the MBA plan: the UWTSD MBA programme run by Human Academy
+
+# The pages of mba.athuman.com could not be opened on 2026-11-26: the network setting of this environment did not let the
+# connection through, and nothing was bypassed. Facts come only from search-result summaries; these are the pages that the
+# search results named as their sources. The owner withheld what the work-experience requirement for admission says; the
+# record says only that the owner has already spoken with the programme's staff about it. No fee, address or phone number.
+MBA = "data/mba.json"
+MBA_READ_ON = "2026-11-26"
+MBA_SEARCH = {
+    "https://mba.athuman.com/",
+    "https://mba.athuman.com/admission",
+    "https://mba.athuman.com/admission/application",
+    "https://mba.athuman.com/admission/faq",
+}
+MBA_NAME = "ウェールズ大学トリニティセントデイビッド（UWTSD）MBAプログラム"
+MBA_NAME_EN = "University of Wales Trinity Saint David (UWTSD) MBA programme"
+MBA_HEADS = ("## MBA の計画（ウェールズ大学トリニティセントデイビッド、ヒューマンアカデミービジネススクール）",
+             "## MBA plan (University of Wales Trinity Saint David, Human Academy Business School)")
+MBA_DECISION_HEADS = ("### 2026-11-26 に決めた MBA の計画", "### The MBA plan decided on 2026-11-26")
+MBA_TABLE_HEADS = ("| 行 | 事実 | 状態 | 出典 |", "| Row | Fact | Status | Source |")
+MBA_UNREACHABLE = ("mba.athuman.com の頁は、この作業の環境から開けませんでした。",
+                   "The pages of mba.athuman.com could not be opened from the environment of this record.")
+MBA_WITHHELD = (("出願の実務の要件は、この記録に書きません。", "その中身は、運営者が伏せると決めました。",
+                 "運営者がプログラムの担当とすでに話をしてあることだけを、書きます。", "担当の人の名は書きません。",
+                 "学費の額は書きません。"),
+                ("The work-experience requirement for admission is not written in this record.",
+                 "The owner decided to withhold what it says.",
+                 "Only the fact that the owner has already spoken with the programme's staff about it is written.",
+                 "The staff member's name is not written.", "No amount of the fees is written."))
+MBA_INTRO = ("2026-11-26 からは、博士号を得たあとに、研究を続けながら同時に並行して取る MBA の計画も記録しています。",
+             "From 2026-11-26 it also records the plan for an MBA, to be taken after the doctorate, in parallel, while research continues.")
+# What the work-experience requirement says, in the words a page would use for it: years of experience, management posts.
+MBA_REQUIREMENT_WORDS = re.compile(r"実務経験|管理職|マネジメント経験|年以上|経験年数|\byears? of\b|\d+\s*years? or more|at least \d+|"
+                                   r"manageri|management experience|professional experience|work experience of", re.I)
+# Fees, grants and money in any form; the record of the MBA carries no amount.
+MBA_MONEY = re.compile(r"円|yen|\bJPY\b|¥|\$|dollar|ドル|給付|選考料|受講料|入学料|入学金|tuition|grant", re.I)
+# The office's address and telephone number, and people's names or posts (the pages name instructors and alumni).
+MBA_CONTACT = re.compile(r"〒|丁目|銀座|ビル|\b0\d{1,4}-\d{1,4}-\d{3,4}\b|tel\b|さん|講師|教授|担当者|カウンセラー|"
+                         r"counsel|\bmr\.|\bms\.|\bmrs\.|\bprof", re.I)
+# The spelling of the programme's name in the owner's own sentence, which the record does not use: the pages spell it
+# トリニティセントデイビッド. Kept in base64 so that this file does not carry it.
+MBA_VARIANT = [rules.dec(x) for x in ("44K744Kk44Oz44OI", "44OH44Kj44O044Kj44OD44OJ")]
+MONTHS_EN = {4: "April", 10: "October"}
+
+
+def mba_entry(F):
+    P = jload(F, "data/progress.json") or {"entries": []}
+    return [e for e in P["entries"] if e.get("topic") == "mba"]
+
+
+def mba_texts(F):
+    """The MBA record: the data file, the decision in progress.json, and the MBA section of each README."""
+    out = [(MBA, strings(jload(F, MBA) or {})), ("data/progress.json", strings(mba_entry(F)))]
+    for f, head in (("README.md", MBA_HEADS[0]), ("README.en.md", MBA_HEADS[1])):
+        out.append((f, section(F.get(f, ""), head).split("\n")))
+    return out
+
+
+def flat(x):
+    if isinstance(x, list):
+        return [y for v in x for y in flat(v)]
+    if isinstance(x, dict):
+        return [y for v in x.values() for y in flat(v)]
+    return [x]
+
+
+def mba_facts(F):
+    D = jload(F, MBA)
+    if not D:
+        return [MBA + " cannot be read"]
+    bad = []
+    if D.get("statuses") != (jload(F, "data/requirements.json") or {}).get("statuses"):
+        bad.append("the statuses are not the four of data/requirements.json, in the same words")
+    if D.get("pages_read") != {}:
+        bad.append("a page of mba.athuman.com given as read, but none could be opened")
+    if (D.get("not_opened") or {}).get("host") != "mba.athuman.com":
+        bad.append("the record does not say that mba.athuman.com could not be opened")
+    pr = D.get("programme", {})
+    if pr.get("name") != MBA_NAME or pr.get("name_en") != MBA_NAME_EN or "UWTSD" not in pr.get("awarded_by", "") \
+            or "ヒューマンアカデミービジネススクール" not in pr.get("run_by", "") or "Human Academy" not in pr.get("run_by_en", ""):
+        bad.append("the programme is not named as its pages name it, run by Human Academy, awarded by UWTSD")
+    ids = [r.get("id") for r in D.get("rows", [])]
+    if not ids or len(ids) != len(set(ids)):
+        bad.append("no row, or an id twice")
+    for r in D.get("rows", []):
+        k = str(r.get("id", "?"))
+        if not re.fullmatch(r"[a-z][a-z0-9-]+", k):
+            bad.append(k + ": the id")
+        for field in ("fact", "fact_en", "source", "read_on", "status", "how"):
+            if not str(r.get(field, "")).strip():
+                bad.append(k + ": no " + field)
+        if r.get("read_on") != MBA_READ_ON or r.get("read_on", "") > today():
+            bad.append(k + ": the date read is not 2026-11-26")
+        # No page could be opened, so every row comes from search results, on a page the search results named.
+        if r.get("status") != "search":
+            bad.append(k + ": the status is not from search results, but no page of mba.athuman.com was opened")
+        if r.get("source") not in MBA_SEARCH:
+            bad.append(k + ": the source is not a page that the search results named")
+        if "検索" not in r.get("how", "") or "開けなかった" not in r.get("how", ""):
+            bad.append(k + ": how it was read does not say it was a search, or that the page could not be opened")
+        if "quotes" in r:
+            bad.append(k + ": from search results, but it carries quotes as if the page had been read")
+        if not isinstance(r.get("search_words"), list) or not all(isinstance(x, str) and x.strip() for x in r.get("search_words", [])):
+            bad.append(k + ": the words of the search summary")
+        # Every number in the text of a row is one of its figures, and every figure is in the text (rule 5).
+        fig = r.get("figures", {})
+        vals = sorted({v for v in flat(fig) if isinstance(v, int)})
+        if any(not isinstance(v, int) for v in flat(fig)):
+            bad.append(k + ": a figure that is not a whole number")
+        if sorted({int(x) for x in re.findall(r"\d+", r.get("fact", ""))}) != vals:
+            bad.append(k + ": the numbers of the Japanese text are not the row's figures")
+        en = r.get("fact_en", "")
+        months = fig.get("intake_months", [])
+        if sorted({int(x) for x in re.findall(r"\d+", en)} | set(months)) != vals or \
+                not all(m in MONTHS_EN and MONTHS_EN[m] in en for m in months):
+            bad.append(k + ": the numbers of the English text are not the row's figures")
+    by = {r.get("id"): r for r in D.get("rows", [])}
+    want = {"online-weekends": {"days_per_month": 3}, "standard-length": {"standard_years": 2},
+            "max-enrolment": {"max_years": 6}, "completion": {"core_modules": 4, "optional_modules": 2, "credits": 180},
+            "intakes": {"intake_months": [4, 10]}}
+    for k, v in want.items():
+        if by.get(k, {}).get("figures") != v:
+            bad.append(k + ": the figures read on 2026-11-26 are not those recorded")
+    if not all(w in by.get("language", {}).get("fact", "") for w in ("すべて", "日本語")):
+        bad.append("language: the lectures are not given as all in Japanese")
+    return bad
+
+
+def mba_withheld(F):
+    """What the work-experience requirement says is withheld; no fee or amount; the record says both are left out."""
+    bad = []
+    W = (jload(F, MBA) or {}).get("withheld", {})
+    if set(W) != {"work-experience", "fees", "office"} or \
+            not all(all(str(v.get(x, "")).strip() for x in ("what", "what_en", "why", "why_en")) for v in W.values()):
+        bad.append("the three things not written, each with what it is and why, in both languages")
+    we = W.get("work-experience", {})
+    if "伏せる" not in we.get("why", "") or "担当" not in we.get("why", "") or "withhold" not in we.get("why_en", "") \
+            or "staff" not in we.get("why_en", ""):
+        bad.append("work-experience: not said to be withheld by the owner, after speaking with the programme's staff")
+    for f, texts in mba_texts(F):
+        for s in texts:
+            m = MBA_REQUIREMENT_WORDS.search(s)
+            if m:
+                bad.append(f + ": something of the work-experience requirement「" + m.group(0) + "」")
+            m = MBA_MONEY.search(s) or YEN.search(rules.norm(s))
+            if m:
+                bad.append(f + ": money in the MBA record「" + m.group(0) + "」")
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        sec = section(F.get(f, ""), MBA_HEADS[lang])
+        for s in MBA_WITHHELD[lang]:
+            if s not in sec:
+                bad.append(f + ": the MBA section does not say「" + s[:24] + "」")
+    return bad
+
+
+def mba_contact(F):
+    bad = []
+    for f, texts in mba_texts(F):
+        for s in texts:
+            if rules.EMAIL.search(s) or rules.MAILTO.search(s):
+                bad.append(f + ": an e-mail address")
+            if PHONE.search(s):
+                bad.append(f + ": a telephone number")
+            m = MBA_CONTACT.search(rules.norm(s)) or PERSON.search(rules.norm(s))
+            if m:
+                bad.append(f + ": an address, a telephone number, or a person's name or post: " + m.group(0))
+    for p, x in ((MBA, jload(F, MBA)), ("data/progress.json", mba_entry(F))):
+        for k in keys(x or {}):
+            if CONTACT_KEYS.search(k):
+                bad.append(p + ": a field for a contact (" + k + ")")
+    return bad
+
+
+def mba_decision(F):
+    E = mba_entry(F)
+    if len(E) != 1:
+        return ["the MBA plan is not one entry of data/progress.json"]
+    e, bad = E[0], []
+    if e.get("date") != MBA_READ_ON or e.get("kind") != "decision" or e.get("done") is not True:
+        bad.append("the MBA plan is a decision of 2026-11-26")
+    ja, en = " ".join(e.get("items", [])), " ".join(e.get("items_en", []))
+    if not all(w in ja for w in ("博士号を得たあと", "研究を続けながら", "並行", "ヒューマンアカデミービジネススクール", MBA_NAME,
+                                 "担当とすでに話をしてあります", "書きません")):
+        bad.append("the MBA plan does not say: after the doctorate, while research continues, in parallel, the programme, "
+                   "the talk with the staff, and that the requirement is not written")
+    if not all(w in en for w in ("After the doctorate", "while research continues", "in parallel", "Human Academy",
+                                 MBA_NAME_EN, "already spoken with the programme's staff", "not written")):
+        bad.append("the English MBA plan does not say the same")
+    if len(e.get("items", [])) != len(e.get("items_en", [])):
+        bad.append("the MBA plan: the items in Japanese and English")
+    if any(re.search(r"\d", s) for s in e.get("items", []) + e.get("items_en", [])):
+        bad.append("a figure in the items of the MBA plan")
+    return bad
+
+
+def mba_names(F):
+    """The programme is named as its pages spell it; the owner's other spelling is written nowhere."""
+    bad = []
+    for f in sorted(F):
+        if f in rules.SELF or f == "verification/check.py":
+            continue
+        for w in MBA_VARIANT:
+            if w in F[f]:
+                bad.append(f + ": the spelling of the programme's name that its pages do not use")
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        sec = section(F.get(f, ""), MBA_HEADS[lang])
+        if (MBA_NAME if lang == 0 else MBA_NAME_EN) not in sec:
+            bad.append(f + ": the MBA section does not name the programme as its pages do")
+    return bad
+
+
+def mba_readme(F):
+    bad = []
+    D = jload(F, MBA) or {"rows": [], "statuses": {}}
+    E = mba_entry(F)
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        t = F.get(f, "")
+        sec = section(t, MBA_HEADS[lang])
+        if not sec:
+            bad.append(f + ": no section " + MBA_HEADS[lang])
+            continue
+        sfx = "" if lang == 0 else "_en"
+        try:
+            rows = ["| %s | %s | %s | %s |" % (r["id"], r["fact" + sfx], D["statuses"][r["status"]][lang], r["source"]) for r in D["rows"]]
+        except Exception as e:
+            bad.append(f + ": the table of the MBA data cannot be made (" + str(e) + ")")
+            continue
+        if table_lines(sec) != [MBA_TABLE_HEADS[lang]] + rows:
+            bad.append(f + ": the MBA table differs from the data")
+        if not E or bullets(sec, MBA_DECISION_HEADS[lang]) != E[0].get("items" if lang == 0 else "items_en"):
+            bad.append(f + ": the MBA plan differs from data/progress.json")
+        if MBA_UNREACHABLE[lang] not in sec:
+            bad.append(f + ": no note that mba.athuman.com could not be opened")
+        if MBA_INTRO[lang] not in t[:t.find("\n## ")]:
+            bad.append(f + ": the opening lines do not say that the MBA plan is recorded too")
+    return bad
+
+
+def mba_parity(F):
+    bad = []
+    for r in (jload(F, MBA) or {}).get("rows", []):
+        if not str(r.get("fact", "")).strip() or not str(r.get("fact_en", "")).strip():
+            bad.append(str(r.get("id")) + ": a row without its text in both languages")
+    secs = [section(F.get(f, ""), h) for f, h in (("README.md", MBA_HEADS[0]), ("README.en.md", MBA_HEADS[1]))]
+    heads = [re.findall(r"^### .*$", s, re.M) for s in secs]
+    if len(heads[0]) != len(heads[1]) or not heads[0]:
+        bad.append("the two README sections do not have the same subsections")
+    if len(table_lines(secs[0])) != len(table_lines(secs[1])):
+        bad.append("the two README sections do not have the same number of table rows")
+    N = jload(F, "verification/numbers.json") or {"counts": []}
+    names = sorted({c["count"] for c in N["counts"] if c["count"].startswith("mba_")})
+    if not names:
+        bad.append("no MBA count in verification/numbers.json")
+    for name in names:
+        res = [c["re"] for c in N["counts"] if c["count"] == name]
+        for s, lang in zip(secs, ("README.md", "README.en.md")):
+            if not any(re.search(x, line) for x in res for line in rules.bare(s).split("\n")):
+                bad.append(lang + ": the MBA count %s is not given" % name)
+    return bad
+
+
+def _mba_status(val):
+    return lambda F: sum(1 for r in (jload(F, MBA) or {}).get("rows", []) if r.get("status") == val)
+
+
 COUNTERS = {
     "requirements": lambda F: len((jload(F, "data/requirements.json") or {"rows": []})["rows"]),
     "courses": lambda F: len((jload(F, "data/courses.json") or {"courses": []})["courses"]),
@@ -1254,6 +1519,9 @@ COUNTERS.update({
     "phd_partly": _phd_count("status", "partly"),
     "phd_notyet": _phd_count("status", "not-yet"),
     "phd_stated": _phd_count("requirement", "stated"),
+    "mba_rows": lambda F: len((jload(F, MBA) or {}).get("rows", [])),
+    "mba_search": _mba_status("search"),
+    "mba_confirmed": _mba_status("confirmed"),
 })
 for _k in ("rate", "fee_small", "fee_large", "hours", "tuition", "semesters_1", "total_1", "semesters_2", "total_2"):
     COUNTERS["tuition_" + _k] = (lambda k: lambda F: (tuition_rates(F) or {}).get(k))(_k)
@@ -1307,6 +1575,13 @@ CHECKS = [
     ("Doctorate: Japanese and English say the same, in the data and in the README sections", phd_parity),
     ("Not required, but strengthening: OMSCS rows on a page read on 2026-11-21 with its sentences; doctoral rows from search, never confirmed", plus),
     ("Not required, but strengthening: both READMEs show the rows as the data has them, say nothing is guaranteed and that no doctoral sentence was found", plus_readme),
+    ("MBA: every row comes from search results on a page the search named, read on 2026-11-26, its numbers its figures", mba_facts),
+    ("MBA: nothing of the work-experience requirement and no amount; both READMEs say what is not written and why", mba_withheld),
+    ("MBA: no e-mail address, telephone number, address, or person's name or post", mba_contact),
+    ("MBA: the plan of 2026-11-26 is one entry, after the doctorate, while research continues, with no figure", mba_decision),
+    ("MBA: the programme is named as its pages spell it", mba_names),
+    ("MBA: both READMEs show the plan and the facts as the data has them, and the opening lines name the plan", mba_readme),
+    ("MBA: Japanese and English say the same, and every MBA count is given in both sections", mba_parity),
 ]
 
 FUTURE = (datetime.date.today() + datetime.timedelta(days=400)).isoformat()
@@ -1750,6 +2025,85 @@ BREAKS += [
     (_BYFN["plus_readme"], "README.md stops saying that no row guarantees admission", sub("README.md", "どの行も、入学を保証しません。\n", "")),
     ("Every number in prose is in the ledger of numbers, and every count matches the data",
      "a count of strengthening rows that differs from the data", sub("README.md", "出願を強くするものは 12 件です。", "出願を強くするものは 11 件です。")),
+]
+
+
+
+def _mba(fn):
+    def m(G):
+        D = json.loads(G[MBA])
+        fn(D)
+        G[MBA] = json.dumps(D, ensure_ascii=False, indent=2)
+    return m
+
+
+def _mba_row(i, fn):
+    return _mba(lambda D: fn(next(r for r in D["rows"] if r["id"] == i)))
+
+
+def _mba_plan(fn):
+    return _doctorate(lambda P: fn(next(e for e in P["entries"] if e.get("topic") == "mba")))
+
+
+NUMS = "Every number in prose is in the ledger of numbers, and every count matches the data"
+BREAKS += [
+    (_BYFN["mba_facts"], "an MBA row marked as confirmed on the official page", _mba_row("language", lambda r: _set(r, "status", "confirmed"))),
+    (_BYFN["mba_facts"], "an MBA row from a page the search did not name", _mba_row("intakes", lambda r: _set(r, "source", "https://mba.athuman.com/program"))),
+    (_BYFN["mba_facts"], "an MBA row with quotes, as if the page had been read", _mba_row("degree", lambda r: _set(r, "quotes", ["授与学位 MBA / Master of Business Administration"]))),
+    (_BYFN["mba_facts"], "an MBA row read on another day", _mba_row("max-enrolment", lambda r: _set(r, "read_on", "2026-11-25"))),
+    (_BYFN["mba_facts"], "a page of mba.athuman.com given as read", _mba(lambda D: D["pages_read"].__setitem__("https://mba.athuman.com/", "x"))),
+    (_BYFN["mba_facts"], "the maximum enrolment changed in the text but not in the figures",
+     _mba_row("max-enrolment", lambda r: r.update(fact=r["fact"].replace("6 年", "5 年")))),
+    (_BYFN["mba_facts"], "the credits changed in the figures but not in the text", _mba_row("completion", lambda r: r["figures"].__setitem__("credits", 120))),
+    (_BYFN["mba_facts"], "an intake month dropped from the English text", _mba_row("intakes", lambda r: _set(r, "fact_en", "Intakes are in April"))),
+    (_BYFN["mba_facts"], "the official spelling of the programme's name changed in the data",
+     _mba(lambda D: D["programme"].__setitem__("name", D["programme"]["name"].replace("セントデイビッド", "セント・デイヴィッド")))),
+    (_BYFN["mba_facts"], "how a row was read no longer says the page could not be opened", _mba_row("run-by", lambda r: _set(r, "how", "検索の結果の要約で読んだ。"))),
+    (_BYFN["mba_withheld"], "the work-experience requirement written in an MBA row",
+     _mba_row("degree", lambda r: _set(r, "fact", r["fact"] + "。出願には学士号と 3 年以上の" + "実務経験" + "が要る"))),
+    (_BYFN["mba_withheld"], "years of experience written in English in the MBA section",
+     sub("README.en.md", "The owner decided to withhold what it says.\n", "The owner decided to withhold what it says.\nIt asks for 6 years of work.\n")),
+    (_BYFN["mba_withheld"], "management experience written in the MBA plan",
+     _mba_plan(lambda e: e["items"].__setitem__(3, "実務の要件の中身は、" + "管理職" + "の経験です。"))),
+    (_BYFN["mba_withheld"], "a fee written in the MBA section", sub("README.md", "学費の額は書きません。\n", "学費の額は書きません。\n選考料は 36,000" + "円です。\n")),
+    (_BYFN["mba_withheld"], "the training grant written in the MBA data", _mba_row("language", lambda r: r["search_words"].append("最大128万" + "円給付"))),
+    (_BYFN["mba_withheld"], "the MBA section no longer says the requirement is withheld", sub("README.md", "その中身は、運営者が伏せると決めました。\n", "")),
+    (_BYFN["mba_withheld"], "the withheld requirement loses why it is withheld",
+     _mba(lambda D: D["withheld"]["work-experience"].__setitem__("why", "書かない。"))),
+    (_BYFN["mba_contact"], "the office's telephone number in the MBA data", _mba_row("run-by", lambda r: r["search_words"].append("TEL 0120-94-8928"))),
+    (_BYFN["mba_contact"], "the office's address in README.en.md",
+     sub("README.en.md", "The staff member's name is not written.\n", "The staff member's name is not written.\nThe office is in Ginza, 6-13-16 " + "銀座" + ".\n")),
+    (_BYFN["mba_contact"], "a staff member named in the MBA plan",
+     _mba_plan(lambda e: e["items"].__setitem__(2, "出願の実務の要件については、運営者がプログラムの担当の山田" + "さんとすでに話をしてあります。"))),
+    (_BYFN["mba_contact"], "a field for a contact in the MBA data", _mba(lambda D: D.__setitem__("contact", "x"))),
+    (_BYFN["mba_decision"], "the MBA plan no longer says research continues",
+     _mba_plan(lambda e: e["items"].__setitem__(1, "MBA は、研究をやめてから取ります。"))),
+    (_BYFN["mba_decision"], "the MBA plan no longer says the owner has spoken with the staff",
+     _mba_plan(lambda e: e["items"].__setitem__(2, "出願の実務の要件については、まだ誰とも話していません。"))),
+    (_BYFN["mba_decision"], "a figure in the MBA plan", _mba_plan(lambda e: e["items_en"].append("It takes 2 years."))),
+    (_BYFN["mba_decision"], "the MBA plan dropped", _doctorate(lambda P: P["entries"].remove(next(e for e in P["entries"] if e.get("topic") == "mba")))),
+    (_BYFN["mba_decision"], "the MBA plan dated another day", _mba_plan(lambda e: _set(e, "date", "2026-11-25"))),
+    (_BYFN["mba_names"], "the owner's spelling of the programme's name in README.md", add("README.md", "\n" + "トリニティ" + MBA_VARIANT[0] + MBA_VARIANT[1] + "\n")),
+    (_BYFN["mba_names"], "the owner's spelling in the source of the MBA plan",
+     _mba_plan(lambda e: _set(e, "source", e["source"] + MBA_VARIANT[1]))),
+    (_BYFN["mba_readme"], "README.md changes the status of an MBA row",
+     sub("README.md", "| language | 講義は、すべて日本語で行う | 公式の頁の検索結果から |", "| language | 講義は、すべて日本語で行う | 公式の頁で確かめた |")),
+    (_BYFN["mba_readme"], "README.en.md changes a number of an MBA row",
+     sub("README.en.md", "| standard-length | The standard length of the programme is 2 years |", "| standard-length | The standard length of the programme is 3 years |")),
+    (_BYFN["mba_readme"], "README.md changes an item of the MBA plan", sub("README.md", "- MBA は、研究を続けながら、同時に並行して取ります。", "- MBA は、博士課程と同時に取ります。")),
+    (_BYFN["mba_readme"], "README.en.md loses the note that mba.athuman.com could not be opened",
+     sub("README.en.md", "The pages of mba.athuman.com could not be opened from the environment of this record.\n", "")),
+    (_BYFN["mba_readme"], "README.md loses the opening line on the MBA plan",
+     sub("README.md", "2026-11-26 からは、博士号を得たあとに、研究を続けながら同時に並行して取る MBA の計画も記録しています。\n", "")),
+    (_BYFN["mba_parity"], "README.en.md drops an MBA row",
+     lambda G: G.__setitem__("README.en.md", "\n".join(x for x in G["README.en.md"].split("\n") if not x.startswith("| awarded-by | ")))),
+    (_BYFN["mba_parity"], "README.en.md drops the count of MBA rows confirmed on an opened page",
+     sub("README.en.md", "Of the MBA rows, 0 were confirmed on an opened official page.\n", "")),
+    (_BYFN["mba_parity"], "an English text of an MBA row emptied", _mba_row("awarded-by", lambda r: _set(r, "fact_en", ""))),
+    (NUMS, "a count of MBA rows that differs from the data", sub("README.md", "MBA の事実の表は 11 行です。", "MBA の事実の表は 12 行です。")),
+    (NUMS, "an MBA row dropped from the data, so the English count no longer matches", _mba(lambda D: D["rows"].pop())),
+    (_BYFN["words_not_written"] if "words_not_written" in _BYFN else C[5], "the dropped self-title written in the MBA plan",
+     _mba_plan(lambda e: e["items"].__setitem__(1, "MBA は、" + rules.dec("54us56uL56CU56m26ICF") + "として研究を続けながら取ります。"))),
 ]
 
 

@@ -4,12 +4,14 @@
     "dates は、書いてよい日です。fixed は、決めた値とその形です。counts は、数えて確かめる数で、re の一つ目の括弧が数、count が数え方の名です。",
     "README.md と README.en.md の要件の表の行は data/requirements.json の写しで、別の検査が一行ずつ突き合わせます。数の拾い出しは、二つの頁の表の行を飛ばします。",
     "学費の数（tuition_*）は、data/assets.json の tuition の項目にある頁の文（Bursar の表の OMSCS の行と FAQ の文）から、検査が読み直して計算し直します。在籍する大学のシラバスの数（syllabus_*）は、data/course-plan.json の sha256 の値の数です。",
-    "博士課程の数（phd_*）は、data/phd-requirements.json の行と data/phd-assets.json の項目を、状態ごとに数えます。検査は、どの数も README.md と README.en.md の両方の博士課程の節にあることも見ます。"
+    "博士課程の数（phd_*）は、data/phd-requirements.json の行と data/phd-assets.json の項目を、状態ごとに数えます。検査は、どの数も README.md と README.en.md の両方の博士課程の節にあることも見ます。",
+    "MBA の数（mba_*）は、data/mba.json の行を、状態ごとに数えます。検査は、どの数も README.md と README.en.md の両方の MBA の節にあることも見ます。MBA の表の行の数は、行の figures と突き合わせます。"
   ],
   "dates": {
     "2026-11-19": "決めた日。要件を読んだ日",
     "2026-11-20": "公式の頁を開いて読んだ日。推薦の枠の状態を記録した日。在籍する大学のシラバスを読み、履修計画を決めた日。Bursar の学費の頁を読み、学費の申告を受けた日。博士課程の目標を決め、Daily Nous の記事を読んだ日",
-    "2026-11-21": "必須ではないが出願を強くするものを、公式の頁を開いて読み、博士課程の分を検索で探した日"
+    "2026-11-21": "必須ではないが出願を強くするものを、公式の頁を開いて読み、博士課程の分を検索で探した日",
+    "2026-11-26": "MBA の計画を決め、プログラムの頁の検索結果を読んだ日"
   },
   "fixed": [
     { "re": "CC BY 4\\.0", "why": "LICENSE の版" },
@@ -76,6 +78,12 @@
     { "re": "まだ無いものは (\\d+) 件", "count": "phd_notyet" },
     { "re": ", not yet (\\d+)\\.", "count": "phd_notyet" },
     { "re": "要件に挙げているものは (\\d+) 件", "count": "phd_stated" },
-    { "re": "Of the doctoral items, (\\d+) are stated as requirements", "count": "phd_stated" }
+    { "re": "Of the doctoral items, (\\d+) are stated as requirements", "count": "phd_stated" },
+    { "re": "MBA の事実の表は (\\d+) 行", "count": "mba_rows" },
+    { "re": "The table of MBA facts has (\\d+) rows", "count": "mba_rows" },
+    { "re": "MBA の行のうち、公式の頁の検索結果から読んだものは (\\d+) 行", "count": "mba_search" },
+    { "re": "Of the MBA rows, (\\d+) come from search results of the official pages", "count": "mba_search" },
+    { "re": "MBA の行のうち、公式の頁を開いて確かめたものは (\\d+) 行", "count": "mba_confirmed" },
+    { "re": "Of the MBA rows, (\\d+) were confirmed on an opened official page", "count": "mba_confirmed" }
   ]
 }
