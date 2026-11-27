@@ -1996,6 +1996,48 @@ def orcid_ok(F):
     return bad
 
 
+ENGLISH_HEADS = ("## 2026-11-27 に決めた英語の試験の準備", "## The English test preparation decided on 2026-11-27")
+ENGLISH_MONEY = re.compile(r"円|yen|\bJPY\b|¥|\$|dollar|ドル|\bUSD\b", re.I)
+
+
+def english_entry(F):
+    P = jload(F, "data/progress.json") or {"entries": []}
+    return [e for e in P["entries"] if e.get("topic") == "english"]
+
+
+def english_decision(F):
+    """The English test preparation of 2026-11-27: one decision, the app and its grounds named, no amount, no figure,
+    and both READMEs carry its items word for word."""
+    E = english_entry(F)
+    if len(E) != 1:
+        return ["the English test preparation is not one entry of data/progress.json"]
+    e, bad = E[0], []
+    if e.get("date") != "2026-11-27" or e.get("kind") != "decision" or e.get("done") is not True:
+        bad.append("the English test preparation is a decision of 2026-11-27")
+    ja, en = " ".join(e.get("items", [])), " ".join(e.get("items_en", []))
+    if not all(w in ja for w in ("Santa TOEFL", "ETS Japan", "提携", "公式のコンテンツ", "採点のプログラム", "新しい形式",
+                                 "試験の期間が終わってから", "額は、この記録に書きません")):
+        bad.append("the English test preparation does not say: the app, the partnership, the official content, the scoring "
+                   "program, the new format, the start, and that no amount is written")
+    if not all(w in en for w in ("Santa TOEFL", "ETS Japan", "partnership", "official content", "scoring program",
+                                 "new format", "examination period is over", "No amount is written")):
+        bad.append("the English text of the English test preparation does not say the same")
+    for s in e.get("items", []) + e.get("items_en", []) + [e.get("source", "")]:
+        if ENGLISH_MONEY.search(s):
+            bad.append("an amount in the English test preparation: " + ENGLISH_MONEY.search(s).group(0))
+    if any(re.search(r"\d", s) for s in e.get("items", []) + e.get("items_en", [])):
+        bad.append("a figure in the items of the English test preparation")
+    if "https://www.toefl-ibt.jp/release/20251015/" not in e.get("source", ""):
+        bad.append("the English test preparation does not name the press release it rests on")
+    for f, lang in (("README.md", 0), ("README.en.md", 1)):
+        sec = section(F.get(f, ""), ENGLISH_HEADS[lang])
+        if not sec:
+            bad.append(f + ": no section " + ENGLISH_HEADS[lang])
+        elif [l[2:] for l in sec.split("\n") if l.startswith("- ")] != e.get("items" if lang == 0 else "items_en"):
+            bad.append(f + ": the English test preparation differs from data/progress.json")
+    return bad
+
+
 CHECKS = [
     ("Every row of requirements has a source, a date read, a status and how it was read", requirements),
     ("The courses link only verified pages", courses),
@@ -2038,6 +2080,7 @@ CHECKS = [
     ("MBA: Japanese and English say the same, and every MBA count is given in both sections", mba_parity),
     ("The overall plan: the decided order, each condition on rows that exist with the items' states, every date and length recomputed from the rows, a reason wherever no date follows", overall_data),
     ("The overall plan: both READMEs show its tables as the data has them, near the top, with every count of the plan", overall_readme),
+    ("English test: the preparation of 2026-11-27 is one decision naming the app and its grounds, with no amount and no figure, as both READMEs show it", english_decision),
     ("The overall plan: no task assigned, no amount of the owner's money, nothing withheld of the MBA, no contact, no URL but e-Gov's", overall_words),
 ]
 
@@ -2659,6 +2702,23 @@ BREAKS += [
     (OW, "a fee in the MBA step", _odur("mba-standard", lambda x: _set(x, "label", "標準の修了の年限（受講料は別）"))),
     (OW, "a URL in the plan that is not e-Gov's", _ofact("school-act-104", lambda x: _set(x, "how", x["how"] + " https://example.org/law"))),
     (OW, "a person's title in the plan", _ostep("phd", lambda s: s["conditions"][2].__setitem__("text", "推薦状 2 通（Professor X）"))),
+]
+
+
+EN_CHECK = _BYFN["english_decision"]
+BREAKS += [
+    (EN_CHECK, "a price in yen in the English test preparation",
+     sub("data/progress.json", "受験料とほぼ同じ額で、学習の分が付きます。", "受験料とほぼ同じ額で、学習の分が付きます。プランは 99,999" + "円です。")),
+    (EN_CHECK, "a test fee in dollars in the source of the English test preparation",
+     sub("data/progress.json", "額はこの記録に書かない。\"", "受験料は US" + "$999 である。額はこの記録に書かない。\"")),
+    (EN_CHECK, "a figure in the English items", sub("data/progress.json", "For about the price of the test, the study comes with it.", "For about the price of the test, 99 months of study come with it.")),
+    (EN_CHECK, "the partnership dropped from the Japanese items", sub("data/progress.json", "と、Socra AI が提携していることがあります。", "と、Socra AI の名があります。")),
+    (EN_CHECK, "the press release dropped from the source", sub("data/progress.json", "https://www.toefl-ibt.jp/release/20251015/", "https://example.org/release")),
+    (EN_CHECK, "the entry moved to another day", sub("data/progress.json", '"date": "2026-11-27",\n      "kind": "decision",\n      "done": true,\n      "topic": "english"', '"date": "2026-11-27",\n      "kind": "other",\n      "done": true,\n      "topic": "english"')),
+    (EN_CHECK, "the entry gone", sub("data/progress.json", '"topic": "english"', '"topic": "other"')),
+    (EN_CHECK, "README.md changes an item", sub("README.md", "- いまの試験の期間が終わってから始めます。", "- いますぐ始めます。")),
+    (EN_CHECK, "README.en.md drops an item", sub("README.en.md", "- It starts once the current examination period is over.\n", "")),
+    (EN_CHECK, "README.md drops the section", sub("README.md", "## 2026-11-27 に決めた英語の試験の準備\n", "## 英語の試験\n")),
 ]
 
 

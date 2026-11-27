@@ -121,6 +121,23 @@ The aim of the master's degree is the one in the table of aims on the profile si
 The pace of the MOOCs and the use of AI were decided by the owner on 2026-11-19 and are not in `site.json` of that day.
 The original text of the decision is the first entry of [data/progress.json](./data/progress.json).
 
+## The English test preparation decided on 2026-11-27
+
+- Santa TOEFL, a study app provided by Socra AI, is used to prepare for the English test (TOEFL iBT).
+- It starts once the current examination period is over.
+- One reason for the choice is that Socra AI has a partnership with ETS Japan, the Japanese arm of ETS, which makes the TOEFL.
+- Santa TOEFL uses ETS's official content and ETS's scoring program.
+- It covers the revised, new format of the TOEFL iBT. Materials made for the old format do not give practice in the new one.
+- The AI gives a predicted level and the weak points of each skill, so that study alongside the undergraduate courses wastes less time.
+- The plan chosen comes with a test voucher. For about the price of the test, the study comes with it.
+- No amount is written in this record.
+
+This was decided by the owner on 2026-11-27.
+The original sentences are in the entry of [data/progress.json](./data/progress.json) whose `topic` is `english`.
+The partnership, the official content and the scoring program rest on the press release of 2025-10-15 by the TOEFL Japan office (ETS Japan LLC).
+That page could not be opened from this working environment.
+It was read on 2026-11-27 in the text of the page fetched by a search tool.
+
 ## Application requirements
 
 [data/requirements.json](./data/requirements.json) holds one row per requirement, each with its source URL, the date it was read, a status and how it was checked.
