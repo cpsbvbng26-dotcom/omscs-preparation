@@ -4,7 +4,8 @@
     "done が true の行の日付は、検査を走らせた日より後にできません。成績・点・GPA など個人の学業の記録は、どの欄にも書きません。検査が欄の名と中身を見ます。",
     "topic が doctorate の行は、2026-11-20 に決めた博士課程の目標です。推薦の枠の検査は、この行を見ません。かわりに博士課程の検査が、この行に推薦の枠のことも、人のことも、額も書かれていないことを見ます。",
     "topic が mba の行は、2026-11-26 に決めた MBA の計画です。MBA の検査が、この行に数も、出願の実務の要件の中身も、人の名も書かれていないことを見ます。",
-    "topic が plan の行は、2026-11-26 に計画の全体（data/plan.json）を置いた記録です。計画の検査が、この行が data/plan.json の made_on の日にあることを見ます。"
+    "topic が plan の行は、2026-11-26 に計画の全体（data/plan.json）を置いた記録です。計画の検査が、この行が data/plan.json の made_on の日にあることを見ます。",
+    "topic が english の行は、2026-11-27 に決めた英語の試験の準備です。英語の試験の検査が、この行に額も数も書かれていないことと、両方の README の節が同じであることを見ます。"
   ],
   "entries": [
     {
@@ -127,6 +128,33 @@
         "The earliest date of each step was derived only by arithmetic from the dates and numbers of the sources. Where none follows, it is marked as not determined, with the reason."
       ],
       "source": "利用者が 2026-11-26 に、大学院の記録と計画を緻密にすることを求めた。計画の表の形と、最も早い日の出し方は、Claude が同じ日に決めた。"
+    },
+    {
+      "date": "2026-11-27",
+      "kind": "decision",
+      "done": true,
+      "topic": "english",
+      "items": [
+        "英語の試験（TOEFL iBT）の準備に、Socra AI が提供する学習アプリ Santa TOEFL を使います。",
+        "いまの試験の期間が終わってから始めます。",
+        "選んだ理由には、TOEFL を作る ETS の日本法人である ETS Japan と、Socra AI が提携していることがあります。",
+        "Santa TOEFL は、ETS の公式のコンテンツと、ETS の採点のプログラムを使っています。",
+        "改訂された新しい形式の TOEFL iBT に対応しています。古い形式の教材では、新しい形式の練習になりません。",
+        "AI が予測スコアと技能ごとの弱いところを出すので、学部の勉強と並行しても、要らない勉強を減らせます。",
+        "受験の券が付くプランを選びます。受験料とほぼ同じ額で、学習の分が付きます。",
+        "額は、この記録に書きません。"
+      ],
+      "items_en": [
+        "Santa TOEFL, a study app provided by Socra AI, is used to prepare for the English test (TOEFL iBT).",
+        "It starts once the current examination period is over.",
+        "One reason for the choice is that Socra AI has a partnership with ETS Japan, the Japanese arm of ETS, which makes the TOEFL.",
+        "Santa TOEFL uses ETS's official content and ETS's scoring program.",
+        "It covers the revised, new format of the TOEFL iBT. Materials made for the old format do not give practice in the new one.",
+        "The AI gives a predicted level and the weak points of each skill, so that study alongside the undergraduate courses wastes less time.",
+        "The plan chosen comes with a test voucher. For about the price of the test, the study comes with it.",
+        "No amount is written in this record."
+      ],
+      "source": "運営者が 2026-11-27 に決めた。提携、公式のコンテンツ、採点のプログラム、新しい形式への対応は、TOEFL テスト日本事務局（ETS Japan 合同会社）の 2025-10-15 のプレスリリース（https://www.toefl-ibt.jp/release/20251015/）による。この頁はこの作業の環境から開けず、2026-11-27 に検索の道具が取った頁の文で読んだ。券の付くプランの中身は、Santa TOEFL の日本向けの頁（https://lp.aitutorsanta.com/PageB）の検索の結果の要約による。額はこの記録に書かない。"
     }
   ]
 }
